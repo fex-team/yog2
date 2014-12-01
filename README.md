@@ -20,7 +20,17 @@ npm install
 cd ../
 ```
 
-### 初始化基础运行环境
+### 加载Node运行时
+
+*注意*
+
+仅限百度公司内部可用，外部用户可忽略此步骤
+
+```bash
+yog2 init node-runtime
+```
+
+### 发布业务APP
 
 ```bash
 yog2 init app
