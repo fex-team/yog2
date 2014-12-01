@@ -1,0 +1,36 @@
+{
+  "name": "yog2",
+  "version": "0.0.0",
+  "description": "Front End Integrated Solution for node express.",
+  "main": "yog2.js",
+  "bin": {
+    "yog2": "bin/yog2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fex-team/yog2.git"
+  },
+  "keywords": [
+    "fis",
+    "node"
+  ],
+  "author": "fex-team",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fex-team/yog2/issues"
+  },
+  "homepage": "https://github.com/fex-team/yog2",
+  "dependencies": {
+    "fis": "~1.8.5",
+    "fis-parser-bdtmpl": "0.0.3",
+    "fis-parser-less": "0.0.9",
+    "fis-postprocessor-jswrapper": "0.0.8",
+    "yog2-command-init": "0.0.0",
+    "yogurt-command-server": "0.1.1",
+    "yogurt-postprocessor-require-async": "0.0.2",
+    "yogurt-preprocessor-extlang": "0.0.2"
+  }
+}
