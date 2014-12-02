@@ -158,12 +158,9 @@ Yog2 App的目录规范可以结合 [创建一个Yog2 App](#创建一个Yog2 App
 
 ##### 插件配置项
 
-
-#### 自动路由
-
 ##### Action
 
-Action用于处理页面请求，一般我们会在Action中处理请求的参数，如querystring, cookie甚至upload files，然后将参数处理为 `server/models` 中的请求格式，调用 `server/models` 中的数据层获取数据后，指定后端模板和数据进行页面渲染。Action均存放在 `server/action` 中。
+action用于处理页面请求，一般我们会在Action中处理请求的参数，如querystring, cookie甚至upload files，然后将参数处理为 `server/models` 中的请求格式，调用 `server/models` 中的数据层获取数据后，指定后端模板和数据进行页面渲染。action均存放在 `server/action` 中。
 
 来点例子
 
@@ -189,9 +186,11 @@ module.exports = function(req, res){
 };
 ```
 
-##### 自动路由规则
+#### 自动路由
 
-自动路由用于管理URL与action之间的映射关系，默认的路由规则为
+##### 默认配置
+
+自动路由用于管理url与action之间的映射关系，默认的路由规则为
 
 ```text
 http://www.example.com/home/index => app/home/index.js
@@ -203,8 +202,6 @@ http://www.example.com/home/doc/detail => app/home/doc/detail.js
 http://www.example.com/home/index => app/home/index/index.js
 http://www.example.com/home/doc/detail => app/home/doc/detail/index.js
 ```
-
-##### 默认配置
 
 ##### 路由扩展
 
