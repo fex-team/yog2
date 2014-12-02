@@ -206,33 +206,55 @@ http://www.example.com/home/doc/detail => app/home/doc/detail/index.js
 ##### 路由扩展
 
 - rootRouter
+	
+	rootRouter是用于管理Yog2项目的根路由，根路由可以请求发往App之前就进行干预。appRouter可以在 `conf/yog/dispatcher.js` 中修改
+	
+	你可以为一个app设置一个别名
+	
+	```javascript
+	router.use('/custom', yog.dispatcher.router('home'))
+	// http://www.example.com/custom => app/home/index/index.js
+	```
+	
+	你可以直接建立一个特殊的URL
+
+	```javascript
+	router.get('/somespecial', yog.dispatcher.action('home/doc/detail'))
+	// http://www.example.com/somespecial => app/home/doc/detail.js
+	```
+	
+	你也可以在此处将router当成app使用，加载任意中间件
+
+	```javascript
+	router.use(function(req, res, next){
+	});
+	```
 
 - appRouter
 
-	appRouter是一个app的入口，可以理解为Express中的app，实际上功能也和Express中的App极为相似，可以用于加载App级别的中间件或者通用逻辑，也可以用于实现自动路由无法满足的URL设计需求。
-	appRouter可以在 `server/router.js` 中修改
+	appRouter用于管理进入App后的请求分发，可以理解为Express中的app，实际上功能也和Express中的App极为相似，在这里你可以加载App级别的中间件或者通用逻辑，也可以用于实现自动路由无法满足的URL设计需求。appRouter可以在 `server/router.js` 中修改。
 	
 	```javascript
-	module.exports = function(app){
+	module.exports = function(router){
 	    // you can add app common logic here
-	    // app.use(function(req, res, next){
+	    // router.use(function(req, res, next){
 	    // });
 	
 	    // also you can add custom action
 	    // require /spa/some/hefangshi
-	    // app.get('/some/:user', router.action('api'));
+	    // router.get('/some/:user', router.action('api'));
 	    
 	    // or write action directly
-	    // app.get('/some/:user', function(res, req){});
+	    // router.get('/some/:user', function(res, req){});
 	
 	    // a restful api example
-	    app.route('/book')
+	    router.route('/book')
 	        // PUT /cdcd/book/id
 	        .put(router.action('book').put)
 	        // GET /cdcd/book
 	        .get(router.action('book'));
 	
-	    app.route('/book/id/:id')
+	    router.route('/book/id/:id')
 	        // GET /cdcd/book/id
 	        .get(router.action('book').get)
 	        // DELETE /cdcd/book/id
