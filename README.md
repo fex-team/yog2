@@ -100,11 +100,11 @@ Yog2 App的目录规范可以结合 [创建一个Yog2 App](#创建一个Yog2 App
 
 ```
 ├─client                 # 前端代码
-│  ├─page               # 前端页面
-│  ├─static             # 前端非模块化静态资源
+│  ├─page                # 前端页面
+│  ├─static              # 前端非模块化静态资源
 │  │  ├─css
 │  │  └─js
-│  └─widget             # 前端组件
+│  └─widget              # 前端组件
 ├─fis-conf.js            # FIS编译配置
 └─server                 # 后端代码
     ├─action             # Action是指MVC中的路由动作，处理页面请求
