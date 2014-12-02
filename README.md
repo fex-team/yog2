@@ -115,85 +115,55 @@ Yog2 App的目录规范可以结合 [创建一个Yog2 App](#创建一个Yog2 App
 
 其中 `fis-conf.js`, `client/page`, `client/static`， `client/widget`, `server/action` , `server/router.js` 文件或目录是固定的目录规范，其余目录均可以根据自己系统进行调整
 
-##### client/page
+#### App部署
 
-所有页面级别的模板文件，放在此目录。此tpl 可以直接在浏览器中预览。比如 page/index.tpl 可以通过 http://127.0.0.1:8080/{{ namespace }}/page/index 访问。 其中 {{ namespace }} 为此项目的名称。
+### 前端能力
 
-需要强调的的是，模板引擎采用的是 [swig](http://paularmstrong.github.io/swig/), 可以采用模板继承机制来实现模板复用。
+#### FIS静态资源管理
 
-layout.tpl
+我们扩展了Swig模板引擎的功能，实现了与fis-plus类似的后端静态资源管理能力，你可以通过一些标签来方便的进行细粒度静态资源管理。
 
-```tpl
-<!doctype html>
-{% html lang="en" framework="example:static/js/mod.js" %}
-    {% head %}
-        <meta charset="utf-8">
-        <title>{{ title }}</title>
-        {% require "example:static/js/jquery-1.10.2.js" %}
-    {% endhead %}
-    {% body %}
-        <div id="wrapper">
-            {% widget "example:widget/header/header.tpl" %}
-            <div class="container">
-                {% block content %}
-                {% endblock %}
-            </div>
-            {% widget "example:widget/footer/footer.tpl" %}
-        </div>
-    {% endbody %}
-{% endhtml %}
-```
+##### require
 
-index.tpl
+##### widget
 
-```tpl
-{% extends 'example:page/layout.tpl' %}
-{% block content %}
-    This is content!
-{% endblock %}
-```
+##### spage
 
-##### client/static
+##### uri
 
-用来存放所有静态资源文件，css, js, images 等等。如：
+##### 辅助标签
 
-```
-├── css
-│   └── style.css
-└── js
-    ├── jquery-1.10.2.js
-    └── mod.js
-```
+- html
+- head
+- body
+- script
+- style
 
-##### client/widget
 
-用来存放各类组件代码。组件分成3类。
+#### 前端组件化
 
-1. 模板类：包含 tpl, 可以选择性的添加 js 和 css 文件，同名的 js 和 css 会被自动加载。
+#### Everything in FIS
 
-  模板类文件，可以在模板中通过 widget 标签引用。如
+### 后端能力
 
-  ```tpl
-  {% widget "example:widget/pagelets/jumbotron/jumbotron.tpl" %}
-  ```
-2. js 类： 主要包含 js 文件，放在此目录下的文件一般都会自动被 amd define 包裹，可选择性的添加同名 css 文件，会自动被引用。
+#### 启动初始化
 
-  此类组件，可以在 tpl 或者 js 中通过 require 标签引用。
+#### 插件管理
 
-  ```tpl
-  {% require('example:widget/lib/uploader/uploader.js') %}
+##### 内置插件
 
-  <script>
-  var uploader = require('example:widget/lib/uploader/uploader.js');
+##### 用户插件
 
-  uploader.init();
-  </script>
-  ```
-3. 纯 css 类：只是包含 css 文件。比如 compass. 同样也是可以通过 require 标签引用。
+##### 插件依赖
 
-#### server/action
+##### 插件配置项
 
-用来存放路由动作，处理页面请求，一般我们会在action中处理请求的参数，如querystring, cookie甚至upload files，然后将参数处理为 `server/models` 中的请求格式，调用 `server/models` 中的数据层获取数据后，指定后端模板和数据进行页面渲染。
+
+#### 自动路由
+
+##### Action
+
+Action用于处理页面请求，一般我们会在Action中处理请求的参数，如querystring, cookie甚至upload files，然后将参数处理为 `server/models` 中的请求格式，调用 `server/models` 中的数据层获取数据后，指定后端模板和数据进行页面渲染。Action均存放在 `server/action` 中。
 
 来点例子
 
@@ -219,73 +189,73 @@ module.exports = function(req, res){
 };
 ```
 
-#### server/router.js
+##### 自动路由规则
 
-`server/router.js` 是一个app的入口，可以理解为Express中的app，实际上功能也和Express中的App极为相似，可以用于加载App级别的中间件或者通用逻辑，也可以用于实现自动路由无法满足的URL设计需求。
+自动路由用于管理URL与action之间的映射关系，默认的路由规则为
 
-```javascript
-module.exports = function(app){
-    // you can add app common logic here
-    // app.use(function(req, res, next){
-    // });
-
-    // also you can add custom action
-    // require /spa/some/hefangshi
-    // app.get('/some/:user', router.action('api'));
-    
-    // or write action directly
-    // app.get('/some/:user', function(res, req){});
-
-    // a restful api example
-    app.route('/book')
-        // PUT /cdcd/book/id
-        .put(router.action('book').put)
-        // GET /cdcd/book
-        .get(router.action('book'));
-
-    app.route('/book/id/:id')
-        // GET /cdcd/book/id
-        .get(router.action('book').get)
-        // DELETE /cdcd/book/id
-        .delete(router.action('book').delete);
-};
+```text
+http://www.example.com/home/index => app/home/index.js
+http://www.example.com/home/doc/detail => app/home/doc/detail.js
 ```
+如果上述规则没有匹配成功，会尝试匹配同名文件夹下的index.js，即
 
-#### 扩模块引用
-
-#### App部署
-
-### 前端能力
-
-#### FIS静态资源管理
-
-#### 前端组件化
-
-#### Everything in FIS
-
-### 后端能力
-
-#### 启动初始化
-
-#### 插件管理
-
-##### 内置插件
-
-##### 用户插件
-
-##### 插件依赖
-
-##### 插件配置项
-
-#### 自动路由
+```text
+http://www.example.com/home/index => app/home/index/index.js
+http://www.example.com/home/doc/detail => app/home/doc/detail/index.js
+```
 
 ##### 默认配置
 
 ##### 路由扩展
 
-###### rootRouter
+- rootRouter
 
-###### appRouter
+- appRouter
+
+	appRouter是一个app的入口，可以理解为Express中的app，实际上功能也和Express中的App极为相似，可以用于加载App级别的中间件或者通用逻辑，也可以用于实现自动路由无法满足的URL设计需求。
+	appRouter可以在 `server/router.js` 中修改
+	
+	```javascript
+	module.exports = function(app){
+	    // you can add app common logic here
+	    // app.use(function(req, res, next){
+	    // });
+	
+	    // also you can add custom action
+	    // require /spa/some/hefangshi
+	    // app.get('/some/:user', router.action('api'));
+	    
+	    // or write action directly
+	    // app.get('/some/:user', function(res, req){});
+	
+	    // a restful api example
+	    app.route('/book')
+	        // PUT /cdcd/book/id
+	        .put(router.action('book').put)
+	        // GET /cdcd/book
+	        .get(router.action('book'));
+	
+	    app.route('/book/id/:id')
+	        // GET /cdcd/book/id
+	        .get(router.action('book').get)
+	        // DELETE /cdcd/book/id
+	        .delete(router.action('book').delete);
+	};
+	```
+
+##### 跨App调用
+
+对于跨App的调用，我们建议慎重使用，最好只限定在其余App对Common App的调用，Common App中可以存放一些通用的组件。
+
+```javascript
+// 通过yog.require 可以跨App调用其余模块的后端脚本
+var util = yog.require('common/libs/util.js');
+
+// 通过yog.dispatcher 可以跨App获取Router与Action
+var commonRouter = yog.disptahcer.router('common');
+var error = commonRouter.action('error');
+error= yog.dispatcher.action('common/error');
+```
 
 ### BigPipe
 
