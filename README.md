@@ -675,10 +675,10 @@ r.on('error', function(err){
 ##### 辅助标签
 
 ##### html
-* 功能：代替<html>标签，设置页面运行的前端框架，以及控制整体页面输出。
+* 功能：代替`<html>`标签，设置页面运行的前端框架，以及控制整体页面输出。
 * 属性值：framework及html标签原生属性值
 * 是否必须：是
-* 用法：在模板中替换普通<html>标签
+* 用法：在模板中替换普通`<html>`标签
 ```html
 {%html framework="home:static/lib/mod.js"%}
     ....
@@ -687,10 +687,10 @@ r.on('error', function(err){
 页面输出为：
 ![](http://fex-team.github.io/fis-framework-site/assets/images/fis-plus/tpl1.jpg)
 ##### head
-* 功能：代替<head>标签，控制CSS资源加载输出。
+* 功能：代替`<head>`标签，控制CSS资源加载输出。
 * 属性值：head标签原生属性值
 * 是否必须：是
-* 用法：在模板中替换普通<head>标签
+* 用法：在模板中替换普通`<head>`标签
 ```html
 {%html framework="home:static/lib/mod.js"%}
     {%head%}
@@ -701,10 +701,10 @@ r.on('error', function(err){
 页面输出为
 ![](http://fex-team.github.io/fis-framework-site/assets/images/fis-plus/tpl2.jpg)
 #####  body
-* 功能：代替<body>标签，控制JS资源加载输出。
+* 功能：代替`<body>`标签，控制JS资源加载输出。
 * 属性值：body标签原生属性值
 * 是否必须：是
-* 用法：在模板中替换普通<body>标签
+* 用法：在模板中替换普通`<body>`标签
 ```html
 {%html framework="home:static/lib/mod.js"%}
     {%head%}
@@ -718,10 +718,10 @@ r.on('error', function(err){
 页面输出为
 ![](http://fex-team.github.io/fis-framework-site/assets/images/fis-plus/tpl3.jpg)
 ##### script
-* 功能：代替<script>标签，收集使用JS组件的代码块，控制输出至页面底部。
+* 功能：代替`<script>`标签，收集使用JS组件的代码块，控制输出至页面底部。
 * 属性值：无
 * 是否必须：在模板中使用异步JS组件的JS代码块，必须通过插件包裹
-* 用法：在模板中替换普通<script>标签
+* 用法：在模板中替换普通`<script>`标签
 ```html
 {%html framework="home:static/lib/mod.js"%}
     {%head%}
