@@ -143,7 +143,7 @@ Yog2 App的目录规范可以结合 [创建一个Yog2 App](https://github.com/fe
 └─server                 # 后端代码
     ├─action             # Action是指MVC中的路由动作，处理页面请求
     ├─lib                # 可以存放一些通用库
-    ├─model             # 可以存放一些数据层代码，如后端API请求等
+    ├─model              # 可以存放一些数据层代码，如后端API请求等
     └─router.js          # AppRouter路由，用于处理自动路由无法满足的需求
 ```
 
