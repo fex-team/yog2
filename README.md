@@ -375,7 +375,7 @@ module.exports = function(req, res, next){
 
 #### yog.require
 
-`yog.require` 提供了跨App的require能力，具体可以参考[跨App调用)](#跨App调用)
+`yog.require` 提供了跨App的require能力，具体可以参考[跨App调用](#跨App调用)
 
 #### yog.log
 
