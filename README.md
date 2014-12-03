@@ -234,7 +234,7 @@ router.use(function(req, res, next){
 });
 ```
 
-##### appRouter
+###### appRouter
 
 appRouter用于管理进入App后的请求分发，可以理解为Express中的app，实际上功能也和Express中的App极为相似，在这里你可以加载App级别的中间件或者通用逻辑，也可以用于实现自动路由无法满足的URL设计需求。
 
