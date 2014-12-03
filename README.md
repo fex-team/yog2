@@ -382,11 +382,11 @@ module.exports = function(req, res, next){
 `yog.log` 提供了日志记录能力
 
 ```javascript
-yog.log.fatal('some fatal);
-yog.log.warning('some warning);
-yog.log.notice('some notice);
-yog.log.trace('some trace);
-yog.log.debug('some debug);
+yog.log.fatal('some fatal');
+yog.log.warning('some warning');
+yog.log.notice('some notice');
+yog.log.trace('some trace');
+yog.log.debug('some debug');
 ```
 
 #### yog.ral
