@@ -109,11 +109,9 @@ Yog2 App的目录规范可以结合 [创建一个Yog2 App](#创建一个Yog2 App
 └─server                 # 后端代码
     ├─action             # Action是指MVC中的路由动作，处理页面请求
     ├─lib                # 可以存放一些通用库
-    ├─models             # 可以存放一些数据层代码，如后端API请求等
+    ├─model             # 可以存放一些数据层代码，如后端API请求等
     └─router.js          # AppRouter路由，用于处理自动路由无法满足的需求
 ```
-
-其中 `fis-conf.js`, `client/page`, `client/static`， `client/widget`, `server/action` , `server/router.js` 文件或目录是固定的目录规范，其余目录均可以根据自己系统进行调整
 
 #### App部署
 
@@ -134,6 +132,7 @@ Yog2 App的目录规范可以结合 [创建一个Yog2 App](#创建一个Yog2 App
 ##### 辅助标签
 
 - html
+-  标签
 - head
 - body
 - script
@@ -141,8 +140,6 @@ Yog2 App的目录规范可以结合 [创建一个Yog2 App](#创建一个Yog2 App
 
 
 #### 前端组件化
-
-#### Everything in FIS
 
 ### 后端能力
 
@@ -158,16 +155,18 @@ Yog2 App的目录规范可以结合 [创建一个Yog2 App](#创建一个Yog2 App
 
 ##### 插件配置项
 
-##### Action
+##### 请求处理
 
-action用于处理页面请求，一般我们会在Action中处理请求的参数，如querystring, cookie甚至upload files，然后将参数处理为 `server/models` 中的请求格式，调用 `server/models` 中的数据层获取数据后，指定后端模板和数据进行页面渲染。action均存放在 `server/action` 中。
+页面请求会经由路由转发至action处理，一般我们会在action中处理请求的参数，如querystring, cookie甚至upload files，然后将参数处理为数据层模块需要的参数格式，调用数据层模块获取数据后，指定后端模板和数据进行页面渲染。
+
+> action均存放在 `server/action` 中。
 
 来点例子
 
 ```javascript
 // /server/action/index.js
-//引用models
-var indexModel = require('../models/index.js');
+//引用数据层模块
+var indexModel = require('../model/index.js');
 //引用一些基础库
 var util = require('../lib/util.js');
 
@@ -205,62 +204,71 @@ http://www.example.com/home/doc/detail => app/home/doc/detail/index.js
 
 ##### 路由扩展
 
-- rootRouter
-	
-	rootRouter是用于管理Yog2项目的根路由，根路由可以请求发往App之前就进行干预。appRouter可以在 `conf/yog/dispatcher.js` 中修改
-	
-	你可以为一个app设置一个别名
-	
-	```javascript
-	router.use('/custom', yog.dispatcher.router('home'))
-	// http://www.example.com/custom => app/home/index/index.js
-	```
-	
-	你可以直接建立一个特殊的URL
+Yog2的自动路由是在Express的路由功能上扩展而来，因此Express路由提供的功能均可以在Yog2中使用。
 
-	```javascript
-	router.get('/somespecial', yog.dispatcher.action('home/doc/detail'))
-	// http://www.example.com/somespecial => app/home/doc/detail.js
-	```
+###### rootRouter
 	
-	你也可以在此处将router当成app使用，加载任意中间件
+rootRouter是用于管理Yog2项目的根路由，根路由可以请求发往App之前就进行干预。
 
-	```javascript
-	router.use(function(req, res, next){
-	});
-	```
+> appRouter可以在 `conf/yog/dispatcher.js` 中修改
+> router更多的使用方法可以参考 [Express文档](http://expressjs.com/4x/api.html#router)
 
-- appRouter
+你可以为一个app设置一个别名
 
-	appRouter用于管理进入App后的请求分发，可以理解为Express中的app，实际上功能也和Express中的App极为相似，在这里你可以加载App级别的中间件或者通用逻辑，也可以用于实现自动路由无法满足的URL设计需求。appRouter可以在 `server/router.js` 中修改。
-	
-	```javascript
-	module.exports = function(router){
-	    // you can add app common logic here
-	    // router.use(function(req, res, next){
-	    // });
-	
-	    // also you can add custom action
-	    // require /spa/some/hefangshi
-	    // router.get('/some/:user', router.action('api'));
-	    
-	    // or write action directly
-	    // router.get('/some/:user', function(res, req){});
-	
-	    // a restful api example
-	    router.route('/book')
-	        // PUT /cdcd/book/id
-	        .put(router.action('book').put)
-	        // GET /cdcd/book
-	        .get(router.action('book'));
-	
-	    router.route('/book/id/:id')
-	        // GET /cdcd/book/id
-	        .get(router.action('book').get)
-	        // DELETE /cdcd/book/id
-	        .delete(router.action('book').delete);
-	};
-	```
+```javascript
+router.use('/custom', yog.dispatcher.router('home'))
+// http://www.example.com/custom => app/home/index/index.js
+```
+
+你可以直接建立一个特殊的URL
+
+```javascript
+router.get('/somespecial', yog.dispatcher.action('home/doc/detail'))
+// http://www.example.com/somespecial => app/home/doc/detail.js
+```
+
+你也可以在此处将router当成app使用，加载任意中间件
+
+```javascript
+router.use(function(req, res, next){
+});
+```
+
+##### appRouter
+
+appRouter用于管理进入App后的请求分发，可以理解为Express中的app，实际上功能也和Express中的App极为相似，在这里你可以加载App级别的中间件或者通用逻辑，也可以用于实现自动路由无法满足的URL设计需求。
+
+> appRouter可以在 `server/router.js` 中修改。
+
+> router更多的使用方法可以参考 [Express文档](http://expressjs.com/4x/api.html#router)
+
+```javascript
+module.exports = function(router){
+    // you can add app common logic here
+    router.use(function(req, res, next){
+    });
+
+    // also you can add custom action
+    // request /spa/some/hefangshi
+    router.get('/some/:user', router.action('api'));
+    
+    // or write action directly
+    router.get('/some/:user', function(res, req){});
+
+    // a restful api example
+    router.route('/book')
+        // PUT /cdcd/book/id
+        .put(router.action('book').put)
+        // GET /cdcd/book
+        .get(router.action('book'));
+
+    router.route('/book/id/:id')
+        // GET /cdcd/book/id
+        .get(router.action('book').get)
+        // DELETE /cdcd/book/id
+        .delete(router.action('book').delete);
+};
+```
 
 ##### 跨App调用
 
@@ -276,16 +284,127 @@ var error = commonRouter.action('error');
 error= yog.dispatcher.action('common/error');
 ```
 
-### BigPipe
+### Bigpipe
 
-### SPA
+Bigpipe的应用场景在于解决页面中某个模块的数据获取时间较长，但是又不希望这个模块阻塞其余模块快速渲染的需求。一般这种情况我们可以使用Ajax请求异步数据后通过前端模板渲染的方式解决，但是通过Bigpipe我们可以在不增加额外请求的前提下利用Chunk输出来实现无阻塞的渲染。关于Bigpipe更多的内容可以参考[Facebook网站的Ajax化、缓存和流水线](http://velocity.oreilly.com.cn/2010/index.php?func=session&name=Facebook%E7%BD%91%E7%AB%99%E7%9A%84Ajax%E5%8C%96%E3%80%81%E7%BC%93%E5%AD%98%E5%92%8C%E6%B5%81%E6%B0%B4%E7%BA%BF)
+
+> 需要注意的是并不是所有场景都适合使用Bigpipe，只有当一个页面需要向多个系统请求数据，并且后端系统无法提供一致的返回时间保证时，使用Bigpipe才会有较大的性能提升。
+
+使用Yog2可以方便的引入BigPipe能力，Yog2中BigPipe的最小单位是widget，我们只需要简单的将某个widget设置为bigpipe模式，再为其绑定数据获取模式就可以实现widget的Bigpipe加载能力。
+
+首先，可以直接部署DEMO来体验一下BigPipe的功能
+
+```bash
+# project目录
+yog2 init spa
+cd spa
+yog2 release -d ../yog
+```
+
+在重启yog2后，访问 http://127.0.0.1:8080/spa 即可体验Yog2中的BigPipe能力
+
+启用Bigpipe只需要三个步骤
+
+1. 确保 `/yog/conf/yog/views.js` 中的 `bigpipe` 设置为true (默认属性)
+2. 在引用widget时设置 `mode="async"` 开启Bigpipe模式
+
+	```tpl
+	{% widget "spa:widget/bigpipe/bigpipe.tpl" id="bigpipe" mode="async" %}
+	```
+	
+3. 在action设置渲染数据时，绑定widget的数据获取方式
+
+	```javascript
+	res.bigpipe.bind('bigpipe', function(cb){
+        setTimeout(function(){
+            cb(null, {
+                bigpipeTime: (new Date()).toString()
+            });
+        }, 2000);
+    });
+	```
 
 ### Yog对象
 
+Yog2暴露了一个名为 `yog` 的全局变量，方便一些系统功能的挂载和调用。
+
 #### yog.dispatcher
+
+`yog.dispatcher` 是Yog2的自动路由处理器，通过 `yog.dispatcher` 可以方便的获取App路由与执行器
+
+```javascript
+var commonRouter = yog.disptahcer.router('common');
+var error = commonRouter.action('error');
+error= yog.dispatcher.action('common/error');
+```
+
+它的应用场景有很多，最常用的有
+
+##### 设置router别名
+
+Yog2默认是以App的`fis-conf.js`中namespace配置为router名称，如果希望自动路由可以使用其他名称访问App，那么就需要在rootRouter中设置路由的别名
+
+```javascript
+router.use('/custom', yog.dispatcher.router('home'))
+// http://www.example.com/custom => app/home/index/index.js
+```
+
+##### 设置appRouter
+
+Yog2的自动路由是根据URL查找同名文件，如果有一些特别的URL希望更强的定制能力，那么可以通过appRouter进行设置
+
+> appRouter可以在 `server/router.js` 中修改。
+
+```javascript
+module.exports = function(router){
+    // request /spa/some/hefangshi = /spa/api.js
+    router.get('/some/:user', yog.dispatcher.action('spa/api'));
+};
+```
+
+##### Action调用
+
+我们也可以在Action代码中直接调用其他Action进行页面请求处理
+
+```javascript
+// spa/action/some.js
+module.exports = function(req, res, next){
+    yog.dispatcher.action('spa/api')(req, res, next);
+};
+```
 
 #### yog.require
 
+`yog.require` 提供了跨App的require能力，具体可以参考[跨App调用)](#跨App调用)
+
 #### yog.log
 
+`yog.log` 提供了日志记录能力
+
+```javascript
+yog.log.fatal('some fatal);
+yog.log.warning('some warning);
+yog.log.notice('some notice);
+yog.log.trace('some trace);
+yog.log.debug('some debug);
+```
+
 #### yog.ral
+
+`yog.ral` 提供了后端API请求能力
+
+```javascript
+var r = yog.ral('SOME_SERVICE', {
+    data: {
+        id: 1
+    }
+});
+
+r.on('data', function(data){
+    console.log(data);
+});
+
+r.on('error', function(err){
+    console.log(err);
+});
+```
