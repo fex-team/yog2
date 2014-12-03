@@ -130,7 +130,7 @@ Yog2继承了FIS的项目拆分能力，但是在原有的前端项目拆分的�
 
 #### 目录规范
 
-Yog2 App的目录规范可以结合 [创建一个Yog2 App](#创建一个Yog2 App) 创建的目录进行了解
+Yog2 App的目录规范可以结合 [创建一个Yog2 App](#创建一个Yog2-App) 创建的目录进行了解
 
 ```
 ├─client                 # 前端代码
@@ -195,7 +195,7 @@ Yog2的插件分为两个部分，一部分是Yog2自带的插件，存放在[yo
 
 - dispatcher
 
-  自动路由分发插件，提供全局函数[yog.disptacher](#yog.disptacher)
+  自动路由分发插件，提供全局函数[yog.disptacher](#yogdisptacher)
 
 - http
 
@@ -203,11 +203,11 @@ Yog2的插件分为两个部分，一部分是Yog2自带的插件，存放在[yo
 
 - log
 
-  日志插件，提供全局函数[yog.log](#yog.log)
+  日志插件，提供全局函数[yog.log](#yoglog)
   
 - ral
 
-  后端服务管理插件，提供全局函数[yog.ral](#yog.ral)
+  后端服务管理插件，提供全局函数[yog.ral](#yogral)
 
 - views
 
