@@ -97,24 +97,20 @@ Yog2将传统的一站式开发分解为了Yog2基础环境与Yog2 App，Yog2基
 │  ├─client
 │  │  ├─page
 │  │  ├─static
-│  │  │  └─js
 │  │  └─widget
-│  │      └─message
 │  └─server
 │      ├─action
 │      ├─lib
-│      └─models
+│      └─model
 ├─user
 │  ├─client
 │  │  ├─page
 │  │  ├─static
-│  │  │  └─js
 │  │  └─widget
-│  │      └─message
 │  └─server
 │      ├─action
 │      ├─lib
-│      └─models
+│      └─model
 └─yog
     ├─app
     ├─bin
