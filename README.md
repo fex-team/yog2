@@ -159,7 +159,7 @@ yog2 release -d ../yog #将home app发布至同级的yog目录中
 cd ..
 ```
 
-与fis的编译和部署语法完全一致，你甚至可以部署到远程测试机上而不是本机上使用，更多用法可以参考[fis文档](http://fis.baidu.com/docs/api/fis-conf.html#deploy)
+与FIS的编译和部署语法完全一致，你甚至可以部署到远程测试机上而不是本机上使用，更多用法可以参考[FIS文档](http://fis.baidu.com/docs/api/fis-conf.html#deploy)
 
 ### 后端能力
 
@@ -394,7 +394,7 @@ http://www.example.com/home/doc/detail => app/home/doc/detail/index.js
 Yog2的自动路由是在Express的路由功能上扩展而来，因此Express路由提供的功能均可以在Yog2中使用。
 
 ###### rootRouter
-	
+    
 rootRouter是用于管理Yog2项目的根路由，根路由可以请求发往App之前就进行干预。
 
 > appRouter可以在 `conf/yog/dispatcher.js` 中修改
@@ -610,13 +610,13 @@ module.exports = function(router){
 ![](http://fex-team.github.io/fis-framework-site/assets/images/fis-plus/tpl4.jpg)
 
 
-### Bigpipe
+### BigPipe
 
-Bigpipe的应用场景在于解决页面中某个模块的数据获取时间较长，但是又不希望这个模块阻塞其余模块快速渲染的需求。一般这种情况我们可以使用Ajax请求异步数据后通过前端模板渲染的方式解决，但是通过Bigpipe我们可以在不增加额外请求的前提下利用Chunk输出来实现无阻塞的渲染。关于Bigpipe更多的内容可以参考[Facebook网站的Ajax化、缓存和流水线](http://velocity.oreilly.com.cn/2010/index.php?func=session&name=Facebook%E7%BD%91%E7%AB%99%E7%9A%84Ajax%E5%8C%96%E3%80%81%E7%BC%93%E5%AD%98%E5%92%8C%E6%B5%81%E6%B0%B4%E7%BA%BF)
+BigPipe的应用场景在于解决页面中某个模块的数据获取时间较长，但是又不希望这个模块阻塞其余模块快速渲染的需求。一般这种情况我们可以使用Ajax请求异步数据后通过前端模板渲染的方式解决，但是通过BigPipe我们可以在不增加额外请求的前提下利用Chunk输出来实现无阻塞的渲染。关于BigPipe更多的内容可以参考[Facebook网站的Ajax化、缓存和流水线](http://velocity.oreilly.com.cn/2010/index.php?func=session&name=Facebook%E7%BD%91%E7%AB%99%E7%9A%84Ajax%E5%8C%96%E3%80%81%E7%BC%93%E5%AD%98%E5%92%8C%E6%B5%81%E6%B0%B4%E7%BA%BF)
 
-> 需要注意的是并不是所有场景都适合使用Bigpipe，只有当一个页面需要向多个系统请求数据，并且后端系统无法提供一致的返回时间保证时，使用Bigpipe才会有较大的性能提升。
+> 需要注意的是并不是所有场景都适合使用BigPipe，只有当一个页面需要向多个系统请求数据，并且后端系统无法提供一致的返回时间保证时，使用BigPipe才会有较大的性能提升。
 
-使用Yog2可以方便的引入BigPipe能力，Yog2中BigPipe的最小单位是widget，我们只需要简单的将某个widget设置为bigpipe模式，再为其绑定数据获取模式就可以实现widget的Bigpipe加载能力。
+使用Yog2可以方便的引入BigPipe能力，Yog2中BigPipe的最小单位是widget，我们只需要简单的将某个widget设置为BigPipe模式，再为其绑定数据获取模式就可以实现widget的BigPipe加载能力。
 
 首先，可以直接部署DEMO来体验一下BigPipe的功能
 
@@ -629,26 +629,26 @@ yog2 release -d ../yog
 
 在重启yog2后，访问 http://127.0.0.1:8080/spa 即可体验Yog2中的BigPipe能力
 
-启用Bigpipe只需要三个步骤
+启用BigPipe只需要三个步骤
 
 1. 确保 `/yog/conf/yog/views.js` 中的 `bigpipe` 设置为true (默认属性)
 2. 在引用widget时设置 `mode="async"` 开启Bigpipe模式
 
-	```tpl
-	{% widget "spa:widget/bigpipe/bigpipe.tpl" id="bigpipe" mode="async" %}
-	```
-	
+    ```tpl
+    {% widget "spa:widget/bigpipe/bigpipe.tpl" id="bigpipe" mode="async" %}
+    ```
+    
 3. 在action设置渲染数据时，绑定widget的数据获取方式
 
-	```javascript
-	res.bigpipe.bind('bigpipe', function(cb){
+    ```javascript
+    res.bigpipe.bind('bigpipe', function(cb){
         setTimeout(function(){
             cb(null, {
                 bigpipeTime: (new Date()).toString()
             });
         }, 2000);
     });
-	```
+    ```
 
 ### Yog对象
 
