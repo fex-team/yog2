@@ -1,6 +1,6 @@
 {
   "name": "yog2",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Front End Integrated Solution for node express.",
   "main": "yog2.js",
   "bin": {
@@ -30,7 +30,7 @@
     "fis-postprocessor-jswrapper": "0.0.8",
     "yog2-command-init": "0.0.x",
     "yogurt-command-server": "0.1.1",
-    "yogurt-postprocessor-require-async": "0.0.2",
+    "yogurt-postprocessor-require-async": "0.0.x",
     "yogurt-preprocessor-extlang": "0.0.2"
   }
 }
