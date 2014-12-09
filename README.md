@@ -76,11 +76,22 @@ npm i #执行过可忽略
 
 #### 调试模式启动
 
+Linux
+
 ```bash
 # project目录
 cd yog
 npm i #执行过可忽略
 npm run-script debug
+```
+
+Windows
+
+```bash
+# project目录
+cd yog
+npm i #执行过可忽略
+npm run-script debug-win
 ```
 
 访问 [http://127.0.0.1:8080](http://127.0.0.1:8080) 即可查看运行效果
