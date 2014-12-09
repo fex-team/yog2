@@ -379,14 +379,15 @@ module.exports = function(req, res){
 自动路由用于管理url与action之间的映射关系，默认的路由规则为
 
 ```text
-http://www.example.com/home/index => app/home/index.js
-http://www.example.com/home/doc/detail => app/home/doc/detail.js
+http://www.example.com/home/index => app/home/action/index.js
+http://www.example.com/home/doc/detail => app/home/action/doc/detail.js
 ```
+
 如果上述规则没有匹配成功，会尝试匹配同名文件夹下的index.js，即
 
 ```text
-http://www.example.com/home/index => app/home/index/index.js
-http://www.example.com/home/doc/detail => app/home/doc/detail/index.js
+http://www.example.com/home/index => app/home/action/index/index.js
+http://www.example.com/home/doc/detail => app/home/action/doc/detail/index.js
 ```
 
 ##### 路由扩展
@@ -394,10 +395,11 @@ http://www.example.com/home/doc/detail => app/home/doc/detail/index.js
 Yog2的自动路由是在Express的路由功能上扩展而来，因此Express路由提供的功能均可以在Yog2中使用。
 
 ###### rootRouter
-    
+
 rootRouter是用于管理Yog2项目的根路由，根路由可以请求发往App之前就进行干预。
 
-> appRouter可以在 `conf/yog/dispatcher.js` 中修改
+> rootRouter可以在 `conf/plugins/dispatcher.js` 中修改
+
 > router更多的使用方法可以参考 [Express文档](http://expressjs.com/4x/api.html#router)
 
 你可以为一个app设置一个别名
@@ -631,7 +633,7 @@ yog2 release -d ../yog
 
 启用BigPipe只需要三个步骤
 
-1. 确保 `/yog/conf/yog/views.js` 中的 `bigpipe` 设置为true (默认属性)
+1. 确保 `/yog/conf/plugins/views.js` 中的 `bigpipe` 设置为true (默认属性)
 2. 在引用widget时设置 `mode="async"` 开启Bigpipe模式
 
     ```tpl
