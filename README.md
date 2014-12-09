@@ -555,7 +555,7 @@ module.exports = function(router){
        <meta charset="utf-8"/>    
    {%endhead%}
    {%body%}
-        {%uri name="home:static/css/bootstrap.css" %}
+        {%uri "home:static/css/bootstrap.css" %}
    {%endbody%}
  {%endhtml%}
 ```
