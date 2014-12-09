@@ -311,7 +311,7 @@ module.exports.A = {
 
 编写在 `conf/plugin` 中的插件配置，会在启动器初始化插件时，自动进行配置传递。
 
-#### 中间件管理
+##### 中间件管理
 
 中间件管理在Yog2中是通过http插件实现，你可以通过配置http插件来调整中间件的加载顺序
 
@@ -350,6 +350,10 @@ module.exports.responseTime = function(app, conf){
 ```
 
 中间件插件的特别之处在于它将返回一个函数而不是直接执行中间件的初始化，HTTP插件将会调用返回的函数，而在这个函数中，你可以通过 app.use实现中间件的加载。
+
+##### 百度内部服务
+
+Yog2引入了常用的百度通用服务供内部产品线使用，通过插件安装机制即可方便使用，具体请参考[yog2-plugin-bdservice](http://gitlab.baidu.com/fex/yog2-plugin-bdservice/tree/master)
 
 #### 执行器与路由
 
