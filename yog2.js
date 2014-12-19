@@ -96,6 +96,10 @@ var commonRoadmap = [
     {
         reg: '${namespace}-map.json',
         release: '${config}/fis/${namespace}-map.json'
+    },
+    {
+        reg: '**',
+        release: '${static}/${namespace}/$&'
     }
 ];
 
