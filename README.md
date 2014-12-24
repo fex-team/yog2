@@ -20,7 +20,8 @@ Yog2项目可以使用Yog2工具直接创建
 
 ```bash
 # project目录
-yog2 init yog
+yog2 init project
+# prompt: Enter your app name:  (yog)
 ```
 
 ### 创建一个Yog2 App
@@ -39,7 +40,9 @@ yog2 init app
 
 ```bash
 # project目录
+cd yog
 yog2 init node-runtime
+cd ..
 ```
 
 ### 部署Yog2 App
