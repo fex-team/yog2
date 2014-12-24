@@ -6,7 +6,7 @@ fis.require.prefixes.unshift('yogurt');
 
 fis.cli.name = 'yog2';
 fis.cli.info = fis.util.readJSON(__dirname + '/package.json');
-fis.cli.help.commands = ['init', 'install', 'release', 'server'];
+fis.cli.help.commands = ['init', 'install', 'release'];
 
 fis.config.set('template', '/views');
 fis.config.set('app', '/app');

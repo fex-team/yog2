@@ -30,7 +30,6 @@
     "fis-postprocessor-jswrapper": "0.0.8",
     "yog2-command-init": "0.0.x",
     "yog2-command-plugin": "0.0.x",
-    "yogurt-command-server": "0.1.1",
     "yogurt-postprocessor-require-async": "0.0.x",
     "yogurt-preprocessor-extlang": "0.0.2"
   }
