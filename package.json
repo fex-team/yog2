@@ -1,6 +1,6 @@
 {
   "name": "yog2",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Front End Integrated Solution for node express.",
   "main": "yog2.js",
   "bin": {
