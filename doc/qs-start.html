@@ -1,0 +1,12 @@
+<h4 class=""><a name="启动Yog2项目" class="anchor" href="#启动Yog2项目"><span class="doc-link"></span></a>启动Yog2项目</h4><p>完成环境的安装以及app的部署后便可以启动项目，启动方式依然分为两种方式，普通用户请直接使用默认启动：</p>
+<h5 class=""><a name="默认启动" class="anchor" href="#默认启动"><span class="doc-link"></span></a>默认启动</h5><pre><code class="hljs lang-bash"><span class="hljs-comment"># project目录</span>
+<span class="hljs-built_in">cd</span> yog
+npm i
+node ./bin/www
+</code></pre>
+<h5 class=""><a name="Node一体化环境启动" class="anchor" href="#Node一体化环境启动"><span class="doc-link"></span></a>Node一体化环境启动</h5><p>此项仅适用于百度公司内部，用于安装线上Node基础环境，外部用户可以忽略，直接使用<a href="#%E9%BB%98%E8%AE%A4%E5%90%AF%E5%8A%A8">默认启动</a></p>
+<pre><code class="hljs lang-bash"><span class="hljs-comment"># project目录</span>
+<span class="hljs-built_in">cd</span> yog
+npm i <span class="hljs-comment">#执行过可忽略</span>
+./bin/yog_control start
+</code></pre>

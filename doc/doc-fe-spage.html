@@ -1,0 +1,18 @@
+<h6 class=""><a name="spage" class="anchor" href="#spage"><span class="doc-link"></span></a>spage</h6><ul>
+<li>功能：使用ajax请求，采取quickling模式渲染页面片段。第一次刷新页面的时候</li>
+<li>使用：{%spage &quot;$id&quot; for=&quot;pages-container&quot;%}</li>
+<li>$id: html片段的路径</li>
+<li>for：页面容器，即ajax请求html片段在页面对应的容器。</li>
+<li>用法：quickling模式渲染页面片段<pre><code class="hljs lang-html"><span class="xml"></span><span class="hljs-template_tag">{%html framework="home:<span class="hljs-keyword">static</span>/lib/mod.js"%}</span><span class="xml">
+  </span><span class="hljs-template_tag">{%head%}</span><span class="xml">
+     <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">charset</span>=<span class="hljs-value">"utf-8"</span>/&gt;</span>
+  </span><span class="hljs-template_tag">{%endhead%}</span><span class="xml">
+  </span><span class="hljs-template_tag">{%body%}</span><span class="xml">
+      <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"pages-container"</span>&gt;</span>
+      </span><span class="hljs-template_tag">{% spage "spa:widget/pagelets/home/home.tpl" <span class="hljs-keyword">for</span>="pages-container" %}</span><span class="xml">
+   <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+  </span><span class="hljs-template_tag">{%endbody%}</span><span class="xml">
+</span><span class="hljs-template_tag">{%endhtml%}</span><span class="xml"></span>
+</code></pre>
+</li>
+</ul>

@@ -1,0 +1,30 @@
+<h4 class=""><a name="BigPipe" class="anchor" href="#BigPipe"><span class="doc-link"></span></a>BigPipe</h4><p>BigPipe的应用场景在于解决页面中某个模块的数据获取时间较长，但是又不希望这个模块阻塞其余模块快速渲染的需求。一般这种情况我们可以使用Ajax请求异步数据后通过前端模板渲染的方式解决，但是通过BigPipe我们可以在不增加额外请求的前提下利用Chunk输出来实现无阻塞的渲染。关于BigPipe更多的内容可以参考<a href="http://velocity.oreilly.com.cn/2010/index.php?func=session&amp;name=Facebook%E7%BD%91%E7%AB%99%E7%9A%84Ajax%E5%8C%96%E3%80%81%E7%BC%93%E5%AD%98%E5%92%8C%E6%B5%81%E6%B0%B4%E7%BA%BF">Facebook网站的Ajax化、缓存和流水线</a></p>
+<blockquote>
+<p>需要注意的是并不是所有场景都适合使用BigPipe，只有当一个页面需要向多个系统请求数据，并且后端系统无法提供一致的返回时间保证时，使用BigPipe才会有较大的性能提升。</p>
+</blockquote>
+<p>使用Yog2可以方便的引入BigPipe能力，Yog2中BigPipe的最小单位是widget，我们只需要简单的将某个widget设置为BigPipe模式，再为其绑定数据获取模式就可以实现widget的BigPipe加载能力。</p>
+<p>首先，可以直接部署DEMO来体验一下BigPipe的功能</p>
+<pre><code class="hljs lang-bash"><span class="hljs-comment"># project目录</span>
+yog2 init spa
+<span class="hljs-built_in">cd</span> spa
+yog2 release <span class="hljs-operator">-d</span> ../yog
+</code></pre>
+<p>在重启yog2后，访问 <a href="http://127.0.0.1:8080/spa">http://127.0.0.1:8080/spa</a> 即可体验Yog2中的BigPipe能力</p>
+<p>启用BigPipe只需要三个步骤</p>
+<ol>
+<li>确保 <code>/yog/conf/plugins/views.js</code> 中的 <code>bigpipe</code> 设置为true (默认属性)</li>
+<li><p>在引用widget时设置 <code>mode=&quot;async&quot;</code> 开启Bigpipe模式</p>
+<pre><code class="hljs lang-tpl"> {<span class="hljs-preprocessor">%</span> widget <span class="hljs-string">"spa:widget/bigpipe/bigpipe.tpl"</span> id=<span class="hljs-string">"bigpipe"</span> mode=<span class="hljs-string">"async"</span> <span class="hljs-preprocessor">%</span>}
+</code></pre>
+</li>
+<li><p>在action设置渲染数据时，绑定widget的数据获取方式</p>
+<pre><code class="hljs lang-javascript"> res.bigpipe.bind(<span class="hljs-string">'bigpipe'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(cb)</span></span>{
+     setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
+         cb(<span class="hljs-literal">null</span>, {
+             bigpipeTime: (<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>()).toString()
+         });
+     }, <span class="hljs-number">2000</span>);
+ });
+</code></pre>
+</li>
+</ol>

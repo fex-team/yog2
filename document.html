@@ -1,0 +1,732 @@
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Yog2: 基于fis的node服务器解决方案</title>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+<link type="text/css" rel="stylesheet" href="/fis-plus/static/pkg/auto_combine_fcec5_60e2fcc.css">
+</head>
+<body>
+
+
+        <header class="navbar navbar-static-top bs-docs-nav" id="top" role="banner">
+      <div class="container">
+        <div class="navbar-header">
+          <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="../" class="navbar-brand"><i class="fa fa-cogs"></i></a>
+        </div>
+        <nav class="collapse navbar-collapse bs-navbar-collapse">
+          <ul class="nav navbar-nav">
+                <li><a href="yog2">首页</a></li>
+                <li><a href="yog2/document.html#快速入门">快速入门</a></li>
+                <li><a href="yog2/document.html#Yog2功能">用户文档</a></li>
+                <li><a href="https://github.com/fex-team/yog2/issues">FAQ</a></li>
+                <li><a href="https://www.npmjs.com/search?q=yog2">插件</a></li>
+                <li><a href="http://fis.baidu.com">关于FIS</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="http://fex.baidu.com">Made by FEX</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <div class="raw bs-docs-header">
+        <div class="container intro">
+            <div class="col-sm-3">
+                <img src="/fis-plus/static/img/yog2_7bed1be.png" alt="yog2-logo">
+            </div>
+            <div class="col-sm-9">
+                <div class="intro-word">
+                    <p>npm install -g &nbsp;<strong>yog2</strong></p>
+                    <h3>
+                    基于FIS的node开发集成解决方案
+                    </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container bs-docs-container">
+        <div class="row">
+            <div class="col-sm-9">
+                <div id="document-main" class="document-main">
+                    <div class="bs-docs-section"><h1 class="page-header"><a name="Yog2 解决方案" class="anchor" href="#Yog2 解决方案"><span class="doc-link"></span></a>Yog2 解决方案</h1></div>
+<div class="bs-docs-section"><h3 class="" id="Yog2简介"><a name="Yog2简介" class="anchor" href="#Yog2简介"><span class="doc-link"></span></a>Yog2简介</h3><p>Yog2是基于FIS框架的扩展能力开发的<a href="http://oak.baidu.com/">众多解决方案</a>之一，如针对php的<a href="http://oak.baidu.com/docs/fis-plus">fis-plus(fisp)</a>、针对java的<a href="https://github.com/fex-team/jello">jello</a>以及针对Go语言的<a href="http://oak.baidu.com/docs/gois/">Gois</a>等。Yog2则是针对node开发环境的前后端解决方案，不同于及针对node服务器端的<a href="http://oak.baidu.com/docs/yogurt">yog</a>以及其相应的前端解决方案<a href="http://oak.baidu.com/docs/yogurt">yogurt</a>，Yog2将传统的一站式开发分解为了Yog2基础环境（yog）和Yog2 App，Yog2基础环境将负责一些中间件初始化和基础环境工作，而Yog2 App则是对应的各个业务子系统，包含了具体的业务代码，这样良好地做到了开发中的前后端分离。
+在使用Yog2之前，建议您事先对FIS工具有所熟悉。</p>
+</div>
+<div class="bs-docs-section"><h3 class="" id="快速入门"><a name="快速入门" class="anchor" href="#快速入门"><span class="doc-link"></span></a>快速入门</h3><p>Yog2的使用很方便，分别使用 <code>yog2 init project</code> 和 <code>yog2 init app</code> 便可以迅速构建一个前后端分离的开发环境，且建议首先跟随快速入门文档运行一次demo，以对yog2有一个较快速的理解。</p>
+</div>
+<div class="bs-docs-section"><h4 class=""><a name="工具安装" class="anchor" href="#工具安装"><span class="doc-link"></span></a>工具安装</h4><p><em>node安装</em>：如果还没有安装 <a href="http://nodejs.org">node</a> 请先安装 <a href="http://nodejs.org">node</a>.</p>
+<p><em>npm</em>：npm是nodejs的包管理工具。安装nodejs后，npm就自动一起安装了。</p>
+<ul>
+<li>用nodejs写的模块都发布在npm上。<a href="https://www.npmjs.org/">npm网站</a></li>
+<li>用户需要使用npm install命令来安装nodejs模块。更多npm使用，执行 npm -h 来查看</li>
+<li><code>由于npm经常被墙，安装yog2的时候会出现速度过慢，或者安装不上的问题</code> 。</li>
+<li>如果npm速度较慢，请考虑使用国内的npm镜像仓库<a href="http://cnpmjs.org/">cnpm</a>代替npm, 在npm中可以通过 npm的 <code>--registry</code> 参数指定仓库：</li>
+</ul>
+<p>例如： </p>
+<pre><code class="hljs lang-bash">npm <span class="hljs-operator"><span class="hljs-keyword">install</span> &lt;<span class="hljs-keyword">some</span> npm <span class="hljs-keyword">module</span>&gt; -g <span class="hljs-comment">--registry=镜像</span></span>
+</code></pre>
+<ul>
+<li>百度内部则可以使用公司内镜像<ul>
+<li>--registry=<a href="http://npm.internal.baidu.com">http://npm.internal.baidu.com</a></li>
+</ul>
+</li>
+</ul>
+<p><em>yog2安装</em>：node以及npm处理完毕，则可以开始安装yog2</p>
+<pre><code class="hljs lang-bash">npm <span class="hljs-keyword">install</span> -g yog2
+</code></pre>
+</div>
+<div class="bs-docs-section"><p>使用 <code>yog2 init</code> 命令可以迅速构建一个前后端分离的开发环境：</p>
+</div>
+<div class="bs-docs-section"><h4 class=""><a name="创建一个Yog2项目" class="anchor" href="#创建一个Yog2项目"><span class="doc-link"></span></a>创建一个Yog2项目</h4><p>初始化Yog2项目，首先需要初始化一个后端环境，可以在项目目录下使用以下命令直接创建</p>
+<pre><code class="hljs lang-bash"><span class="hljs-preprocessor"># project目录</span>
+yog2 init project
+<span class="hljs-preprocessor"># prompt: Enter your app name:  (yog)</span>
+</code></pre>
+</div>
+<div class="bs-docs-section"><h4 class=""><a name="创建一个Yog2 App" class="anchor" href="#创建一个Yog2 App"><span class="doc-link"></span></a>创建一个Yog2 App</h4><p>Yog2提供了App拆分能力，即可以将一个站点或多个站点拆分为多个App，多个App可以部署至同一个Yog2项目(后端环境)中同时运行。初始化一个App的命令如下：</p>
+<pre><code class="hljs lang-bash"><span class="hljs-preprocessor"># project目录</span>
+yog2 init app
+<span class="hljs-preprocessor"># prompt: Enter your app name:  (home)</span>
+</code></pre>
+</div>
+<div class="bs-docs-section"><h4 class=""><a name="项目部署" class="anchor" href="#项目部署"><span class="doc-link"></span></a>项目部署</h4></div>
+<div class="bs-docs-section"><h4 class=""><a name="安装Node一体化环境" class="anchor" href="#安装Node一体化环境"><span class="doc-link"></span></a>安装Node一体化环境</h4><p>此项仅适用于百度公司内部，用于安装线上Node基础环境，外部用户可以忽略，请直接使用自带的Node环境</p>
+<pre><code class="hljs lang-bash"><span class="hljs-comment"># project目录</span>
+<span class="hljs-built_in">cd</span> yog
+yog2 init node-runtime
+<span class="hljs-built_in">cd</span> ..
+</code></pre>
+</div>
+<div class="bs-docs-section"><h4 class=""><a name="部署Yog2 App" class="anchor" href="#部署Yog2 App"><span class="doc-link"></span></a>部署Yog2 App</h4><pre><code class="hljs lang-bash"><span class="hljs-comment"># project目录</span>
+<span class="hljs-built_in">cd</span> home
+<span class="hljs-comment"># home目录</span>
+yog2 release <span class="hljs-operator">-d</span> ../yog <span class="hljs-comment">#将home app发布至同级的yog目录中</span>
+<span class="hljs-built_in">cd</span> ..
+</code></pre>
+<p>App的发布实际上就是一个拆分的过程，这将在下面讲解。</p>
+</div>
+<div class="bs-docs-section"><h4 class=""><a name="启动Yog2项目" class="anchor" href="#启动Yog2项目"><span class="doc-link"></span></a>启动Yog2项目</h4><p>完成环境的安装以及app的部署后便可以启动项目，启动方式依然分为两种方式，普通用户请直接使用默认启动：</p>
+<h5 class=""><a name="默认启动" class="anchor" href="#默认启动"><span class="doc-link"></span></a>默认启动</h5><pre><code class="hljs lang-bash"><span class="hljs-comment"># project目录</span>
+<span class="hljs-built_in">cd</span> yog
+npm i
+node ./bin/www
+</code></pre>
+<h5 class=""><a name="Node一体化环境启动" class="anchor" href="#Node一体化环境启动"><span class="doc-link"></span></a>Node一体化环境启动</h5><p>此项仅适用于百度公司内部，用于安装线上Node基础环境，外部用户可以忽略，直接使用<a href="#%E9%BB%98%E8%AE%A4%E5%90%AF%E5%8A%A8">默认启动</a></p>
+<pre><code class="hljs lang-bash"><span class="hljs-comment"># project目录</span>
+<span class="hljs-built_in">cd</span> yog
+npm i <span class="hljs-comment">#执行过可忽略</span>
+./bin/yog_control start
+</code></pre>
+</div>
+<div class="bs-docs-section"><h5 class=""><a name="调试模式启动" class="anchor" href="#调试模式启动"><span class="doc-link"></span></a>调试模式启动</h5><p>Linux</p>
+<pre><code class="hljs lang-bash"><span class="hljs-comment"># project目录</span>
+cd yog
+npm i <span class="hljs-comment">#执行过可忽略</span>
+npm <span class="hljs-command">run</span>-<span class="hljs-keyword">script</span> debug
+</code></pre>
+<p>Windows</p>
+<pre><code class="hljs lang-bash"><span class="hljs-comment"># project目录</span>
+cd yog
+npm i <span class="hljs-comment">#执行过可忽略</span>
+npm <span class="hljs-command">run</span>-<span class="hljs-keyword">script</span> debug-win
+</code></pre>
+<p>访问 <a href="http://127.0.0.1:8080">http://127.0.0.1:8080</a> 即可查看运行效果</p>
+<blockquote>
+<p>注意，如果端口8080被占用会提示启动异常EADDRINUSE，只需要调整bin/www文件中的默认端口即可
+也可以设置PORT环境变量来调整启动端口</p>
+</blockquote>
+<p>至此，Yog2的一个基础demo已经搭建完成并可以继续进行开发。<em>前后端分离</em>是Yog2的重点，以下的文档将进一步从<a href="">App拆分</a>、<a href="">前后端能力</a>方面讲解：</p>
+</div>
+<div class="bs-docs-section"><h3 class="" id="Yog2的特点"><a name="Yog2的特点" class="anchor" href="#Yog2的特点"><span class="doc-link"></span></a>Yog2的特点</h3><p>Yog2将传统的一站式开发分解为了Yog2基础环境与Yog2 App，Yog2基础环境将负责一些中间件初始化和基础环境工作，而Yog2 App则是对应的各个业务子系统，包含了具体的业务代码，当然你也可以直接使用Yog2基础环境继续一站式开发，但是我们强烈推荐使用App能力拆分项目。</p>
+<p>一个典型的Yog2目录结构应该类似</p>
+<pre><code>├─home
+│  ├─<span class="hljs-keyword">client</span>
+│  │  ├─page
+│  │  ├─<span class="hljs-keyword">static</span>
+│  │  └─widget
+│  └─<span class="hljs-keyword">server</span>
+│      ├─action
+│      ├─lib
+│      └─model
+├─user
+│  ├─<span class="hljs-keyword">client</span>
+│  │  ├─page
+│  │  ├─<span class="hljs-keyword">static</span>
+│  │  └─widget
+│  └─<span class="hljs-keyword">server</span>
+│      ├─action
+│      ├─lib
+│      └─model
+└─yog
+    ├─app
+    ├─bin
+    ├─conf
+    │  ├─plugins
+    │  └─ral
+    ├─plugins
+    ├─<span class="hljs-keyword">static</span>
+    └─views
+</code></pre></div>
+<div class="bs-docs-section"><h4 class=""><a name="App拆分" class="anchor" href="#App拆分"><span class="doc-link"></span></a>App拆分</h4><p>Yog2继承了FIS的项目拆分能力，但是在原有的前端项目拆分的能力上，更进一步的提供了<strong>前后端一体App</strong>的拆分能力，我们可以将一个功能模块的前后端代码在一个App中统一管理，从代码结构上推动功能模块之间松耦合，并且加快编译速度，减少分支合并工作，最终提高开发效率。</p>
+<h5 class=""><a name="目录规范" class="anchor" href="#目录规范"><span class="doc-link"></span></a>目录规范</h5><p>Yog2 App的目录规范可以结合 <a href="https://github.com/fex-team/yog2#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AAyog2-app">创建一个Yog2 App</a> 创建的目录进行了解</p>
+<pre><code>├─<span class="hljs-keyword">client</span>                 <span class="hljs-preprocessor"># 前端代码</span>
+│  ├─page                <span class="hljs-preprocessor"># 前端页面</span>
+│  ├─<span class="hljs-keyword">static</span>              <span class="hljs-preprocessor"># 前端非模块化静态资源</span>
+│  │  ├─css
+│  │  └─js
+│  └─widget              <span class="hljs-preprocessor"># 前端组件</span>
+├─fis-conf.js            <span class="hljs-preprocessor"># FIS编译配置</span>
+└─<span class="hljs-keyword">server</span>                 <span class="hljs-preprocessor"># 后端代码</span>
+    ├─action             <span class="hljs-preprocessor"># Action是指MVC中的路由动作，处理页面请求</span>
+    ├─lib                <span class="hljs-preprocessor"># 可以存放一些通用库</span>
+    ├─model              <span class="hljs-preprocessor"># 可以存放一些数据层代码，如后端API请求等</span>
+    └─router.js          <span class="hljs-preprocessor"># AppRouter路由，用于处理自动路由无法满足的需求</span>
+</code></pre><h5 class=""><a name="App部署" class="anchor" href="#App部署"><span class="doc-link"></span></a>App部署</h5><p>通过yog2工具，你可以方便的将App部署至Yog2项目中(请事先初始化项目)</p>
+<pre><code class="hljs lang-bash"><span class="hljs-comment"># project目录</span>
+<span class="hljs-built_in">cd</span> home
+<span class="hljs-comment"># home目录</span>
+yog2 release <span class="hljs-operator">-d</span> ../yog <span class="hljs-comment">#将home app发布至同级的yog目录中</span>
+<span class="hljs-built_in">cd</span> ..
+</code></pre>
+<h5 class=""><a name="图解App的拆分" class="anchor" href="#图解App的拆分"><span class="doc-link"></span></a>图解App的拆分</h5><p>App部署完毕后，请进入项目下的yog（后端环境）目录，对比该目录前后变化，会发现有如下四处变化：</p>
+<p><img src="https://raw.githubusercontent.com/leeethe/fis-doc/quest/static/img-yog2/yog-app.png" alt="yog/app"></p>
+<p><img src="https://raw.githubusercontent.com/leeethe/fis-doc/quest/static/img-yog2/yog-static.png" alt="yog/static"></p>
+<p><img src="https://raw.githubusercontent.com/leeethe/fis-doc/quest/static/img-yog2/yog-view.png" alt="yog/view"></p>
+<p><img src="https://raw.githubusercontent.com/leeethe/fis-doc/quest/static/img-yog2/yog-conf.png" alt="yog/conf"></p>
+<p><img src="https://raw.githubusercontent.com/leeethe/fis-doc/quest/static/img-yog2/brainwash.png" alt="brainwash"></p>
+<p>综合上图，可以明显看到，App的整个目录结构被分别导出到了yog目录的app、static、views下的&#39;home&#39;目录中（<em>此例中的app初始化时命名为&#39;home&#39;</em>）。而在conf目录中，则出现了一个熟悉的文件map.json（此例中为&#39;home-map.json&#39;）, 如果不熟悉，建议移步<a href="http://fis.baidu.com/docs/more/fis-standard.html#依赖声明">此处</a>，在使用Yog2之前，非常建议您事先对FIS工具有所熟悉。</p>
+<p>Yog2的编译和部署与FIS的编译和部署语法完全一致，你甚至可以部署到远程测试机上而不是本机上使用，更多用法可以参考<a href="http://fis.baidu.com/docs/api/fis-conf.html#deploy">FIS文档</a></p>
+</div>
+<div class="bs-docs-section"><h4 class=""><a name="后端能力" class="anchor" href="#后端能力"><span class="doc-link"></span></a>后端能力</h4><p>Yog2的后端基础框架基于Express扩展，主要提供了以下能力</p>
+<ol>
+<li>插件化启动</li>
+<li>中间件管理</li>
+<li>执行器与路由</li>
+</ol>
+</div>
+<div class="bs-docs-section"><h5 class=""><a name="插件化启动" class="anchor" href="#插件化启动"><span class="doc-link"></span></a>插件化启动</h5><h6 class=""><a name="启动初始化" class="anchor" href="#启动初始化"><span class="doc-link"></span></a>启动初始化</h6><p>Yog2提供了一个基于插件的启动器，在这个启动器中你可以执行一些服务初始化代码，也可以用来做一些中间件的管理工作。</p>
+<pre><code class="hljs lang-javascript"><span class="hljs-built_in">require</span>(<span class="hljs-string">'yog2-kernel'</span>);
+
+<span class="hljs-keyword">var</span> app = yog.bootstrap({
+    rootPath: __dirname
+}, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'plugins load completed'</span>);
+});
+</code></pre>
+<p>只需要指定Yog2的rootPath，Yog2启动器会自动加载Yog2自带的插件和用户自定义的插件，并根据插件间的依赖顺序进行初始化。</p>
+</div>
+<div class="bs-docs-section"><h6 class=""><a name="插件管理" class="anchor" href="#插件管理"><span class="doc-link"></span></a>插件管理</h6><p>Yog2的插件分为两个部分，一部分是Yog2自带的插件，存放在<a href="https://github.com/fex-team/yog2-kernel/tree/master/plugins">yog2-kernel</a>中，另一部分是用户自定义或手动安装的插件，存放在项目目录中的plugins文件夹。</p>
+</div>
+<div class="bs-docs-section"><h7 class=""><a name="内置插件" class="anchor" href="#内置插件"><span class="doc-link"></span></a>内置插件</h7><ul>
+<li><p>dispatcher</p>
+<p>自动路由分发插件，提供全局函数<a href="#yogdispatcher">yog.dispatcher</a></p>
+</li>
+<li><p>http</p>
+<p>中间件管理插件，通过配置，用户可以方便的管理中间件加载顺序和新增中间件</p>
+</li>
+<li><p>log</p>
+<p>日志插件，提供全局函数<a href="#yoglog">yog.log</a></p>
+</li>
+<li><p>ral</p>
+<p>后端服务管理插件，提供全局函数<a href="#yogral">yog.ral</a></p>
+</li>
+<li><p>views</p>
+<p>FIS静态资源管理与模板插件</p>
+</li>
+</ul>
+</div>
+<div class="bs-docs-section"><h7 class=""><a name="用户插件" class="anchor" href="#用户插件"><span class="doc-link"></span></a>用户插件</h7><p>用户插件存放在Yog项目的plugins目录中，插件是有其严格的目录规范的</p>
+<pre><code>├─yog                 <span class="hljs-preprocessor"># Yog根目录</span>
+  └──plugins          <span class="hljs-preprocessor"># 用户插件目录</span>
+      └─userPlugins   <span class="hljs-preprocessor"># 插件目录</span>
+          └─<span class="hljs-keyword">index</span>.js  <span class="hljs-preprocessor"># 插件入口</span>
+</code></pre><p>其中插件入口必须在一个文件夹中，并且名称必须为index.js。</p>
+<p>相应的，插件的实现也有进一步要求</p>
+<pre><code class="hljs lang-javascript"><span class="hljs-built_in">module</span>.exports.userPlugins = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(app, conf)</span></span>{
+
+}
+
+<span class="hljs-comment">//默认配置</span>
+<span class="hljs-built_in">module</span>.exports.userPlugins.defaultConf = {
+
+}
+</code></pre>
+<p>app为yog.app对象，即Express的<a href="http://expressjs.com/4x/api.html#application">app</a>
+conf为插件的配置项
+module.exports后的属性名就是插件的真实名称</p>
+<p>文件夹名称并非插件的真实名称，但是一般我们会将插件名称与文件夹名称设置为一样方便维护。因此实际上你也可以在一个index.js中编写多个插件。</p>
+<pre><code class="hljs lang-javascript"><span class="hljs-built_in">module</span>.exports.userPluginsA = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(app, conf)</span></span>{
+
+}
+
+<span class="hljs-built_in">module</span>.exports.userPluginsB = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(app, conf)</span></span>{
+
+}
+</code></pre>
+<p>插件也支持异步初始化</p>
+<pre><code class="hljs lang-javascript"><span class="hljs-built_in">module</span>.exports.userPlugins = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(app, conf, cb)</span></span>{
+    cb &amp;&amp; cb();
+}
+
+<span class="hljs-built_in">module</span>.exports.userPlugins.defaultConf = {
+
+}
+</code></pre>
+</div>
+<div class="bs-docs-section"><h7 class=""><a name="插件依赖" class="anchor" href="#插件依赖"><span class="doc-link"></span></a>插件依赖</h7><p>插件与插件质检是可以声明加载依赖的，举例来说，如果希望插件B在插件A加载后再执行，只需要调整插件的写法即可</p>
+<pre><code class="hljs lang-javascript"><span class="hljs-comment">// plugins/A/index.js</span>
+module.<span class="hljs-keyword">exports</span>.A = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(app, conf)</span><span class="hljs-comment">{
+}</span>;</span>
+</code></pre>
+<pre><code class="hljs lang-javascript"><span class="hljs-comment">// plugins/B/index.js</span>
+module.<span class="hljs-keyword">exports</span>.B = [<span class="hljs-string">'A'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(app, conf)</span><span class="hljs-comment">{
+}</span>];</span>
+</code></pre>
+<p>此处的语法与<a href="https://github.com/caolan/async#auto">async.auto</a>保持一致</p>
+</div>
+<div class="bs-docs-section"><h7 class=""><a name="插件配置项" class="anchor" href="#插件配置项"><span class="doc-link"></span></a>插件配置项</h7><p>插件的配置均存放在Yog项目的 <code>conf/plugins</code> 文件夹中，与插件编写规则一直，配置也需要通过属性名显示声明配置所属的插件</p>
+<pre><code class="hljs lang-javascript"><span class="hljs-comment">// conf/plugins/A.js</span>
+<span class="hljs-module"><span class="hljs-keyword">module</span>.exports.A = </span>{
+
+}
+</code></pre>
+<p>配置文件名称的并非插件的真实名称，但是一般我们会将插件名称与文件名称设置为一样方便维护。因此实际上你也可以在一个文件中编写多个插件的配置，但是我们并不推荐这样做，独立的配置文件更加利于管理和Yog2的整体升级。</p>
+<p>编写在 <code>conf/plugin</code> 中的插件配置，会在启动器初始化插件时，自动进行配置传递。</p>
+</div>
+<div class="bs-docs-section"><h6 class=""><a name="中间件管理" class="anchor" href="#中间件管理"><span class="doc-link"></span></a>中间件管理</h6><p>中间件管理在Yog2中是通过http插件实现，你可以通过配置http插件来调整中间件的加载顺序</p>
+<pre><code class="hljs lang-javascript"><span class="hljs-module"><span class="hljs-keyword">module</span>.exports.http = </span>{
+    middleware: [
+        <span class="hljs-string">'favicon'</span>,
+        <span class="hljs-string">'compression'</span>,
+        <span class="hljs-string">'static'</span>,
+        <span class="hljs-string">'responseTime'</span>,
+        <span class="hljs-string">'cookieParser'</span>,
+        <span class="hljs-string">'bodyParser'</span>,
+        <span class="hljs-string">'log'</span>,
+        <span class="hljs-string">'ral'</span>,
+        <span class="hljs-string">'views'</span>,
+        <span class="hljs-string">'methodOverride'</span>,
+        <span class="hljs-string">'dispatcher'</span>,
+        <span class="hljs-string">'notFound'</span>,
+        <span class="hljs-string">'error'</span>
+    ]
+};
+</code></pre>
+<p>其中所有的名称实际上都是对应的相应的插件，比如log插件、ral插件等，而类似favicon等插件，因为功能比较单一，并且仅在中间件环节使用，我们将这些插件直接内置在了<a href="https://github.com/fex-team/yog2-kernel/tree/master/plugins/http/middleware">http插件</a>中，并没有独立暴露。</p>
+<blockquote>
+<p>Yog2中，为了提供更方便的中间件配置能力，会将中间件也封装为一种特殊的插件，这类插件的编写与普通插件的编写略有不同。</p>
+</blockquote>
+<p>以一个最简单的中间件插件为例</p>
+<pre><code class="hljs lang-javascript"><span class="hljs-built_in">module</span>.exports.responseTime = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(app, conf)</span></span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
+        app.use(<span class="hljs-built_in">require</span>(<span class="hljs-string">'response-time'</span>)(conf));
+    };
+};
+</code></pre>
+<p>中间件插件的特别之处在于它将返回一个函数而不是直接执行中间件的初始化，HTTP插件将会调用返回的函数，而在这个函数中，你可以通过 app.use实现中间件的加载。</p>
+</div>
+<div class="bs-docs-section"><h6 class=""><a name="百度内部服务" class="anchor" href="#百度内部服务"><span class="doc-link"></span></a>百度内部服务</h6><p>Yog2引入了常用的百度通用服务供内部产品线使用，通过插件安装机制即可方便使用，具体请参考<a href="http://gitlab.baidu.com/fex/yog2-plugin-bdservice/tree/master">yog2-plugin-bdservice</a></p>
+</div>
+<div class="bs-docs-section"><h5 class=""><a name="执行器与路由" class="anchor" href="#执行器与路由"><span class="doc-link"></span></a>执行器与路由</h5><h5 class=""><a name="执行器" class="anchor" href="#执行器"><span class="doc-link"></span></a>执行器</h5><p>页面请求会经由路由转发至action处理，一般我们会在action中处理请求的参数，如querystring, cookie甚至upload files，然后将参数处理为数据层模块需要的参数格式，调用数据层模块获取数据后，指定后端模板和数据进行页面渲染。</p>
+<blockquote>
+<p>action均存放在 <code>server/action</code> 中。</p>
+</blockquote>
+<p>示例：</p>
+<pre><code class="hljs lang-javascript"><span class="hljs-comment">// /server/action/index.js</span>
+<span class="hljs-comment">//引用数据层模块</span>
+<span class="hljs-keyword">var</span> indexModel = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../model/index.js'</span>);
+<span class="hljs-comment">//引用一些基础库</span>
+<span class="hljs-keyword">var</span> util = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../lib/util.js'</span>);
+
+<span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(req, res)</span></span>{
+    <span class="hljs-comment">//解析请求参数</span>
+    <span class="hljs-keyword">var</span> id = req.query.id;
+    indexModel.getProductByID(id, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(err, data)</span></span>{
+        <span class="hljs-comment">//异常处理</span>
+        <span class="hljs-keyword">if</span> (err){
+            next(err);
+        }
+        data.time = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(); <span class="hljs-comment">//加工数据</span>
+        <span class="hljs-comment">//渲染页面</span>
+        res.render(<span class="hljs-string">'home/page/index.tpl'</span>, data);
+    });
+};
+</code></pre>
+</div>
+<div class="bs-docs-section"><h5 class=""><a name="自动路由" class="anchor" href="#自动路由"><span class="doc-link"></span></a>自动路由</h5><h6 class=""><a name="默认配置" class="anchor" href="#默认配置"><span class="doc-link"></span></a>默认配置</h6><p>自动路由用于管理url与action之间的映射关系，默认的路由规则为</p>
+<pre><code class="hljs lang-text">http://www.example.com/<span class="hljs-literal">home</span>/<span class="hljs-function">index =&gt;</span> app/<span class="hljs-literal">home</span>/action/index.js
+http://www.example.com/<span class="hljs-literal">home</span>/doc/<span class="hljs-function">detail =&gt;</span> app/<span class="hljs-literal">home</span>/action/doc/detail.js
+</code></pre>
+<p>如果上述规则没有匹配成功，会尝试匹配同名文件夹下的index.js，即</p>
+<pre><code class="hljs lang-text">http://www.example.com/<span class="hljs-literal">home</span>/<span class="hljs-function">index =&gt;</span> app/<span class="hljs-literal">home</span>/action/index/index.js
+http://www.example.com/<span class="hljs-literal">home</span>/doc/<span class="hljs-function">detail =&gt;</span> app/<span class="hljs-literal">home</span>/action/doc/detail/index.js
+</code></pre>
+<h6 class=""><a name="路由扩展" class="anchor" href="#路由扩展"><span class="doc-link"></span></a>路由扩展</h6><p>Yog2的自动路由是在Express的路由功能上扩展而来，因此Express路由提供的功能均可以在Yog2中使用。</p>
+<h7 class=""><a name="rootRouter" class="anchor" href="#rootRouter"><span class="doc-link"></span></a>rootRouter</h7><p>rootRouter是用于管理Yog2项目的根路由，根路由可以请求发往App之前就进行干预。</p>
+<blockquote>
+<p>rootRouter可以在 <code>conf/plugins/dispatcher.js</code> 中修改</p>
+<p>router更多的使用方法可以参考 <a href="http://expressjs.com/4x/api.html#router">Express文档</a></p>
+</blockquote>
+<p>你可以为一个app设置一个别名</p>
+<pre><code class="hljs lang-javascript"><span class="hljs-keyword">router</span>.<span class="hljs-literal">use</span>(<span class="hljs-string">'/custom'</span>, yog.dispatcher.<span class="hljs-keyword">router</span>(<span class="hljs-string">'home'</span>))
+// http://www.example.com/<span class="hljs-function">custom =&gt;</span> app/<span class="hljs-literal">home</span>/action/index.js
+</code></pre>
+<p>你可以直接建立一个特殊的URL</p>
+<pre><code class="hljs lang-javascript">router.<span class="hljs-function"><span class="hljs-title">get</span><span class="hljs-params">(<span class="hljs-string">'/somespecial'</span>, yog.dispatcher.action(<span class="hljs-string">'home/doc/detail'</span>)</span></span>)
+<span class="hljs-comment">// http://www.example.com/somespecial =&gt; app/home/doc/detail.js</span>
+</code></pre>
+<p>你也可以在此处将router当成app使用，加载任意中间件</p>
+<pre><code class="hljs lang-javascript">router.<span class="hljs-keyword">use</span>(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(req, res, next)</span></span>{
+});
+</code></pre>
+<h7 class=""><a name="appRouter" class="anchor" href="#appRouter"><span class="doc-link"></span></a>appRouter</h7><p>appRouter用于管理进入App后的请求分发，可以理解为Express中的app，实际上功能也和Express中的App极为相似，在这里你可以加载App级别的中间件或者通用逻辑，也可以用于实现自动路由无法满足的URL设计需求。</p>
+<blockquote>
+<p>appRouter可以在 <code>server/router.js</code> 中修改。</p>
+<p>router更多的使用方法可以参考 <a href="http://expressjs.com/4x/api.html#router">Express文档</a></p>
+</blockquote>
+<pre><code class="hljs lang-javascript">module.exports = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(router)</span></span>{
+    <span class="hljs-comment">// you can add app common logic here</span>
+    router.<span class="hljs-keyword">use</span>(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(req, res, next)</span></span>{
+    });
+
+    <span class="hljs-comment">// also you can add custom action</span>
+    <span class="hljs-comment">// request /spa/some/hefangshi</span>
+    router.<span class="hljs-keyword">get</span>(<span class="hljs-string">'/some/:user'</span>, router.action(<span class="hljs-string">'api'</span>));
+
+    <span class="hljs-comment">// or write action directly</span>
+    router.<span class="hljs-keyword">get</span>(<span class="hljs-string">'/some/:user'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(res, req)</span></span>{});
+
+    <span class="hljs-comment">// a restful api example</span>
+    router.route(<span class="hljs-string">'/book'</span>)
+        <span class="hljs-comment">// PUT /cdcd/book/id</span>
+        .put(router.action(<span class="hljs-string">'book'</span>).put)
+        <span class="hljs-comment">// GET /cdcd/book</span>
+        .<span class="hljs-keyword">get</span>(router.action(<span class="hljs-string">'book'</span>));
+
+    router.route(<span class="hljs-string">'/book/id/:id'</span>)
+        <span class="hljs-comment">// GET /cdcd/book/id</span>
+        .<span class="hljs-keyword">get</span>(router.action(<span class="hljs-string">'book'</span>).<span class="hljs-keyword">get</span>)
+        <span class="hljs-comment">// DELETE /cdcd/book/id</span>
+        .<span class="hljs-keyword">delete</span>(router.action(<span class="hljs-string">'book'</span>).<span class="hljs-keyword">delete</span>);
+};
+</code></pre>
+</div>
+<div class="bs-docs-section"><h4 class=""><a name="前端功能" class="anchor" href="#前端功能"><span class="doc-link"></span></a>前端功能</h4><h5 class=""><a name="FIS静态资源管理" class="anchor" href="#FIS静态资源管理"><span class="doc-link"></span></a>FIS静态资源管理</h5><p>我们扩展了Swig模板引擎的功能，实现了与fis-plus类似的后端静态资源管理能力，你可以通过一些标签来方便的进行细粒度静态资源管理。</p>
+</div>
+<div class="bs-docs-section"><h6 class=""><a name="require" class="anchor" href="#require"><span class="doc-link"></span></a>require</h6><ul>
+<li>功能：通过静态资源管理框架加载静态资源。</li>
+<li>使用 {% require $id%}</li>
+<li>用法：在模板中如果需要加载模块内某个静态资源，可以通过require插件加载，便于管理输出静态资源</li>
+</ul>
+<pre><code class="hljs lang-html">{<span class="hljs-variable">%html</span> framework=<span class="hljs-string">"home:static/lib/mod.js"</span><span class="hljs-variable">%}</span>
+    {<span class="hljs-variable">%head</span><span class="hljs-variable">%}</span>
+       &lt;meta charset=<span class="hljs-string">"utf-8"</span>/&gt;
+       {<span class="hljs-variable">*通</span>过script插件收集加载组件化JS代码<span class="hljs-variable">*}</span>
+       {<span class="hljs-variable">%script</span><span class="hljs-variable">%}</span>
+            require.async(<span class="hljs-string">"home:static/ui/B/B.js"</span>);
+       {% endscript <span class="hljs-variable">%}</span>
+    {<span class="hljs-variable">%endhead</span><span class="hljs-variable">%}</span>
+    {<span class="hljs-variable">%body</span><span class="hljs-variable">%}</span>
+        {<span class="hljs-variable">%require</span> <span class="hljs-string">"home:static/index/index.css"</span> <span class="hljs-variable">%}</span>
+        ...
+    {<span class="hljs-variable">%endbody</span><span class="hljs-variable">%}</span>
+{<span class="hljs-variable">%endhtml</span><span class="hljs-variable">%}</span>
+</code></pre>
+<p>页面输出为：
+<img src="http://fex-team.github.io/fis-framework-site/assets/images/fis-plus/tpl5.jpg" alt=""></p>
+</div>
+<div class="bs-docs-section"><h6 class=""><a name="widget" class="anchor" href="#widget"><span class="doc-link"></span></a>widget</h6><ul>
+<li>功能：调用模板组件，渲染输出模板片段。</li>
+<li>使用： {%widget $id%}</li>
+<li>用法：在模板中调用某个模板组件<pre><code class="hljs lang-html">{<span class="hljs-variable">%html</span> framework=<span class="hljs-string">"home:static/lib/mod.js"</span><span class="hljs-variable">%}</span>
+  {<span class="hljs-variable">%head</span><span class="hljs-variable">%}</span>
+     &lt;meta charset=<span class="hljs-string">"utf-8"</span>/&gt;
+     {<span class="hljs-variable">*通</span>过script插件收集加载组件化JS代码<span class="hljs-variable">*}</span>
+     {<span class="hljs-variable">%script</span><span class="hljs-variable">%}</span>
+          require.async(<span class="hljs-string">"home:static/ui/B/B.js"</span>);
+     {<span class="hljs-variable">%endscript</span><span class="hljs-variable">%}</span>
+  {<span class="hljs-variable">%endhead</span><span class="hljs-variable">%}</span>
+  {<span class="hljs-variable">%body</span><span class="hljs-variable">%}</span>
+      {<span class="hljs-variable">%require</span> <span class="hljs-string">"home:static/index/index.css"</span><span class="hljs-variable">%}</span>
+      {<span class="hljs-variable">%widget</span> <span class="hljs-string">"home:widget/A/A.tpl"</span><span class="hljs-variable">%}</span>
+  {<span class="hljs-variable">%endbody</span><span class="hljs-variable">%}</span>
+{<span class="hljs-variable">%endhtml</span><span class="hljs-variable">%}</span>
+</code></pre>
+页面输出为：
+<img src="http://fex-team.github.io/fis-framework-site/assets/images/fis-plus/tpl6.jpg" alt=""></li>
+</ul>
+</div>
+<div class="bs-docs-section"><h6 class=""><a name="spage" class="anchor" href="#spage"><span class="doc-link"></span></a>spage</h6><ul>
+<li>功能：使用ajax请求，采取quickling模式渲染页面片段。第一次刷新页面的时候</li>
+<li>使用：{%spage &quot;$id&quot; for=&quot;pages-container&quot;%}</li>
+<li>$id: html片段的路径</li>
+<li>for：页面容器，即ajax请求html片段在页面对应的容器。</li>
+<li>用法：quickling模式渲染页面片段<pre><code class="hljs lang-html"><span class="xml"></span><span class="hljs-template_tag">{%html framework="home:<span class="hljs-keyword">static</span>/lib/mod.js"%}</span><span class="xml">
+  </span><span class="hljs-template_tag">{%head%}</span><span class="xml">
+     <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">charset</span>=<span class="hljs-value">"utf-8"</span>/&gt;</span>
+  </span><span class="hljs-template_tag">{%endhead%}</span><span class="xml">
+  </span><span class="hljs-template_tag">{%body%}</span><span class="xml">
+      <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"pages-container"</span>&gt;</span>
+      </span><span class="hljs-template_tag">{% spage "spa:widget/pagelets/home/home.tpl" <span class="hljs-keyword">for</span>="pages-container" %}</span><span class="xml">
+   <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+  </span><span class="hljs-template_tag">{%endbody%}</span><span class="xml">
+</span><span class="hljs-template_tag">{%endhtml%}</span><span class="xml"></span>
+</code></pre>
+</li>
+</ul>
+</div>
+<div class="bs-docs-section"><h5 class=""><a name="uri" class="anchor" href="#uri"><span class="doc-link"></span></a>uri</h5><ul>
+<li>功能：定位线上资源，允许跨模块(project)。</li>
+<li>属性值：name(调用文件目录路径)</li>
+<li>是否必须：是</li>
+<li>用法：在模板中调用某个模板组件</li>
+</ul>
+<pre><code class="hljs lang-html">{<span class="hljs-variable">%html</span> framework=<span class="hljs-string">"home:static/lib/mod.js"</span><span class="hljs-variable">%}</span>
+   {<span class="hljs-variable">%head</span><span class="hljs-variable">%}</span>
+       &lt;meta charset=<span class="hljs-string">"utf-8"</span>/&gt;    
+   {<span class="hljs-variable">%endhead</span><span class="hljs-variable">%}</span>
+   {<span class="hljs-variable">%body</span><span class="hljs-variable">%}</span>
+        {<span class="hljs-variable">%uri</span> <span class="hljs-string">"home:static/css/bootstrap.css"</span> <span class="hljs-variable">%}</span>
+   {<span class="hljs-variable">%endbody</span><span class="hljs-variable">%}</span>
+ {<span class="hljs-variable">%endhtml</span><span class="hljs-variable">%}</span>
+</code></pre>
+</div>
+<div class="bs-docs-section"><h6 class=""><a name="辅助标签" class="anchor" href="#辅助标签"><span class="doc-link"></span></a>辅助标签</h6><h6 class=""><a name="html" class="anchor" href="#html"><span class="doc-link"></span></a>html</h6><ul>
+<li>功能：代替<code>&lt;html&gt;</code>标签，设置页面运行的前端框架，以及控制整体页面输出。</li>
+<li>属性值：framework及html标签原生属性值</li>
+<li>是否必须：是</li>
+<li>用法：在模板中替换普通<code>&lt;html&gt;</code>标签<pre><code class="hljs lang-html">{<span class="hljs-variable">%html</span> framework=<span class="hljs-string">"home:static/lib/mod.js"</span><span class="hljs-variable">%}</span>
+  ....
+{<span class="hljs-variable">%endhtml</span><span class="hljs-variable">%}</span>
+</code></pre>
+页面输出为：
+<img src="http://fex-team.github.io/fis-framework-site/assets/images/fis-plus/tpl1.jpg" alt=""></li>
+</ul>
+<h6 class=""><a name="head" class="anchor" href="#head"><span class="doc-link"></span></a>head</h6><ul>
+<li>功能：代替<code>&lt;head&gt;</code>标签，控制CSS资源加载输出。</li>
+<li>属性值：head标签原生属性值</li>
+<li>是否必须：是</li>
+<li>用法：在模板中替换普通<code>&lt;head&gt;</code>标签<pre><code class="hljs lang-html">{<span class="hljs-variable">%html</span> framework=<span class="hljs-string">"home:static/lib/mod.js"</span><span class="hljs-variable">%}</span>
+  {<span class="hljs-variable">%head</span><span class="hljs-variable">%}</span>
+      &lt;meta charset=<span class="hljs-string">"utf-8"</span>/&gt;
+  {<span class="hljs-variable">%endhead</span><span class="hljs-variable">%}</span>
+{<span class="hljs-variable">%endhtml</span><span class="hljs-variable">%}</span>
+</code></pre>
+页面输出为
+<img src="http://fex-team.github.io/fis-framework-site/assets/images/fis-plus/tpl2.jpg" alt=""></li>
+</ul>
+<h6 class=""><a name="body" class="anchor" href="#body"><span class="doc-link"></span></a>body</h6><ul>
+<li>功能：代替<code>&lt;body&gt;</code>标签，控制JS资源加载输出。</li>
+<li>属性值：body标签原生属性值</li>
+<li>是否必须：是</li>
+<li>用法：在模板中替换普通<code>&lt;body&gt;</code>标签<pre><code class="hljs lang-html">{<span class="hljs-variable">%html</span> framework=<span class="hljs-string">"home:static/lib/mod.js"</span><span class="hljs-variable">%}</span>
+  {<span class="hljs-variable">%head</span><span class="hljs-variable">%}</span>
+      &lt;meta charset=<span class="hljs-string">"utf-8"</span>/&gt;
+  {<span class="hljs-variable">%endhead</span><span class="hljs-variable">%}</span>
+  {<span class="hljs-variable">%body</span><span class="hljs-variable">%}</span>
+      ....
+  {<span class="hljs-variable">%endbody</span><span class="hljs-variable">%}</span>
+{<span class="hljs-variable">%endhtml</span><span class="hljs-variable">%}</span>
+</code></pre>
+页面输出为
+<img src="http://fex-team.github.io/fis-framework-site/assets/images/fis-plus/tpl3.jpg" alt=""></li>
+</ul>
+<h6 class=""><a name="script" class="anchor" href="#script"><span class="doc-link"></span></a>script</h6><ul>
+<li>功能：代替<code>&lt;script&gt;</code>标签，收集使用JS组件的代码块，控制输出至页面底部。</li>
+<li>属性值：无</li>
+<li>是否必须：在模板中使用异步JS组件的JS代码块，必须通过插件包裹</li>
+<li>用法：在模板中替换普通<code>&lt;script&gt;</code>标签<pre><code class="hljs lang-html">{<span class="hljs-variable">%html</span> framework=<span class="hljs-string">"home:static/lib/mod.js"</span><span class="hljs-variable">%}</span>
+  {<span class="hljs-variable">%head</span><span class="hljs-variable">%}</span>
+     &lt;meta charset=<span class="hljs-string">"utf-8"</span>/&gt;
+     {<span class="hljs-variable">*通</span>过script插件收集加载组件化JS代码<span class="hljs-variable">*}</span>
+     {<span class="hljs-variable">%script</span><span class="hljs-variable">%}</span>
+         require.async(<span class="hljs-string">"home:static/ui/B/B.js"</span>);
+     {<span class="hljs-variable">%endscript</span><span class="hljs-variable">%}</span>
+  {<span class="hljs-variable">%endhead</span><span class="hljs-variable">%}</span>
+  {<span class="hljs-variable">%body</span><span class="hljs-variable">%}</span>
+      ...
+  {<span class="hljs-variable">%endbody</span><span class="hljs-variable">%}</span>
+{<span class="hljs-variable">%endhtml</span><span class="hljs-variable">%}</span>
+</code></pre>
+页面输出为
+<img src="http://fex-team.github.io/fis-framework-site/assets/images/fis-plus/tpl4.jpg" alt=""></li>
+</ul>
+</div>
+<div class="bs-docs-section"><h4 class=""><a name="BigPipe" class="anchor" href="#BigPipe"><span class="doc-link"></span></a>BigPipe</h4><p>BigPipe的应用场景在于解决页面中某个模块的数据获取时间较长，但是又不希望这个模块阻塞其余模块快速渲染的需求。一般这种情况我们可以使用Ajax请求异步数据后通过前端模板渲染的方式解决，但是通过BigPipe我们可以在不增加额外请求的前提下利用Chunk输出来实现无阻塞的渲染。关于BigPipe更多的内容可以参考<a href="http://velocity.oreilly.com.cn/2010/index.php?func=session&amp;name=Facebook%E7%BD%91%E7%AB%99%E7%9A%84Ajax%E5%8C%96%E3%80%81%E7%BC%93%E5%AD%98%E5%92%8C%E6%B5%81%E6%B0%B4%E7%BA%BF">Facebook网站的Ajax化、缓存和流水线</a></p>
+<blockquote>
+<p>需要注意的是并不是所有场景都适合使用BigPipe，只有当一个页面需要向多个系统请求数据，并且后端系统无法提供一致的返回时间保证时，使用BigPipe才会有较大的性能提升。</p>
+</blockquote>
+<p>使用Yog2可以方便的引入BigPipe能力，Yog2中BigPipe的最小单位是widget，我们只需要简单的将某个widget设置为BigPipe模式，再为其绑定数据获取模式就可以实现widget的BigPipe加载能力。</p>
+<p>首先，可以直接部署DEMO来体验一下BigPipe的功能</p>
+<pre><code class="hljs lang-bash"><span class="hljs-comment"># project目录</span>
+yog2 init spa
+<span class="hljs-built_in">cd</span> spa
+yog2 release <span class="hljs-operator">-d</span> ../yog
+</code></pre>
+<p>在重启yog2后，访问 <a href="http://127.0.0.1:8080/spa">http://127.0.0.1:8080/spa</a> 即可体验Yog2中的BigPipe能力</p>
+<p>启用BigPipe只需要三个步骤</p>
+<ol>
+<li>确保 <code>/yog/conf/plugins/views.js</code> 中的 <code>bigpipe</code> 设置为true (默认属性)</li>
+<li><p>在引用widget时设置 <code>mode=&quot;async&quot;</code> 开启Bigpipe模式</p>
+<pre><code class="hljs lang-tpl"> {<span class="hljs-preprocessor">%</span> widget <span class="hljs-string">"spa:widget/bigpipe/bigpipe.tpl"</span> id=<span class="hljs-string">"bigpipe"</span> mode=<span class="hljs-string">"async"</span> <span class="hljs-preprocessor">%</span>}
+</code></pre>
+</li>
+<li><p>在action设置渲染数据时，绑定widget的数据获取方式</p>
+<pre><code class="hljs lang-javascript"> res.bigpipe.bind(<span class="hljs-string">'bigpipe'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(cb)</span></span>{
+     setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
+         cb(<span class="hljs-literal">null</span>, {
+             bigpipeTime: (<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>()).toString()
+         });
+     }, <span class="hljs-number">2000</span>);
+ });
+</code></pre>
+</li>
+</ol>
+</div>
+<div class="bs-docs-section"><h4 class=""><a name="Yog对象" class="anchor" href="#Yog对象"><span class="doc-link"></span></a>Yog对象</h4><p>Yog2暴露了一个名为 <code>yog</code> 的全局变量，方便一些系统功能的挂载和调用。</p>
+<h5 class=""><a name="yog.dispatcher" class="anchor" href="#yog.dispatcher"><span class="doc-link"></span></a>yog.dispatcher</h5><p><code>yog.dispatcher</code> 是Yog2的自动路由处理器，通过 <code>yog.dispatcher</code> 可以方便的获取App路由与执行器</p>
+<pre><code class="hljs lang-javascript"><span class="hljs-keyword">var</span> commonRouter = yog.disptahcer.router('common');
+<span class="hljs-keyword">var</span> <span class="hljs-keyword">error</span> = commonRouter.action('<span class="hljs-keyword">error</span>');
+<span class="hljs-keyword">error</span>= yog.dispatcher.action('common/<span class="hljs-keyword">error</span>');
+</code></pre>
+<p>它的应用场景有很多，最常用的有</p>
+<h6 class=""><a name="设置router别名" class="anchor" href="#设置router别名"><span class="doc-link"></span></a>设置router别名</h6><p>Yog2默认是以App的<code>fis-conf.js</code>中namespace配置为router名称，如果希望自动路由可以使用其他名称访问App，那么就需要在rootRouter中设置路由的别名</p>
+<pre><code class="hljs lang-javascript"><span class="hljs-keyword">router</span>.<span class="hljs-literal">use</span>(<span class="hljs-string">'/custom'</span>, yog.dispatcher.<span class="hljs-keyword">router</span>(<span class="hljs-string">'home'</span>))
+// http://www.example.com/<span class="hljs-function">custom =&gt;</span> app/<span class="hljs-literal">home</span>/index/index.js
+</code></pre>
+<h6 class=""><a name="设置appRouter" class="anchor" href="#设置appRouter"><span class="doc-link"></span></a>设置appRouter</h6><p>Yog2的自动路由是根据URL查找同名文件，如果有一些特别的URL希望更强的定制能力，那么可以通过appRouter进行设置</p>
+<blockquote>
+<p>appRouter可以在 <code>server/router.js</code> 中修改。</p>
+</blockquote>
+<pre><code class="hljs lang-javascript"><span class="xml">module.exports = function(router)</span><span class="hljs-expression">{
+    /<span class="hljs-end-block">/ request </span><span class="hljs-end-block">/spa</span><span class="hljs-end-block">/some</span><span class="hljs-end-block">/hefangshi </span>= <span class="hljs-end-block">/spa</span><span class="hljs-end-block">/api.js</span>
+    <span class="hljs-variable">router.get</span>('<span class="hljs-end-block">/some</span>/:<span class="hljs-variable">user</span>', <span class="hljs-variable">yog.dispatcher.action</span>('<span class="hljs-variable">spa</span><span class="hljs-end-block">/api</span>'));
+}</span><span class="xml">;</span>
+</code></pre>
+<h6 class=""><a name="Action调用" class="anchor" href="#Action调用"><span class="doc-link"></span></a>Action调用</h6><p>我们也可以在Action代码中直接调用其他Action进行页面请求处理，注意这里你甚至可以进行跨App的Action调用，但是这种能力的使用应该十分慎重，建议仅限定的其他App对Common App的调用。</p>
+<pre><code class="hljs lang-javascript"><span class="hljs-comment">// spa/action/some.js</span>
+<span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(req, res, next)</span></span>{
+    yog.dispatcher.action(<span class="hljs-string">'spa/api'</span>)(req, res, next);
+};
+</code></pre>
+<h5 class=""><a name="yog.require" class="anchor" href="#yog.require"><span class="doc-link"></span></a>yog.require</h5><p><code>yog.require</code> 提供了跨App的require能力。</p>
+<p>对于跨App的调用，我们建议慎重使用，最好只限定在其他App对Common App的调用，Common App中可以存放一些通用的组件。</p>
+<pre><code class="hljs lang-javascript"><span class="hljs-regexp">//</span> 通过yog.<span class="hljs-built_in">require</span> 可以跨App调用其余模块的后端脚本
+<span class="hljs-reserved">var</span> util = yog.<span class="hljs-built_in">require</span>(<span class="hljs-string">'common/libs/util.js'</span>);
+</code></pre>
+<h5 class=""><a name="yog.log" class="anchor" href="#yog.log"><span class="doc-link"></span></a>yog.log</h5><p><code>yog.log</code> 提供了日志记录能力</p>
+<pre><code class="hljs lang-javascript">yog.<span class="hljs-keyword">log</span>.fatal(<span class="hljs-string">'some fatal'</span>);
+yog.<span class="hljs-keyword">log</span>.<span class="hljs-keyword">warning</span>(<span class="hljs-string">'some warning'</span>);
+yog.<span class="hljs-keyword">log</span>.notice(<span class="hljs-string">'some notice'</span>);
+yog.<span class="hljs-keyword">log</span>.<span class="hljs-keyword">trace</span>(<span class="hljs-string">'some trace'</span>);
+yog.<span class="hljs-keyword">log</span>.debug(<span class="hljs-string">'some debug'</span>);
+</code></pre>
+<h5 class=""><a name="yog.ral" class="anchor" href="#yog.ral"><span class="doc-link"></span></a>yog.ral</h5><p><code>yog.ral</code> 提供了后端API请求能力</p>
+<pre><code class="hljs lang-javascript"><span class="hljs-keyword">var</span> r = yog.ral(<span class="hljs-string">'SOME_SERVICE'</span>, <span class="hljs-comment">{
+    data: {
+        id: 1
+    }</span>
+});
+
+r.<span class="hljs-keyword">on</span>(<span class="hljs-string">'data'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(data)</span><span class="hljs-comment">{
+    console.log(data);
+}</span>);</span>
+
+r.<span class="hljs-keyword">on</span>(<span class="hljs-string">'error'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(err)</span><span class="hljs-comment">{
+    console.log(err);
+}</span>);</span>
+</code></pre>
+<p>Ral是一个后端资源统一请求层，最常见的场景是封装HTTP请求，它的特色在于实现了请求协议与数据打包协议的解耦，并且提供了负载均衡与超时、异常重试机制。更多的文档可以参考<a href="https://github.com/fex-team/node-ral">node-ral</a>，百度产品线用户可以参考<a href="http://git.baidu.com/fex/yog-ral/tree/master">yog-ral</a>。</p>
+</div>
+                </div>
+            </div>
+            <div class="col-sm-3 document-nav">
+                <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix-top">
+                    <ul class="nav bs-docs-sidenav">
+                        <li><a href="#Yog2 解决方案">Yog2 解决方案</a><ul class="nav"><li><a href="#Yog2简介">Yog2简介</a><li><a href="#快速入门">快速入门</a><li><a href="#Yog2的特点">Yog2的特点</a></ul></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bs-docs-footer clear" role="contentinfo">
+        <div class="container">
+            <div class="bs-docs-social">
+                <ul class="bs-docs-social-buttons">
+                    <li>
+                        <iframe class="github-btn" src="http://ghbtns.com/github-btn.html?user=fex-team&amp;repo=yog2&amp;type=watch&amp;count=true" width="100" height="20" title="Star on GitHub"></iframe>
+                    </li>
+                    <li>
+                        <iframe class="github-btn" src="http://ghbtns.com/github-btn.html?user=fex-team&amp;repo=yog2&amp;type=fork&amp;count=true" width="102" height="20" title="Fork on GitHub"></iframe>
+                    </li>
+                    <li class="follow-btn">
+                    </li>
+                </ul>
+            </div>
+            &copy;2015 fis-team
+        </div>
+    </footer>
+
+<script type="text/javascript" charset="utf-8" src="/fis-plus/static/pkg/auto_combine_f5a54_bd0f29a.js"></script>
+<script type="text/javascript">
+        $(function () {
+
+            // Scrollspy
+            var $window = $(window)
+            var $body   = $(document.body)
+            var $element = $('#document-main');
+
+            $body.scrollspy({
+              target: '.bs-docs-sidebar'
+            })
+
+            $window.on('load', function () {
+              $body.scrollspy('refresh')
+            })
+
+            // Kill links
+            $('.bs-docs-container [href=#]').click(function (e) {
+              e.preventDefault()
+            })
+
+            // Sidenav affixing
+            setTimeout(function () {
+              var $sideBar = $('.bs-docs-sidebar')
+
+              $sideBar.affix({
+                offset: {
+                  top: function () {
+                    var offsetTop      = $sideBar.offset().top
+                    var sideBarMargin  = parseInt($sideBar.children(0).css('margin-top'), 10)
+                    var navOuterHeight = $('.bs-docs-nav').height()
+
+                    return (this.top = offsetTop - navOuterHeight - sideBarMargin)
+                  },
+                  bottom: function () {
+                    return (this.bottom = $('.bs-docs-footer').outerHeight(true))
+                  }
+                }
+              })
+            }, 100)
+        });
+    </script>
+
+    </body>
+</html>

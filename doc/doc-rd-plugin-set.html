@@ -1,0 +1,8 @@
+<h7 class=""><a name="插件配置项" class="anchor" href="#插件配置项"><span class="doc-link"></span></a>插件配置项</h7><p>插件的配置均存放在Yog项目的 <code>conf/plugins</code> 文件夹中，与插件编写规则一直，配置也需要通过属性名显示声明配置所属的插件</p>
+<pre><code class="hljs lang-javascript"><span class="hljs-comment">// conf/plugins/A.js</span>
+<span class="hljs-module"><span class="hljs-keyword">module</span>.exports.A = </span>{
+
+}
+</code></pre>
+<p>配置文件名称的并非插件的真实名称，但是一般我们会将插件名称与文件名称设置为一样方便维护。因此实际上你也可以在一个文件中编写多个插件的配置，但是我们并不推荐这样做，独立的配置文件更加利于管理和Yog2的整体升级。</p>
+<p>编写在 <code>conf/plugin</code> 中的插件配置，会在启动器初始化插件时，自动进行配置传递。</p>

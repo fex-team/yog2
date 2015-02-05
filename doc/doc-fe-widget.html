@@ -1,0 +1,20 @@
+<h6 class=""><a name="widget" class="anchor" href="#widget"><span class="doc-link"></span></a>widget</h6><ul>
+<li>功能：调用模板组件，渲染输出模板片段。</li>
+<li>使用： {%widget $id%}</li>
+<li>用法：在模板中调用某个模板组件<pre><code class="hljs lang-html">{<span class="hljs-variable">%html</span> framework=<span class="hljs-string">"home:static/lib/mod.js"</span><span class="hljs-variable">%}</span>
+  {<span class="hljs-variable">%head</span><span class="hljs-variable">%}</span>
+     &lt;meta charset=<span class="hljs-string">"utf-8"</span>/&gt;
+     {<span class="hljs-variable">*通</span>过script插件收集加载组件化JS代码<span class="hljs-variable">*}</span>
+     {<span class="hljs-variable">%script</span><span class="hljs-variable">%}</span>
+          require.async(<span class="hljs-string">"home:static/ui/B/B.js"</span>);
+     {<span class="hljs-variable">%endscript</span><span class="hljs-variable">%}</span>
+  {<span class="hljs-variable">%endhead</span><span class="hljs-variable">%}</span>
+  {<span class="hljs-variable">%body</span><span class="hljs-variable">%}</span>
+      {<span class="hljs-variable">%require</span> <span class="hljs-string">"home:static/index/index.css"</span><span class="hljs-variable">%}</span>
+      {<span class="hljs-variable">%widget</span> <span class="hljs-string">"home:widget/A/A.tpl"</span><span class="hljs-variable">%}</span>
+  {<span class="hljs-variable">%endbody</span><span class="hljs-variable">%}</span>
+{<span class="hljs-variable">%endhtml</span><span class="hljs-variable">%}</span>
+</code></pre>
+页面输出为：
+<img src="http://fex-team.github.io/fis-framework-site/assets/images/fis-plus/tpl6.jpg" alt=""></li>
+</ul>

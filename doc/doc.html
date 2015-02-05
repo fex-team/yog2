@@ -1,0 +1,30 @@
+<h3 class="" id="Yog2的特点"><a name="Yog2的特点" class="anchor" href="#Yog2的特点"><span class="doc-link"></span></a>Yog2的特点</h3><p>Yog2将传统的一站式开发分解为了Yog2基础环境与Yog2 App，Yog2基础环境将负责一些中间件初始化和基础环境工作，而Yog2 App则是对应的各个业务子系统，包含了具体的业务代码，当然你也可以直接使用Yog2基础环境继续一站式开发，但是我们强烈推荐使用App能力拆分项目。</p>
+<p>一个典型的Yog2目录结构应该类似</p>
+<pre><code>├─home
+│  ├─<span class="hljs-keyword">client</span>
+│  │  ├─page
+│  │  ├─<span class="hljs-keyword">static</span>
+│  │  └─widget
+│  └─<span class="hljs-keyword">server</span>
+│      ├─action
+│      ├─lib
+│      └─model
+├─user
+│  ├─<span class="hljs-keyword">client</span>
+│  │  ├─page
+│  │  ├─<span class="hljs-keyword">static</span>
+│  │  └─widget
+│  └─<span class="hljs-keyword">server</span>
+│      ├─action
+│      ├─lib
+│      └─model
+└─yog
+    ├─app
+    ├─bin
+    ├─conf
+    │  ├─plugins
+    │  └─ral
+    ├─plugins
+    ├─<span class="hljs-keyword">static</span>
+    └─views
+</code></pre>
