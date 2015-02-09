@@ -1,4 +1,4 @@
-<h5 class=""><a name="自动路由" class="anchor" href="#自动路由"><span class="doc-link"></span></a>自动路由</h5><h6 class=""><a name="默认配置" class="anchor" href="#默认配置"><span class="doc-link"></span></a>默认配置</h6><p>自动路由用于管理 url 与 action 之间的映射关系，默认的路由规则为</p>
+<h5 class=""><a name="%E8%87%AA%E5%8A%A8%E8%B7%AF%E7%94%B1" class="anchor" href="#%E8%87%AA%E5%8A%A8%E8%B7%AF%E7%94%B1"><span class="doc-link"></span></a>自动路由</h5><h6 class=""><a name="%E9%BB%98%E8%AE%A4%E9%85%8D%E7%BD%AE" class="anchor" href="#%E9%BB%98%E8%AE%A4%E9%85%8D%E7%BD%AE"><span class="doc-link"></span></a>默认配置</h6><p>自动路由用于管理 url 与 action 之间的映射关系，默认的路由规则为</p>
 <pre><code class="hljs lang-text">http://www.example.com/<span class="hljs-literal">home</span>/<span class="hljs-function">index =&gt;</span> app/<span class="hljs-literal">home</span>/action/index.js
 http://www.example.com/<span class="hljs-literal">home</span>/doc/<span class="hljs-function">detail =&gt;</span> app/<span class="hljs-literal">home</span>/action/doc/detail.js
 </code></pre>
@@ -6,7 +6,7 @@ http://www.example.com/<span class="hljs-literal">home</span>/doc/<span class="h
 <pre><code class="hljs lang-text">http://www.example.com/<span class="hljs-literal">home</span>/<span class="hljs-function">index =&gt;</span> app/<span class="hljs-literal">home</span>/action/index/index.js
 http://www.example.com/<span class="hljs-literal">home</span>/doc/<span class="hljs-function">detail =&gt;</span> app/<span class="hljs-literal">home</span>/action/doc/detail/index.js
 </code></pre>
-<h6 class=""><a name="路由扩展" class="anchor" href="#路由扩展"><span class="doc-link"></span></a>路由扩展</h6><p>Yog2 的自动路由是在 Express 的路由功能上扩展而来，因此 Express 路由提供的功能均可以在 Yog2 中使用。</p>
+<h6 class=""><a name="%E8%B7%AF%E7%94%B1%E6%89%A9%E5%B1%95" class="anchor" href="#%E8%B7%AF%E7%94%B1%E6%89%A9%E5%B1%95"><span class="doc-link"></span></a>路由扩展</h6><p>Yog2 的自动路由是在 Express 的路由功能上扩展而来，因此 Express 路由提供的功能均可以在 Yog2 中使用。</p>
 <h7 class=""><a name="rootRouter" class="anchor" href="#rootRouter"><span class="doc-link"></span></a>rootRouter</h7><p>rootRouter 是用于管理 Yog2 项目的根路由，根路由可以请求发往 App 之前就进行干预。</p>
 <blockquote>
 <p>rootRouter 可以在 <code>conf/plugins/dispatcher.js</code> 中修改</p>
