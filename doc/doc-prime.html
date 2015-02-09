@@ -20,10 +20,10 @@ yog2 release <span class="hljs-operator">-d</span> ../yog <span class="hljs-comm
 <span class="hljs-built_in">cd</span> ..
 </code></pre>
 <h5 class=""><a name="图解App的拆分" class="anchor" href="#图解App的拆分"><span class="doc-link"></span></a>图解App的拆分</h5><p>App部署完毕后，请进入项目下的yog（后端环境）目录，对比该目录前后变化，会发现有如下四处变化：</p>
-<p><img src="https://raw.githubusercontent.com/leeethe/fis-doc/quest/static/img-yog2/yog-app.png" alt="yog/app"></p>
-<p><img src="https://raw.githubusercontent.com/leeethe/fis-doc/quest/static/img-yog2/yog-static.png" alt="yog/static"></p>
-<p><img src="https://raw.githubusercontent.com/leeethe/fis-doc/quest/static/img-yog2/yog-view.png" alt="yog/view"></p>
-<p><img src="https://raw.githubusercontent.com/leeethe/fis-doc/quest/static/img-yog2/yog-conf.png" alt="yog/conf"></p>
-<p><img src="https://raw.githubusercontent.com/leeethe/fis-doc/quest/static/img-yog2/brainwash.png" alt="brainwash"></p>
+<p><img src="/yog2/static/doc/img/yog-app_0ae3c78.png" alt="yog/app"></p>
+<p><img src="/yog2/static/doc/img/yog-static_93091d1.png" alt="yog/static"></p>
+<p><img src="/yog2/static/doc/img/yog-view_1f56f18.png" alt="yog/view"></p>
+<p><img src="/yog2/static/doc/img/yog-conf_363fd0c.png" alt="yog/conf"></p>
+<p><img src="/yog2/static/doc/img/brainwash_1839b49.png" alt="brainwash"></p>
 <p>综合上图，可以明显看到，App的整个目录结构被分别导出到了yog目录的app、static、views下的&#39;home&#39;目录中（<em>此例中的app初始化时命名为&#39;home&#39;</em>）。而在conf目录中，则出现了一个熟悉的文件map.json（此例中为&#39;home-map.json&#39;）, 如果不熟悉，建议移步<a href="http://fis.baidu.com/docs/more/fis-standard.html#依赖声明">此处</a>，在使用Yog2之前，非常建议您事先对FIS工具有所熟悉。</p>
 <p>Yog2的编译和部署与FIS的编译和部署语法完全一致，你甚至可以部署到远程测试机上而不是本机上使用，更多用法可以参考<a href="http://fis.baidu.com/docs/api/fis-conf.html#deploy">FIS文档</a></p>
