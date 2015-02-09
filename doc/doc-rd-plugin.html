@@ -1,10 +1,7 @@
-<h5 class=""><a name="插件化启动" class="anchor" href="#插件化启动"><span class="doc-link"></span></a>插件化启动</h5><h6 class=""><a name="启动初始化" class="anchor" href="#启动初始化"><span class="doc-link"></span></a>启动初始化</h6><p>Yog2提供了一个基于插件的启动器，在这个启动器中你可以执行一些服务初始化代码，也可以用来做一些中间件的管理工作。</p>
+<h5 class=""><a name="插件化启动" class="anchor" href="#插件化启动"><span class="doc-link"></span></a>插件化启动</h5><h6 class=""><a name="启动初始化" class="anchor" href="#启动初始化"><span class="doc-link"></span></a>启动初始化</h6><p>Yog2 提供了一个基于插件的启动器，在这个启动器中你可以执行一些服务初始化代码，也可以用来做一些中间件的管理工作。</p>
 <pre><code class="hljs lang-javascript"><span class="hljs-built_in">require</span>(<span class="hljs-string">'yog2-kernel'</span>);
 
-<span class="hljs-keyword">var</span> app = yog.bootstrap({
-    rootPath: __dirname
-}, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'plugins load completed'</span>);
+<span class="hljs-keyword">var</span> app = yog.bootstrap({rootPath: __dirname}, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'plugins load completed'</span>);
 });
 </code></pre>
-<p>只需要指定Yog2的rootPath，Yog2启动器会自动加载Yog2自带的插件和用户自定义的插件，并根据插件间的依赖顺序进行初始化。</p>
+<p>只需要指定 Yog2 的 rootPath，Yog2 启动器会自动加载 Yog2 自带的插件和用户自定义的插件，并根据插件间的依赖顺序进行初始化。</p>

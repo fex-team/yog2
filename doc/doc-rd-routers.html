@@ -1,38 +1,36 @@
-<h5 class=""><a name="自动路由" class="anchor" href="#自动路由"><span class="doc-link"></span></a>自动路由</h5><h6 class=""><a name="默认配置" class="anchor" href="#默认配置"><span class="doc-link"></span></a>默认配置</h6><p>自动路由用于管理url与action之间的映射关系，默认的路由规则为</p>
+<h5 class=""><a name="自动路由" class="anchor" href="#自动路由"><span class="doc-link"></span></a>自动路由</h5><h6 class=""><a name="默认配置" class="anchor" href="#默认配置"><span class="doc-link"></span></a>默认配置</h6><p>自动路由用于管理 url 与 action 之间的映射关系，默认的路由规则为</p>
 <pre><code class="hljs lang-text">http://www.example.com/<span class="hljs-literal">home</span>/<span class="hljs-function">index =&gt;</span> app/<span class="hljs-literal">home</span>/action/index.js
 http://www.example.com/<span class="hljs-literal">home</span>/doc/<span class="hljs-function">detail =&gt;</span> app/<span class="hljs-literal">home</span>/action/doc/detail.js
 </code></pre>
-<p>如果上述规则没有匹配成功，会尝试匹配同名文件夹下的index.js，即</p>
+<p>如果上述规则没有匹配成功，会尝试匹配同名文件夹下的 index.js，即</p>
 <pre><code class="hljs lang-text">http://www.example.com/<span class="hljs-literal">home</span>/<span class="hljs-function">index =&gt;</span> app/<span class="hljs-literal">home</span>/action/index/index.js
 http://www.example.com/<span class="hljs-literal">home</span>/doc/<span class="hljs-function">detail =&gt;</span> app/<span class="hljs-literal">home</span>/action/doc/detail/index.js
 </code></pre>
-<h6 class=""><a name="路由扩展" class="anchor" href="#路由扩展"><span class="doc-link"></span></a>路由扩展</h6><p>Yog2的自动路由是在Express的路由功能上扩展而来，因此Express路由提供的功能均可以在Yog2中使用。</p>
-<h7 class=""><a name="rootRouter" class="anchor" href="#rootRouter"><span class="doc-link"></span></a>rootRouter</h7><p>rootRouter是用于管理Yog2项目的根路由，根路由可以请求发往App之前就进行干预。</p>
+<h6 class=""><a name="路由扩展" class="anchor" href="#路由扩展"><span class="doc-link"></span></a>路由扩展</h6><p>Yog2 的自动路由是在 Express 的路由功能上扩展而来，因此 Express 路由提供的功能均可以在 Yog2 中使用。</p>
+<h7 class=""><a name="rootRouter" class="anchor" href="#rootRouter"><span class="doc-link"></span></a>rootRouter</h7><p>rootRouter 是用于管理 Yog2 项目的根路由，根路由可以请求发往 App 之前就进行干预。</p>
 <blockquote>
-<p>rootRouter可以在 <code>conf/plugins/dispatcher.js</code> 中修改</p>
-<p>router更多的使用方法可以参考 <a href="http://expressjs.com/4x/api.html#router">Express文档</a></p>
+<p>rootRouter 可以在 <code>conf/plugins/dispatcher.js</code> 中修改</p>
+<p>router 更多的使用方法可以参考 <a href="http://expressjs.com/4x/api.html#router">Express 文档</a></p>
 </blockquote>
-<p>你可以为一个app设置一个别名</p>
+<p>你可以为一个 app 设置一个别名</p>
 <pre><code class="hljs lang-javascript"><span class="hljs-keyword">router</span>.<span class="hljs-literal">use</span>(<span class="hljs-string">'/custom'</span>, yog.dispatcher.<span class="hljs-keyword">router</span>(<span class="hljs-string">'home'</span>))
 // http://www.example.com/<span class="hljs-function">custom =&gt;</span> app/<span class="hljs-literal">home</span>/action/index.js
 </code></pre>
-<p>你可以直接建立一个特殊的URL</p>
+<p>你可以直接建立一个特殊的 URL</p>
 <pre><code class="hljs lang-javascript">router.<span class="hljs-function"><span class="hljs-title">get</span><span class="hljs-params">(<span class="hljs-string">'/somespecial'</span>, yog.dispatcher.action(<span class="hljs-string">'home/doc/detail'</span>)</span></span>)
 <span class="hljs-comment">// http://www.example.com/somespecial =&gt; app/home/doc/detail.js</span>
 </code></pre>
-<p>你也可以在此处将router当成app使用，加载任意中间件</p>
-<pre><code class="hljs lang-javascript">router.<span class="hljs-keyword">use</span>(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(req, res, next)</span></span>{
-});
+<p>你也可以在此处将 router 当成 app 使用，加载任意中间件</p>
+<pre><code class="hljs lang-javascript">router.<span class="hljs-keyword">use</span>(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(req, res, next)</span></span>{});
 </code></pre>
-<h7 class=""><a name="appRouter" class="anchor" href="#appRouter"><span class="doc-link"></span></a>appRouter</h7><p>appRouter用于管理进入App后的请求分发，可以理解为Express中的app，实际上功能也和Express中的App极为相似，在这里你可以加载App级别的中间件或者通用逻辑，也可以用于实现自动路由无法满足的URL设计需求。</p>
+<h7 class=""><a name="appRouter" class="anchor" href="#appRouter"><span class="doc-link"></span></a>appRouter</h7><p>appRouter 用于管理进入 App 后的请求分发，可以理解为 Express 中的 app，实际上功能也和 Express 中的 App 极为相似，在这里你可以加载 App 级别的中间件或者通用逻辑，也可以用于实现自动路由无法满足的 URL 设计需求。</p>
 <blockquote>
-<p>appRouter可以在 <code>server/router.js</code> 中修改。</p>
-<p>router更多的使用方法可以参考 <a href="http://expressjs.com/4x/api.html#router">Express文档</a></p>
+<p>appRouter 可以在 <code>server/router.js</code> 中修改。</p>
+<p>router 更多的使用方法可以参考 <a href="http://expressjs.com/4x/api.html#router">Express 文档</a></p>
 </blockquote>
 <pre><code class="hljs lang-javascript">module.exports = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(router)</span></span>{
     <span class="hljs-comment">// you can add app common logic here</span>
-    router.<span class="hljs-keyword">use</span>(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(req, res, next)</span></span>{
-    });
+    router.<span class="hljs-keyword">use</span>(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(req, res, next)</span></span>{});
 
     <span class="hljs-comment">// also you can add custom action</span>
     <span class="hljs-comment">// request /spa/some/hefangshi</span>

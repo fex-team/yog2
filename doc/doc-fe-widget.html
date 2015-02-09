@@ -4,7 +4,7 @@
 <li>用法：在模板中调用某个模板组件<pre><code class="hljs lang-html">{<span class="hljs-variable">%html</span> framework=<span class="hljs-string">"home:static/lib/mod.js"</span><span class="hljs-variable">%}</span>
   {<span class="hljs-variable">%head</span><span class="hljs-variable">%}</span>
      &lt;meta charset=<span class="hljs-string">"utf-8"</span>/&gt;
-     {<span class="hljs-variable">*通</span>过script插件收集加载组件化JS代码<span class="hljs-variable">*}</span>
+     {* 通过 script 插件收集加载组件化 JS 代码 <span class="hljs-variable">*}</span>
      {<span class="hljs-variable">%script</span><span class="hljs-variable">%}</span>
           require.async(<span class="hljs-string">"home:static/ui/B/B.js"</span>);
      {<span class="hljs-variable">%endscript</span><span class="hljs-variable">%}</span>

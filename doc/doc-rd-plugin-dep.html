@@ -1,10 +1,9 @@
-<h7 class=""><a name="插件依赖" class="anchor" href="#插件依赖"><span class="doc-link"></span></a>插件依赖</h7><p>插件与插件质检是可以声明加载依赖的，举例来说，如果希望插件B在插件A加载后再执行，只需要调整插件的写法即可</p>
+<h7 class=""><a name="插件依赖" class="anchor" href="#插件依赖"><span class="doc-link"></span></a>插件依赖</h7><p>插件与插件质检是可以声明加载依赖的，举例来说，如果希望插件 B 在插件 A 加载后再执行，只需要调整插件的写法即可</p>
 <pre><code class="hljs lang-javascript"><span class="hljs-comment">// plugins/A/index.js</span>
 module.<span class="hljs-keyword">exports</span>.A = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(app, conf)</span><span class="hljs-comment">{
 }</span>;</span>
 </code></pre>
 <pre><code class="hljs lang-javascript"><span class="hljs-comment">// plugins/B/index.js</span>
-module.<span class="hljs-keyword">exports</span>.B = [<span class="hljs-string">'A'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(app, conf)</span><span class="hljs-comment">{
-}</span>];</span>
+module.<span class="hljs-keyword">exports</span>.B = [<span class="hljs-string">'A'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(app, conf)</span><span class="hljs-comment">{}</span>];</span>
 </code></pre>
-<p>此处的语法与<a href="https://github.com/caolan/async#auto">async.auto</a>保持一致</p>
+<p>此处的语法与 <a href="https://github.com/caolan/async#auto">async.auto</a> 保持一致</p>

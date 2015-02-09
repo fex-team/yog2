@@ -1,4 +1,4 @@
-<h6 class=""><a name="中间件管理" class="anchor" href="#中间件管理"><span class="doc-link"></span></a>中间件管理</h6><p>中间件管理在Yog2中是通过http插件实现，你可以通过配置http插件来调整中间件的加载顺序</p>
+<h6 class=""><a name="中间件管理" class="anchor" href="#中间件管理"><span class="doc-link"></span></a>中间件管理</h6><p>中间件管理在 Yog2 中是通过 http 插件实现，你可以通过配置 http 插件来调整中间件的加载顺序</p>
 <pre><code class="hljs lang-javascript"><span class="hljs-module"><span class="hljs-keyword">module</span>.exports.http = </span>{
     middleware: [
         <span class="hljs-string">'favicon'</span>,
@@ -17,15 +17,13 @@
     ]
 };
 </code></pre>
-<p>其中所有的名称实际上都是对应的相应的插件，比如log插件、ral插件等，而类似favicon等插件，因为功能比较单一，并且仅在中间件环节使用，我们将这些插件直接内置在了<a href="https://github.com/fex-team/yog2-kernel/tree/master/plugins/http/middleware">http插件</a>中，并没有独立暴露。</p>
+<p>其中所有的名称实际上都是对应的相应的插件，比如 log 插件、ral 插件等，而类似 favicon 等插件，因为功能比较单一，并且仅在中间件环节使用，我们将这些插件直接内置在了 <a href="https://github.com/fex-team/yog2-kernel/tree/master/plugins/http/middleware">http 插件</a> 中，并没有独立暴露。</p>
 <blockquote>
-<p>Yog2中，为了提供更方便的中间件配置能力，会将中间件也封装为一种特殊的插件，这类插件的编写与普通插件的编写略有不同。</p>
+<p>Yog2 中，为了提供更方便的中间件配置能力，会将中间件也封装为一种特殊的插件，这类插件的编写与普通插件的编写略有不同。</p>
 </blockquote>
 <p>以一个最简单的中间件插件为例</p>
-<pre><code class="hljs lang-javascript"><span class="hljs-built_in">module</span>.exports.responseTime = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(app, conf)</span></span>{
-    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
-        app.use(<span class="hljs-built_in">require</span>(<span class="hljs-string">'response-time'</span>)(conf));
+<pre><code class="hljs lang-javascript"><span class="hljs-built_in">module</span>.exports.responseTime = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(app, conf)</span></span>{<span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{app.use(<span class="hljs-built_in">require</span>(<span class="hljs-string">'response-time'</span>)(conf));
     };
 };
 </code></pre>
-<p>中间件插件的特别之处在于它将返回一个函数而不是直接执行中间件的初始化，HTTP插件将会调用返回的函数，而在这个函数中，你可以通过 app.use实现中间件的加载。</p>
+<p>中间件插件的特别之处在于它将返回一个函数而不是直接执行中间件的初始化，HTTP 插件将会调用返回的函数，而在这个函数中，你可以通过 app.use 实现中间件的加载。</p>
