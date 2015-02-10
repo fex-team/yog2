@@ -88,7 +88,7 @@
             "type": "css"
         },
         "static/fis-plus/css/document.scss": {
-            "uri": "/yog2/static/static/fis-plus/css/document_738e435.css",
+            "uri": "/yog2/static/static/fis-plus/css/document_e273d9a.css",
             "type": "css"
         },
         "static/fis-plus/css/index.scss": {
@@ -110,7 +110,7 @@
     },
     "pkg": {
         "auto_css_0": {
-            "uri": "/yog2/static/pkg/auto_combine_bc809_3f4b817.css",
+            "uri": "/yog2/static/pkg/auto_combine_bc809_ca9fea6.css",
             "type": "css",
             "has": [
                 "lib/fontawesome/css/font-awesome.css",
