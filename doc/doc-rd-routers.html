@@ -10,7 +10,7 @@ http://www.example.com/<span class="hljs-literal">home</span>/doc/<span class="h
 <h7 class=""><a name="rootRouter" class="anchor" href="#rootRouter"><span class="octicon octicon-link"></span></a>rootRouter</h7><p>rootRouter 是用于管理 Yog2 项目的根路由，根路由可以请求发往 App 之前就进行干预。</p>
 <blockquote>
 <p>rootRouter 可以在 <code>conf/plugins/dispatcher.js</code> 中修改</p>
-<p>router 更多的使用方法可以参考 <a href="http://expressjs.com/4x/api.html#router">Express 文档</a></p>
+<p>router 更多的使用方法可以参考 <a href="http://expressjs.com/4x/api.html#router">Express 文档 </a></p>
 </blockquote>
 <p>你可以为一个 app 设置一个别名</p>
 <pre><code class="hljs lang-javascript"><span class="hljs-keyword">router</span>.<span class="hljs-literal">use</span>(<span class="hljs-string">'/custom'</span>, yog.dispatcher.<span class="hljs-keyword">router</span>(<span class="hljs-string">'home'</span>))
@@ -21,16 +21,18 @@ http://www.example.com/<span class="hljs-literal">home</span>/doc/<span class="h
 <span class="hljs-comment">// http://www.example.com/somespecial =&gt; app/home/doc/detail.js</span>
 </code></pre>
 <p>你也可以在此处将 router 当成 app 使用，加载任意中间件</p>
-<pre><code class="hljs lang-javascript">router.<span class="hljs-keyword">use</span>(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(req, res, next)</span></span>{});
+<pre><code class="hljs lang-javascript">router.<span class="hljs-keyword">use</span>(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(req, res, next)</span></span>{
+});
 </code></pre>
 <h7 class=""><a name="appRouter" class="anchor" href="#appRouter"><span class="octicon octicon-link"></span></a>appRouter</h7><p>appRouter 用于管理进入 App 后的请求分发，可以理解为 Express 中的 app，实际上功能也和 Express 中的 App 极为相似，在这里你可以加载 App 级别的中间件或者通用逻辑，也可以用于实现自动路由无法满足的 URL 设计需求。</p>
 <blockquote>
 <p>appRouter 可以在 <code>server/router.js</code> 中修改。</p>
-<p>router 更多的使用方法可以参考 <a href="http://expressjs.com/4x/api.html#router">Express 文档</a></p>
+<p>router 更多的使用方法可以参考 <a href="http://expressjs.com/4x/api.html#router">Express 文档 </a></p>
 </blockquote>
 <pre><code class="hljs lang-javascript">module.exports = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(router)</span></span>{
     <span class="hljs-comment">// you can add app common logic here</span>
-    router.<span class="hljs-keyword">use</span>(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(req, res, next)</span></span>{});
+    router.<span class="hljs-keyword">use</span>(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(req, res, next)</span></span>{
+    });
 
     <span class="hljs-comment">// also you can add custom action</span>
     <span class="hljs-comment">// request /spa/some/hefangshi</span>
