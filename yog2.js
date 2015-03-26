@@ -30,77 +30,65 @@ fis.config.merge({
 
 fis.config.set('settings.postprocessor.jswrapper.type', 'amd');
 
-var clientRoadmap = [
-    {
-        reg: /^\/client\/widget\/(.*\.tpl)$/i,
-        isMod : true,
-        id: 'widget/$1',
-        url: '${namespace}/widget/$1',
-        release : '${template}/${namespace}/widget/$1'
-    },
-    {
-        reg: /^\/client\/widget\/(.*\.(js|css))$/i,
-        isMod : true,
-        id: 'widget/$1',
-        release : '${static}/${namespace}/widget/$1'
-    },
-    {
-        reg: /^\/client\/page\/(.+\.tpl)$/i,
-        isMod: true,
-        id: 'page/$1',
-        url: '${namespace}/page/$1',
-        release: '${template}/${namespace}/page/$1',
-        extras: {
-            isPage: true
-        }
-    },
-    {
-        reg: /^\/client\/static\/(.*)/i,
-        id: 'static/$1',
-        release: '${static}/${namespace}/$1'
-    },
-    {
-        reg: /^\/client\/test\/(.*)/i,
-        useMap: false,
-        release: '/test/${namespace}/$1'
-    },
-    {
-        reg: '/client/server.conf',
-        useMap: false,
-        release: '${config}/server.conf'
-    },
-    {
-        reg: /^\/client\/(.*)/i,
-        id: '$1',
-        useMap: true,
-        release: '${static}/${namespace}/$1'
-    }
-];
+fis.config.set('component.dir', '/client/components');
 
-var serverRoadmap = [
-    {
-        reg: /^\/server\/(.+)/i,
-        useMap: false,
-        useCompile: false,
-        useHash: false,
-        useDomain: false,
-        release: '${app}/${namespace}/$1'
+var clientRoadmap = [{
+    reg: /^\/client\/components\/(.*\.js)$/i,
+    isMod: true,
+    id: 'components/$1',
+    release: '${static}/${namespace}/components/$1'
+}, {
+    reg: /^\/client\/widget\/(.+\.tpl)$/i,
+    isMod: true,
+    id: 'widget/$1',
+    url: '${namespace}/widget/$1',
+    release: '${template}/${namespace}/widget/$1'
+}, {
+    reg: /^\/client\/widget\/(.*\.js)$/i,
+    isMod: true,
+    id: 'widget/$1',
+    release: '${static}/${namespace}/widget/$1'
+}, {
+    reg: /^\/client\/page\/(.+\.tpl)$/i,
+    isMod: true,
+    id: 'page/$1',
+    url: '${namespace}/page/$1',
+    release: '${template}/${namespace}/page/$1',
+    extras: {
+        isPage: true
     }
-];
+}, {
+    reg: /^\/client\/test\/(.*)/i,
+    useMap: false,
+    release: '/test/${namespace}/$1'
+}, {
+    reg: '/client/server.conf',
+    useMap: false,
+    release: '${config}/server.conf'
+}, {
+    reg: /^\/client\/(.*)/i,
+    id: '$1',
+    release: '${static}/${namespace}/$1'
+}];
 
-var commonRoadmap = [
-    {
-        reg: "**.sh",
-        release: false
-    },
-    {
-        reg: '${namespace}-map.json',
-        release: '${config}/fis/${namespace}-map.json'
-    },
-    {
-        reg: '**',
-        release: '${static}/${namespace}/$&'
-    }
-];
+var serverRoadmap = [{
+    reg: /^\/server\/(.+)/i,
+    useMap: false,
+    useCompile: false,
+    useHash: false,
+    useDomain: false,
+    release: '${app}/${namespace}/$1'
+}];
 
-fis.config.set('roadmap.path',clientRoadmap.concat(serverRoadmap).concat(commonRoadmap));
+var commonRoadmap = [{
+    reg: "**.sh",
+    release: false
+}, {
+    reg: '${namespace}-map.json',
+    release: '${config}/fis/${namespace}-map.json'
+}, {
+    reg: '**',
+    release: '${static}/${namespace}/$&'
+}];
+
+fis.config.set('roadmap.path', clientRoadmap.concat(serverRoadmap).concat(commonRoadmap));
