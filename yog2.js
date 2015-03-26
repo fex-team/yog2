@@ -19,7 +19,7 @@ fis.config.merge({
             less: 'less'
         },
         preprocessor: {
-            tpl: 'extlang'
+            tpl: 'components, extlang'
         },
         postprocessor: {
             tpl: 'require-async',
