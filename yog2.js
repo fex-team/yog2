@@ -13,23 +13,14 @@ fis.config.set('app', '/app');
 fis.config.set('static', '/static');
 fis.config.set('config', '/conf');
 
-fis.config.merge({
-    modules: {
-        parser: {
-            less: 'less'
-        },
-        preprocessor: {
-            tpl: 'components, extlang'
-        },
-        postprocessor: {
-            tpl: 'require-async',
-            js: 'jswrapper, require-async'
-        }
-    }
-});
+// 配置插件，引入less、fis-components等功能
+fis.config.set('modules.parser.less', 'less');
+fis.config.set('modules.preprocessor.tpl', 'components, extlang');
+fis.config.set('modules.postprocessor.tpl', 'require-async');
+fis.config.set('modules.postprocessor.js', 'jswrapper, require-async');
 
 fis.config.set('settings.postprocessor.jswrapper.type', 'amd');
-
+fis.config.set('roadmap.ext.less', 'css');
 fis.config.set('component.dir', '/client/components');
 
 var clientRoadmap = [{
