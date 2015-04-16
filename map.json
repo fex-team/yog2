@@ -84,11 +84,11 @@
             "type": "js"
         },
         "static/fis-plus/css/base.scss": {
-            "uri": "/yog2/static/static/fis-plus/css/base_ac95b4c.css",
+            "uri": "/yog2/static/static/fis-plus/css/base_70c770b.css",
             "type": "css"
         },
         "static/fis-plus/css/document.scss": {
-            "uri": "/yog2/static/static/fis-plus/css/document_e273d9a.css",
+            "uri": "/yog2/static/static/fis-plus/css/document_dd49892.css",
             "type": "css"
         },
         "static/fis-plus/css/index.scss": {
@@ -122,7 +122,7 @@
             ]
         },
         "auto_css_1": {
-            "uri": "/yog2/static/pkg/auto_combine_bc809_ca9fea6.css",
+            "uri": "/yog2/static/pkg/auto_combine_bc809_9608d49.css",
             "type": "css",
             "has": [
                 "lib/fontawesome/css/font-awesome.css",
