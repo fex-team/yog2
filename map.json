@@ -92,7 +92,7 @@
             "type": "css"
         },
         "static/fis-plus/css/document.scss": {
-            "uri": "/yog2/static/static/fis-plus/css/document_dd49892.css",
+            "uri": "/yog2/static/static/fis-plus/css/document_a2b8db2.css",
             "type": "css"
         },
         "static/fis-plus/css/index.scss": {
@@ -126,7 +126,7 @@
             ]
         },
         "auto_css_1": {
-            "uri": "/yog2/static/pkg/auto_combine_c960f_9c14778.css",
+            "uri": "/yog2/static/pkg/auto_combine_c960f_e6a860c.css",
             "type": "css",
             "has": [
                 "lib/fontawesome/css/font-awesome.css",
