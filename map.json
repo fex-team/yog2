@@ -126,11 +126,11 @@
             ]
         },
         "auto_css_1": {
-            "uri": "/yog2/static/pkg/auto_combine_3e227_da4380e.css",
+            "uri": "/yog2/static/pkg/auto_combine_c960f_8ca2580.css",
             "type": "css",
             "has": [
                 "lib/fontawesome/css/font-awesome.css",
-                "lib/highlight.js/dark.css",
+                "lib/highlight.js/monokai.css",
                 "lib/bootstrap/docs.min.css",
                 "static/fis-plus/css/base.scss",
                 "static/fis-plus/css/document.scss",
