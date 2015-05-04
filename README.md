@@ -63,7 +63,7 @@ cd ..
 # project目录
 cd yog
 npm i
-node ./bin/www
+node app.js
 ```
 
 #### Node一体化环境启动
@@ -85,7 +85,7 @@ Linux
 # project目录
 cd yog
 npm i #执行过可忽略
-npm run-script debug
+npm run debug
 ```
 
 Windows
