@@ -102,6 +102,12 @@ npm run-script debug-win
 > 注意，如果端口8080被占用会提示启动异常EADDRINUSE，只需要调整 app.js 文件中的默认端口即可
 > 也可以设置PORT环境变量来调整启动端口
 
+### 开发调试
+
+由于常规的 `Node` 应用开发时无论是使用文件监听，还是手工操作，都会需要重启服务器才能更新代码，在 `YOG2` 下则提供了一个插件实现真正的无重启热加载APP代码，可以极大的提升 `Node` 应用的开发效率。
+
+详细的使用方法可以参考 [yog2-plugin-recv-reload](https://github.com/hefangshi/yog2-plugin-recv-reload)
+
 ## Yog2的特点
 
 Yog2将传统的一站式开发分解为了Yog2基础环境与Yog2 App，Yog2基础环境将负责一些中间件初始化和基础环境工作，而Yog2 App则是对应的各个业务子系统，包含了具体的业务代码，当然你也可以直接使用Yog2基础环境继续一站式开发，但是我们强烈推荐使用App能力拆分项目。
