@@ -418,7 +418,7 @@ http://www.example.com/home/index => app/home/action/index/index.js
 http://www.example.com/home/doc/detail => app/home/action/doc/detail/index.js
 ```
 
-##### METHOD转发
+##### METHOD 转发
 
 同一个 `action` 文件一般只会对应一个 `URL`， 但是 `YOG2` 提供了按照 `HTTP METHOD` 进行自动转发的能力，举例来说
 
@@ -439,6 +439,8 @@ module.exports.delete = function (req, res) {};
 ```
 
 > `METHOD` 名称均为小写
+
+通过 `METHOD` 转发功能，我们可以为同一个 `URL` ，分别定义在不同 `METHOD` 请求下的行为。
 
 ##### 路由扩展
 
