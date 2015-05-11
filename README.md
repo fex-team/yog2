@@ -418,6 +418,28 @@ http://www.example.com/home/index => app/home/action/index/index.js
 http://www.example.com/home/doc/detail => app/home/action/doc/detail/index.js
 ```
 
+##### METHOD转发
+
+同一个 `action` 文件一般只会对应一个 `URL`， 但是 `YOG2` 提供了按照 `HTTP METHOD` 进行自动转发的能力，举例来说
+
+```
+//app/home/action/index.js
+
+// GET /home/index
+module.exports.get = function (req, res) {};
+
+// POST /home/index
+module.exports.post = function (req, res) {};
+
+// PUT /home/index
+module.exports.put = function (req, res) {};
+
+// DELETE /home/index
+module.exports.delete = function (req, res) {};
+```
+
+> `METHOD` 名称均为小写
+
 ##### 路由扩展
 
 Yog2的自动路由是在Express的路由功能上扩展而来，因此Express路由提供的功能均可以在Yog2中使用。
