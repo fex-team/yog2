@@ -781,19 +781,17 @@ yog.log.debug('some debug');
 `yog.ral` 提供了后端API请求能力
 
 ```javascript
-var r = yog.ral('SOME_SERVICE', {
+yog.ral('SOME_SERVICE', {
     data: {
         id: 1
     }
-});
-
-r.on('data', function(data){
+}).on('data', function(data){
     console.log(data);
-});
-
-r.on('error', function(err){
+}).on('error', function(err){
     console.log(err);
 });
 ```
 
-Ral是一个后端资源统一请求层，最常见的场景是封装HTTP请求，它的特色在于实现了请求协议与数据打包协议的解耦，并且提供了负载均衡与超时、异常重试机制。更多的文档可以参考[node-ral](https://github.com/fex-team/node-ral)，百度产品线用户可以参考[yog-ral](http://git.baidu.com/fex/yog-ral/tree/master)。
+`RAL` 是一个后端资源统一请求层，最常见的场景是封装HTTP请求，它的特色在于实现了请求协议与数据打包协议的解耦，并且提供了负载均衡与超时、异常重试机制。更多的文档可以参考[node-ral](https://github.com/fex-team/node-ral)，百度产品线用户可以参考[yog-ral](http://git.baidu.com/fex/yog-ral/tree/master)。
+
+在 `YOG2` 下使用 `RAL` 无效处理初始化工作，只需要将配置放置在 YOG2 Project 目录下的 `/conf/ral` 中即可。
