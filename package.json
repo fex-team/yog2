@@ -1,6 +1,6 @@
 {
     "name": "yog2",
-    "version": "0.0.10",
+    "version": "0.0.11",
     "description": "Front End Integrated Solution for node express.",
     "main": "yog2.js",
     "bin": {
@@ -24,10 +24,9 @@
     },
     "homepage": "https://github.com/fex-team/yog2",
     "dependencies": {
-        "fis": "1.9.10",
+        "fis": "1.9.20",
         "fis-parser-bdtmpl": "0.0.3",
-        "fis-parser-less": "0.0.9",
-        "fis-postprocessor-jswrapper": "0.0.8",
+        "fis-parser-less": "0.1.2",
         "yog2-command-init": "0.0.x",
         "yog2-command-plugin": "0.0.x",
         "yogurt-postprocessor-require-async": "0.0.x",
