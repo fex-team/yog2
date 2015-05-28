@@ -108,6 +108,8 @@ npm run-script debug-win
 
 详细的使用方法可以参考 [yog2-plugin-recv-reload](https://github.com/hefangshi/yog2-plugin-recv-reload)
 
+> 新版本的 `yog2-kernel>=0.2.5` 已经内置了这个插件，可以直接按照插件文档中在 `fis-conf.js` 配置即可使用。
+
 ## Yog2的特点
 
 Yog2将传统的一站式开发分解为了Yog2基础环境与Yog2 App，Yog2基础环境将负责一些中间件初始化和基础环境工作，而Yog2 App则是对应的各个业务子系统，包含了具体的业务代码，当然你也可以直接使用Yog2基础环境继续一站式开发，但是我们强烈推荐使用App能力拆分项目。
