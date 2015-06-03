@@ -1,15 +1,15 @@
-<h4 class=""><a name="Yog%E5%AF%B9%E8%B1%A1" class="anchor" href="#Yog%E5%AF%B9%E8%B1%A1">Yog对象</a></h4><p>Yog2 暴露了一个名为 <code>yog</code> 的全局变量，方便一些系统功能的挂载和调用。</p>
-<h5 class=""><a name="yog.dispatcher" class="anchor" href="#yog.dispatcher">yog.dispatcher</a></h5><p><code>yog.dispatcher</code> 是 Yog2 的自动路由处理器，通过 <code>yog.dispatcher</code> 可以方便的获取 App 路由与执行器</p>
+<h4 class=""><a name="Yog%E5%AF%B9%E8%B1%A1" href="#Yog%E5%AF%B9%E8%B1%A1">Yog对象</a></h4><p>Yog2 暴露了一个名为 <code>yog</code> 的全局变量，方便一些系统功能的挂载和调用。</p>
+<h5 class=""><a name="yog.dispatcher" href="#yog.dispatcher">yog.dispatcher</a></h5><p><code>yog.dispatcher</code> 是 Yog2 的自动路由处理器，通过 <code>yog.dispatcher</code> 可以方便的获取 App 路由与执行器</p>
 <pre><code class="hljs lang-javascript"><span class="hljs-keyword">var</span> commonRouter = yog.disptahcer.router('common');
 <span class="hljs-keyword">var</span> <span class="hljs-keyword">error</span> = commonRouter.action('<span class="hljs-keyword">error</span>');
 <span class="hljs-keyword">error</span>= yog.dispatcher.action('common/<span class="hljs-keyword">error</span>');
 </code></pre>
 <p>它的应用场景有很多，最常用的有</p>
-<h6 class=""><a name="%E8%AE%BE%E7%BD%AErouter%E5%88%AB%E5%90%8D" class="anchor" href="#%E8%AE%BE%E7%BD%AErouter%E5%88%AB%E5%90%8D">设置router别名</a></h6><p>Yog2 默认是以 App 的 <code>fis-conf.js</code> 中 namespace 配置为 router 名称，如果希望自动路由可以使用其他名称访问 App，那么就需要在 rootRouter 中设置路由的别名</p>
+<h6 class=""><a name="%E8%AE%BE%E7%BD%AErouter%E5%88%AB%E5%90%8D" href="#%E8%AE%BE%E7%BD%AErouter%E5%88%AB%E5%90%8D">设置router别名</a></h6><p>Yog2 默认是以 App 的 <code>fis-conf.js</code> 中 namespace 配置为 router 名称，如果希望自动路由可以使用其他名称访问 App，那么就需要在 rootRouter 中设置路由的别名</p>
 <pre><code class="hljs lang-javascript"><span class="hljs-keyword">router</span>.<span class="hljs-literal">use</span>(<span class="hljs-string">'/custom'</span>, yog.dispatcher.<span class="hljs-keyword">router</span>(<span class="hljs-string">'home'</span>))
 // http://www.example.com/<span class="hljs-function">custom =&gt;</span> app/<span class="hljs-literal">home</span>/index/index.js
 </code></pre>
-<h6 class=""><a name="%E8%AE%BE%E7%BD%AEappRouter" class="anchor" href="#%E8%AE%BE%E7%BD%AEappRouter">设置appRouter</a></h6><p>Yog2 的自动路由是根据 URL 查找同名文件，如果有一些特别的 URL 希望更强的定制能力，那么可以通过 appRouter 进行设置</p>
+<h6 class=""><a name="%E8%AE%BE%E7%BD%AEappRouter" href="#%E8%AE%BE%E7%BD%AEappRouter">设置appRouter</a></h6><p>Yog2 的自动路由是根据 URL 查找同名文件，如果有一些特别的 URL 希望更强的定制能力，那么可以通过 appRouter 进行设置</p>
 <blockquote>
 <p>appRouter 可以在 <code>server/router.js</code> 中修改。</p>
 </blockquote>
@@ -18,25 +18,25 @@
     <span class="hljs-variable">router.get</span>('<span class="hljs-end-block">/some</span>/:<span class="hljs-variable">user</span>', <span class="hljs-variable">yog.dispatcher.action</span>('<span class="hljs-variable">spa</span><span class="hljs-end-block">/api</span>'));
 }</span><span class="xml">;</span>
 </code></pre>
-<h6 class=""><a name="Action%E8%B0%83%E7%94%A8" class="anchor" href="#Action%E8%B0%83%E7%94%A8">Action调用</a></h6><p>我们也可以在 Action 代码中直接调用其他 Action 进行页面请求处理，注意这里你甚至可以进行跨 App 的 Action 调用，但是这种能力的使用应该十分慎重，建议仅限定的其他 App 对 Common App 的调用。</p>
+<h6 class=""><a name="Action%E8%B0%83%E7%94%A8" href="#Action%E8%B0%83%E7%94%A8">Action调用</a></h6><p>我们也可以在 Action 代码中直接调用其他 Action 进行页面请求处理，注意这里你甚至可以进行跨 App 的 Action 调用，但是这种能力的使用应该十分慎重，建议仅限定的其他 App 对 Common App 的调用。</p>
 <pre><code class="hljs lang-javascript"><span class="hljs-comment">// spa/action/some.js</span>
 <span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(req, res, next)</span></span>{
     yog.dispatcher.action(<span class="hljs-string">'spa/api'</span>)(req, res, next);
 };
 </code></pre>
-<h5 class=""><a name="yog.require" class="anchor" href="#yog.require">yog.require</a></h5><p><code>yog.require</code> 提供了跨 App 的 require 能力。</p>
+<h5 class=""><a name="yog.require" href="#yog.require">yog.require</a></h5><p><code>yog.require</code> 提供了跨 App 的 require 能力。</p>
 <p>对于跨 App 的调用，我们建议慎重使用，最好只限定在其他 App 对 Common App 的调用，Common App 中可以存放一些通用的组件。</p>
 <pre><code class="hljs lang-javascript"><span class="hljs-regexp">//</span> 通过yog.<span class="hljs-built_in">require</span> 可以跨App调用其余模块的后端脚本
 <span class="hljs-reserved">var</span> util = yog.<span class="hljs-built_in">require</span>(<span class="hljs-string">'common/libs/util.js'</span>);
 </code></pre>
-<h5 class=""><a name="yog.log" class="anchor" href="#yog.log">yog.log</a></h5><p><code>yog.log</code> 提供了日志记录能力</p>
+<h5 class=""><a name="yog.log" href="#yog.log">yog.log</a></h5><p><code>yog.log</code> 提供了日志记录能力</p>
 <pre><code class="hljs lang-javascript">yog.<span class="hljs-keyword">log</span>.fatal(<span class="hljs-string">'some fatal'</span>);
 yog.<span class="hljs-keyword">log</span>.<span class="hljs-keyword">warning</span>(<span class="hljs-string">'some warning'</span>);
 yog.<span class="hljs-keyword">log</span>.notice(<span class="hljs-string">'some notice'</span>);
 yog.<span class="hljs-keyword">log</span>.<span class="hljs-keyword">trace</span>(<span class="hljs-string">'some trace'</span>);
 yog.<span class="hljs-keyword">log</span>.debug(<span class="hljs-string">'some debug'</span>);
 </code></pre>
-<h5 class=""><a name="yog.ral" class="anchor" href="#yog.ral">yog.ral</a></h5><p><code>yog.ral</code> 提供了后端 API 请求能力</p>
+<h5 class=""><a name="yog.ral" href="#yog.ral">yog.ral</a></h5><p><code>yog.ral</code> 提供了后端 API 请求能力</p>
 <pre><code class="hljs lang-javascript"><span class="hljs-keyword">var</span> r = yog.ral(<span class="hljs-string">'SOME_SERVICE'</span>, <span class="hljs-comment">{
     data: {
         id: 1
