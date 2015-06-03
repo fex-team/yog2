@@ -1,4 +1,4 @@
-<h4 class=""><a name="App%E6%8B%86%E5%88%86" href="#App%E6%8B%86%E5%88%86">App拆分</a></h4><p>Yog2 继承了 FIS 的项目拆分能力，但是在原有的前端项目拆分的能力上，更进一步的提供了 <strong> 前后端一体 App</strong>的拆分能力，我们可以将一个功能模块的前后端代码在一个 App 中统一管理，从代码结构上推动功能模块之间松耦合，并且加快编译速度，减少分支合并工作，最终提高开发效率。</p>
+<h4 class=""><a name="App%20%E6%8B%86%E5%88%86" href="#App%20%E6%8B%86%E5%88%86">App 拆分</a></h4><p>Yog2 继承了 FIS 的项目拆分能力，但是在原有的前端项目拆分的能力上，更进一步的提供了 <strong> 前后端一体 App</strong>的拆分能力，我们可以将一个功能模块的前后端代码在一个 App 中统一管理，从代码结构上推动功能模块之间松耦合，并且加快编译速度，减少分支合并工作，最终提高开发效率。</p>
 <h5 class=""><a name="%E7%9B%AE%E5%BD%95%E8%A7%84%E8%8C%83" href="#%E7%9B%AE%E5%BD%95%E8%A7%84%E8%8C%83">目录规范</a></h5><p>Yog2 App 的目录规范可以结合 <a href="https://github.com/fex-team/yog2#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AAyog2-app"> 创建一个 Yog2 App</a> 创建的目录进行了解</p>
 <pre><code>├─<span class="hljs-keyword">client</span>                 <span class="hljs-preprocessor"># 前端代码</span>
 │  ├─page                <span class="hljs-preprocessor"># 前端页面</span>
@@ -12,14 +12,14 @@
     ├─lib                <span class="hljs-preprocessor"># 可以存放一些通用库</span>
     ├─model              <span class="hljs-preprocessor"># 可以存放一些数据层代码，如后端API请求等</span>
     └─router.js          <span class="hljs-preprocessor"># AppRouter路由，用于处理自动路由无法满足的需求</span>
-</code></pre><h5 class=""><a name="App%E9%83%A8%E7%BD%B2" href="#App%E9%83%A8%E7%BD%B2">App部署</a></h5><p>通过 yog2 工具，你可以方便的将 App 部署至 Yog2 项目中 (请事先初始化项目)</p>
+</code></pre><h5 class=""><a name="App%20%E9%83%A8%E7%BD%B2" href="#App%20%E9%83%A8%E7%BD%B2">App 部署</a></h5><p>通过 yog2 工具，你可以方便的将 App 部署至 Yog2 项目中 (请事先初始化项目)</p>
 <pre><code class="hljs lang-bash"><span class="hljs-comment"># project目录</span>
 <span class="hljs-built_in">cd</span> home
 <span class="hljs-comment"># home目录</span>
 yog2 release <span class="hljs-operator">-d</span> ../yog <span class="hljs-comment">#将home app发布至同级的yog目录中</span>
 <span class="hljs-built_in">cd</span> ..
 </code></pre>
-<h5 class=""><a name="%E5%9B%BE%E8%A7%A3App%E7%9A%84%E6%8B%86%E5%88%86" href="#%E5%9B%BE%E8%A7%A3App%E7%9A%84%E6%8B%86%E5%88%86">图解App的拆分</a></h5><p>App 部署完毕后，请进入项目下的 yog（后端环境）目录，对比该目录前后变化，会发现有如下四处变化：</p>
+<h5 class=""><a name="%E5%9B%BE%E8%A7%A3%20App%20%E7%9A%84%E6%8B%86%E5%88%86" href="#%E5%9B%BE%E8%A7%A3%20App%20%E7%9A%84%E6%8B%86%E5%88%86">图解 App 的拆分</a></h5><p>App 部署完毕后，请进入项目下的 yog（后端环境）目录，对比该目录前后变化，会发现有如下四处变化：</p>
 <p><img src="/yog2/static/doc/img/yog-app_0ae3c78.png" alt="yog/app"></p>
 <p><img src="/yog2/static/doc/img/yog-static_93091d1.png" alt="yog/static"></p>
 <p><img src="/yog2/static/doc/img/yog-view_1f56f18.png" alt="yog/view"></p>

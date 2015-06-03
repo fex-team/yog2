@@ -66,7 +66,7 @@
             <div class="col-sm-9">
                 <div id="document-main" class="document-main">
                     <div class="bs-docs-section"><h1 class="page-header"><a name="Yog2%20%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88" href="#Yog2%20%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88">Yog2 解决方案</a></h1></div>
-<div class="bs-docs-section"><h3 class="" id="Yog2简介"><a name="Yog2%E7%AE%80%E4%BB%8B" href="#Yog2%E7%AE%80%E4%BB%8B">Yog2简介</a></h3><p>Yog2 是基于 FIS 框架的扩展能力开发的 <a href="http://oak.baidu.com/"> 众多解决方案 </a> 之一，如针对 php 的 <a href="http://oak.baidu.com/docs/fis-plus">fis-plus(fisp)</a>、针对 java 的<a href="https://github.com/fex-team/jello">jello</a> 以及针对 Go 语言的 <a href="http://oak.baidu.com/docs/gois/">Gois</a> 等。Yog2 则是针对 node 开发环境的前后端解决方案，不同于及针对 node 服务器端的 <a href="http://oak.baidu.com/docs/yogurt">yog</a> 以及其相应的前端解决方案<a href="http://oak.baidu.com/docs/yogurt">yogurt</a>，Yog2 将传统的一站式开发分解为了 Yog2 基础环境（yog）和 Yog2 App，Yog2 基础环境将负责一些中间件初始化和基础环境工作，而 Yog2 App 则是对应的各个业务子系统，包含了具体的业务代码，这样良好地做到了开发中的前后端分离。
+<div class="bs-docs-section"><h3 class="" id="Yog2 简介"><a name="Yog2%20%E7%AE%80%E4%BB%8B" href="#Yog2%20%E7%AE%80%E4%BB%8B">Yog2 简介</a></h3><p>Yog2 是基于 FIS 框架的扩展能力开发的 <a href="http://oak.baidu.com/"> 众多解决方案 </a> 之一，如针对 php 的 <a href="http://oak.baidu.com/docs/fis-plus">fis-plus(fisp)</a>、针对 java 的<a href="https://github.com/fex-team/jello">jello</a> 以及针对 Go 语言的 <a href="http://oak.baidu.com/docs/gois/">Gois</a> 等。Yog2 则是针对 node 开发环境的前后端解决方案，不同于及针对 node 服务器端的 <a href="http://oak.baidu.com/docs/yogurt">yog</a> 以及其相应的前端解决方案<a href="http://oak.baidu.com/docs/yogurt">yogurt</a>，Yog2 将传统的一站式开发分解为了 Yog2 基础环境（yog）和 Yog2 App，Yog2 基础环境将负责一些中间件初始化和基础环境工作，而 Yog2 App 则是对应的各个业务子系统，包含了具体的业务代码，这样良好地做到了开发中的前后端分离。
 在使用 Yog2 之前，建议您事先对 FIS 工具有所熟悉。</p>
 </div>
 <div class="bs-docs-section"><h3 class="" id="快速入门"><a name="%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8" href="#%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8">快速入门</a></h3><p>Yog2 的使用很方便，分别使用 <code>yog2 init project</code> 和 <code>yog2 init app</code> 便可以迅速构建一个前后端分离的开发环境，且建议首先跟随快速入门文档运行一次 demo，以对 yog2 有一个较快速的理解。</p>
@@ -94,27 +94,27 @@
 </div>
 <div class="bs-docs-section"><p>使用 <code>yog2 init</code> 命令可以迅速构建一个前后端分离的开发环境：</p>
 </div>
-<div class="bs-docs-section"><h4 class=""><a name="%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AAYog2%E9%A1%B9%E7%9B%AE" href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AAYog2%E9%A1%B9%E7%9B%AE">创建一个Yog2项目</a></h4><p>初始化 Yog2 项目，首先需要初始化一个后端环境，可以在项目目录下使用以下命令直接创建</p>
+<div class="bs-docs-section"><h4 class=""><a name="%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%20Yog2%20%E9%A1%B9%E7%9B%AE" href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%20Yog2%20%E9%A1%B9%E7%9B%AE">创建一个 Yog2 项目</a></h4><p>初始化 Yog2 项目，首先需要初始化一个后端环境，可以在项目目录下使用以下命令直接创建</p>
 <pre><code class="hljs lang-bash"><span class="hljs-preprocessor"># project目录</span>
 yog2 init project
 <span class="hljs-preprocessor"># prompt: Enter your app name:  (yog)</span>
 </code></pre>
 </div>
-<div class="bs-docs-section"><h4 class=""><a name="%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AAYog2%20App" href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AAYog2%20App">创建一个Yog2 App</a></h4><p>Yog2 提供了 App 拆分能力，即可以将一个站点或多个站点拆分为多个 App，多个 App 可以部署至同一个 Yog2 项目 (后端环境) 中同时运行。初始化一个 App 的命令如下：</p>
+<div class="bs-docs-section"><h4 class=""><a name="%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%20Yog2%20App" href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%20Yog2%20App">创建一个 Yog2 App</a></h4><p>Yog2 提供了 App 拆分能力，即可以将一个站点或多个站点拆分为多个 App，多个 App 可以部署至同一个 Yog2 项目 (后端环境) 中同时运行。初始化一个 App 的命令如下：</p>
 <pre><code class="hljs lang-bash"><span class="hljs-preprocessor"># project目录</span>
 yog2 init app
 <span class="hljs-preprocessor"># prompt: Enter your app name:  (home)</span>
 </code></pre>
 </div>
 <div class="bs-docs-section"><h4 class=""><a name="%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2" href="#%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2">项目部署</a></h4></div>
-<div class="bs-docs-section"><h4 class=""><a name="%E5%AE%89%E8%A3%85Node%E4%B8%80%E4%BD%93%E5%8C%96%E7%8E%AF%E5%A2%83" href="#%E5%AE%89%E8%A3%85Node%E4%B8%80%E4%BD%93%E5%8C%96%E7%8E%AF%E5%A2%83">安装Node一体化环境</a></h4><p>此项仅适用于百度公司内部，用于安装线上 Node 基础环境，外部用户可以忽略，请直接使用自带的 Node 环境</p>
+<div class="bs-docs-section"><h4 class=""><a name="%E5%AE%89%E8%A3%85%20Node%20%E4%B8%80%E4%BD%93%E5%8C%96%E7%8E%AF%E5%A2%83" href="#%E5%AE%89%E8%A3%85%20Node%20%E4%B8%80%E4%BD%93%E5%8C%96%E7%8E%AF%E5%A2%83">安装 Node 一体化环境</a></h4><p>此项仅适用于百度公司内部，用于安装线上 Node 基础环境，外部用户可以忽略，请直接使用自带的 Node 环境</p>
 <pre><code class="hljs lang-bash"><span class="hljs-comment"># project目录</span>
 <span class="hljs-built_in">cd</span> yog
 yog2 init node-runtime
 <span class="hljs-built_in">cd</span> ..
 </code></pre>
 </div>
-<div class="bs-docs-section"><h4 class=""><a name="%E9%83%A8%E7%BD%B2Yog2%20App" href="#%E9%83%A8%E7%BD%B2Yog2%20App">部署Yog2 App</a></h4><pre><code class="hljs lang-bash"><span class="hljs-comment"># project目录</span>
+<div class="bs-docs-section"><h4 class=""><a name="%E9%83%A8%E7%BD%B2%20Yog2%20App" href="#%E9%83%A8%E7%BD%B2%20Yog2%20App">部署 Yog2 App</a></h4><pre><code class="hljs lang-bash"><span class="hljs-comment"># project目录</span>
 <span class="hljs-built_in">cd</span> home
 <span class="hljs-comment"># home目录</span>
 yog2 release <span class="hljs-operator">-d</span> ../yog <span class="hljs-comment">#将home app发布至同级的yog目录中</span>
@@ -122,13 +122,13 @@ yog2 release <span class="hljs-operator">-d</span> ../yog <span class="hljs-comm
 </code></pre>
 <p>App 的发布实际上就是一个拆分的过程，这将在下面讲解。</p>
 </div>
-<div class="bs-docs-section"><h4 class=""><a name="%E5%90%AF%E5%8A%A8Yog2%E9%A1%B9%E7%9B%AE" href="#%E5%90%AF%E5%8A%A8Yog2%E9%A1%B9%E7%9B%AE">启动Yog2项目</a></h4><p>完成环境的安装以及 app 的部署后便可以启动项目，启动方式依然分为两种方式，普通用户请直接使用默认启动：</p>
+<div class="bs-docs-section"><h4 class=""><a name="%E5%90%AF%E5%8A%A8%20Yog2%20%E9%A1%B9%E7%9B%AE" href="#%E5%90%AF%E5%8A%A8%20Yog2%20%E9%A1%B9%E7%9B%AE">启动 Yog2 项目</a></h4><p>完成环境的安装以及 app 的部署后便可以启动项目，启动方式依然分为两种方式，普通用户请直接使用默认启动：</p>
 <h5 class=""><a name="%E9%BB%98%E8%AE%A4%E5%90%AF%E5%8A%A8" href="#%E9%BB%98%E8%AE%A4%E5%90%AF%E5%8A%A8">默认启动</a></h5><pre><code class="hljs lang-bash"><span class="hljs-comment"># project目录</span>
 <span class="hljs-built_in">cd</span> yog
 npm i
 node ./bin/www
 </code></pre>
-<h5 class=""><a name="Node%E4%B8%80%E4%BD%93%E5%8C%96%E7%8E%AF%E5%A2%83%E5%90%AF%E5%8A%A8" href="#Node%E4%B8%80%E4%BD%93%E5%8C%96%E7%8E%AF%E5%A2%83%E5%90%AF%E5%8A%A8">Node一体化环境启动</a></h5><p>此项仅适用于百度公司内部，用于安装线上 Node 基础环境，外部用户可以忽略，直接使用 <a href="#%25E9%25BB%2598%25E8%25AE%25A4%25E5%2590%25AF%25E5%258A%25A8"> 默认启动</a></p>
+<h5 class=""><a name="Node%20%E4%B8%80%E4%BD%93%E5%8C%96%E7%8E%AF%E5%A2%83%E5%90%AF%E5%8A%A8" href="#Node%20%E4%B8%80%E4%BD%93%E5%8C%96%E7%8E%AF%E5%A2%83%E5%90%AF%E5%8A%A8">Node 一体化环境启动</a></h5><p>此项仅适用于百度公司内部，用于安装线上 Node 基础环境，外部用户可以忽略，直接使用 <a href="#%25E9%25BB%2598%25E8%25AE%25A4%25E5%2590%25AF%25E5%258A%25A8"> 默认启动</a></p>
 <pre><code class="hljs lang-bash"><span class="hljs-comment"># project目录</span>
 <span class="hljs-built_in">cd</span> yog
 npm i <span class="hljs-comment">#执行过可忽略</span>
@@ -154,7 +154,7 @@ npm <span class="hljs-command">run</span>-<span class="hljs-keyword">script</spa
 </blockquote>
 <p>至此，Yog2 的一个基础 demo 已经搭建完成并可以继续进行开发。<em>前后端分离 </em> 是 Yog2 的重点，以下的文档将进一步从 <a href="">App 拆分</a>、<a href=""> 前后端能力 </a> 方面讲解：</p>
 </div>
-<div class="bs-docs-section"><h3 class="" id="Yog2的特点"><a name="Yog2%E7%9A%84%E7%89%B9%E7%82%B9" href="#Yog2%E7%9A%84%E7%89%B9%E7%82%B9">Yog2的特点</a></h3><p>Yog2 将传统的一站式开发分解为了 Yog2 基础环境与 Yog2 App，Yog2 基础环境将负责一些中间件初始化和基础环境工作，而 Yog2 App 则是对应的各个业务子系统，包含了具体的业务代码，当然你也可以直接使用 Yog2 基础环境继续一站式开发，但是我们强烈推荐使用 App 能力拆分项目。</p>
+<div class="bs-docs-section"><h3 class="" id="Yog2 的特点"><a name="Yog2%20%E7%9A%84%E7%89%B9%E7%82%B9" href="#Yog2%20%E7%9A%84%E7%89%B9%E7%82%B9">Yog2 的特点</a></h3><p>Yog2 将传统的一站式开发分解为了 Yog2 基础环境与 Yog2 App，Yog2 基础环境将负责一些中间件初始化和基础环境工作，而 Yog2 App 则是对应的各个业务子系统，包含了具体的业务代码，当然你也可以直接使用 Yog2 基础环境继续一站式开发，但是我们强烈推荐使用 App 能力拆分项目。</p>
 <p>一个典型的 Yog2 目录结构应该类似</p>
 <pre><code>├─home
 │  ├─<span class="hljs-keyword">client</span>
@@ -184,7 +184,7 @@ npm <span class="hljs-command">run</span>-<span class="hljs-keyword">script</spa
     ├─<span class="hljs-keyword">static</span>
     └─views
 </code></pre></div>
-<div class="bs-docs-section"><h4 class=""><a name="App%E6%8B%86%E5%88%86" href="#App%E6%8B%86%E5%88%86">App拆分</a></h4><p>Yog2 继承了 FIS 的项目拆分能力，但是在原有的前端项目拆分的能力上，更进一步的提供了 <strong> 前后端一体 App</strong>的拆分能力，我们可以将一个功能模块的前后端代码在一个 App 中统一管理，从代码结构上推动功能模块之间松耦合，并且加快编译速度，减少分支合并工作，最终提高开发效率。</p>
+<div class="bs-docs-section"><h4 class=""><a name="App%20%E6%8B%86%E5%88%86" href="#App%20%E6%8B%86%E5%88%86">App 拆分</a></h4><p>Yog2 继承了 FIS 的项目拆分能力，但是在原有的前端项目拆分的能力上，更进一步的提供了 <strong> 前后端一体 App</strong>的拆分能力，我们可以将一个功能模块的前后端代码在一个 App 中统一管理，从代码结构上推动功能模块之间松耦合，并且加快编译速度，减少分支合并工作，最终提高开发效率。</p>
 <h5 class=""><a name="%E7%9B%AE%E5%BD%95%E8%A7%84%E8%8C%83" href="#%E7%9B%AE%E5%BD%95%E8%A7%84%E8%8C%83">目录规范</a></h5><p>Yog2 App 的目录规范可以结合 <a href="https://github.com/fex-team/yog2#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AAyog2-app"> 创建一个 Yog2 App</a> 创建的目录进行了解</p>
 <pre><code>├─<span class="hljs-keyword">client</span>                 <span class="hljs-preprocessor"># 前端代码</span>
 │  ├─page                <span class="hljs-preprocessor"># 前端页面</span>
@@ -198,14 +198,14 @@ npm <span class="hljs-command">run</span>-<span class="hljs-keyword">script</spa
     ├─lib                <span class="hljs-preprocessor"># 可以存放一些通用库</span>
     ├─model              <span class="hljs-preprocessor"># 可以存放一些数据层代码，如后端API请求等</span>
     └─router.js          <span class="hljs-preprocessor"># AppRouter路由，用于处理自动路由无法满足的需求</span>
-</code></pre><h5 class=""><a name="App%E9%83%A8%E7%BD%B2" href="#App%E9%83%A8%E7%BD%B2">App部署</a></h5><p>通过 yog2 工具，你可以方便的将 App 部署至 Yog2 项目中 (请事先初始化项目)</p>
+</code></pre><h5 class=""><a name="App%20%E9%83%A8%E7%BD%B2" href="#App%20%E9%83%A8%E7%BD%B2">App 部署</a></h5><p>通过 yog2 工具，你可以方便的将 App 部署至 Yog2 项目中 (请事先初始化项目)</p>
 <pre><code class="hljs lang-bash"><span class="hljs-comment"># project目录</span>
 <span class="hljs-built_in">cd</span> home
 <span class="hljs-comment"># home目录</span>
 yog2 release <span class="hljs-operator">-d</span> ../yog <span class="hljs-comment">#将home app发布至同级的yog目录中</span>
 <span class="hljs-built_in">cd</span> ..
 </code></pre>
-<h5 class=""><a name="%E5%9B%BE%E8%A7%A3App%E7%9A%84%E6%8B%86%E5%88%86" href="#%E5%9B%BE%E8%A7%A3App%E7%9A%84%E6%8B%86%E5%88%86">图解App的拆分</a></h5><p>App 部署完毕后，请进入项目下的 yog（后端环境）目录，对比该目录前后变化，会发现有如下四处变化：</p>
+<h5 class=""><a name="%E5%9B%BE%E8%A7%A3%20App%20%E7%9A%84%E6%8B%86%E5%88%86" href="#%E5%9B%BE%E8%A7%A3%20App%20%E7%9A%84%E6%8B%86%E5%88%86">图解 App 的拆分</a></h5><p>App 部署完毕后，请进入项目下的 yog（后端环境）目录，对比该目录前后变化，会发现有如下四处变化：</p>
 <p><img src="/yog2/static/doc/img/yog-app_0ae3c78.png" alt="yog/app"></p>
 <p><img src="/yog2/static/doc/img/yog-static_93091d1.png" alt="yog/static"></p>
 <p><img src="/yog2/static/doc/img/yog-view_1f56f18.png" alt="yog/view"></p>
@@ -428,7 +428,7 @@ http://www.example.com/<span class="hljs-literal">home</span>/doc/<span class="h
 };
 </code></pre>
 </div>
-<div class="bs-docs-section"><h4 class=""><a name="%E5%89%8D%E7%AB%AF%E5%8A%9F%E8%83%BD" href="#%E5%89%8D%E7%AB%AF%E5%8A%9F%E8%83%BD">前端功能</a></h4><h5 class=""><a name="FIS%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86" href="#FIS%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86">FIS静态资源管理</a></h5><p>我们扩展了 Swig 模板引擎的功能，实现了与 fis-plus 类似的后端静态资源管理能力，你可以通过一些标签来方便的进行细粒度静态资源管理。</p>
+<div class="bs-docs-section"><h4 class=""><a name="%E5%89%8D%E7%AB%AF%E5%8A%9F%E8%83%BD" href="#%E5%89%8D%E7%AB%AF%E5%8A%9F%E8%83%BD">前端功能</a></h4><h5 class=""><a name="FIS%20%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86" href="#FIS%20%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86">FIS 静态资源管理</a></h5><p>我们扩展了 Swig 模板引擎的功能，实现了与 fis-plus 类似的后端静态资源管理能力，你可以通过一些标签来方便的进行细粒度静态资源管理。</p>
 </div>
 <div class="bs-docs-section"><h6 class=""><a name="require" href="#require">require</a></h6><ul>
 <li>功能：通过静态资源管理框架加载静态资源。</li>
@@ -600,18 +600,18 @@ yog2 release <span class="hljs-operator">-d</span> ../yog
 </li>
 </ol>
 </div>
-<div class="bs-docs-section"><h4 class=""><a name="Yog%E5%AF%B9%E8%B1%A1" href="#Yog%E5%AF%B9%E8%B1%A1">Yog对象</a></h4><p>Yog2 暴露了一个名为 <code>yog</code> 的全局变量，方便一些系统功能的挂载和调用。</p>
+<div class="bs-docs-section"><h4 class=""><a name="Yog%20%E5%AF%B9%E8%B1%A1" href="#Yog%20%E5%AF%B9%E8%B1%A1">Yog 对象</a></h4><p>Yog2 暴露了一个名为 <code>yog</code> 的全局变量，方便一些系统功能的挂载和调用。</p>
 <h5 class=""><a name="yog.dispatcher" href="#yog.dispatcher">yog.dispatcher</a></h5><p><code>yog.dispatcher</code> 是 Yog2 的自动路由处理器，通过 <code>yog.dispatcher</code> 可以方便的获取 App 路由与执行器</p>
 <pre><code class="hljs lang-javascript"><span class="hljs-keyword">var</span> commonRouter = yog.disptahcer.router('common');
 <span class="hljs-keyword">var</span> <span class="hljs-keyword">error</span> = commonRouter.action('<span class="hljs-keyword">error</span>');
 <span class="hljs-keyword">error</span>= yog.dispatcher.action('common/<span class="hljs-keyword">error</span>');
 </code></pre>
 <p>它的应用场景有很多，最常用的有</p>
-<h6 class=""><a name="%E8%AE%BE%E7%BD%AErouter%E5%88%AB%E5%90%8D" href="#%E8%AE%BE%E7%BD%AErouter%E5%88%AB%E5%90%8D">设置router别名</a></h6><p>Yog2 默认是以 App 的 <code>fis-conf.js</code> 中 namespace 配置为 router 名称，如果希望自动路由可以使用其他名称访问 App，那么就需要在 rootRouter 中设置路由的别名</p>
+<h6 class=""><a name="%E8%AE%BE%E7%BD%AE%20router%20%E5%88%AB%E5%90%8D" href="#%E8%AE%BE%E7%BD%AE%20router%20%E5%88%AB%E5%90%8D">设置 router 别名</a></h6><p>Yog2 默认是以 App 的 <code>fis-conf.js</code> 中 namespace 配置为 router 名称，如果希望自动路由可以使用其他名称访问 App，那么就需要在 rootRouter 中设置路由的别名</p>
 <pre><code class="hljs lang-javascript"><span class="hljs-keyword">router</span>.<span class="hljs-literal">use</span>(<span class="hljs-string">'/custom'</span>, yog.dispatcher.<span class="hljs-keyword">router</span>(<span class="hljs-string">'home'</span>))
 // http://www.example.com/<span class="hljs-function">custom =&gt;</span> app/<span class="hljs-literal">home</span>/index/index.js
 </code></pre>
-<h6 class=""><a name="%E8%AE%BE%E7%BD%AEappRouter" href="#%E8%AE%BE%E7%BD%AEappRouter">设置appRouter</a></h6><p>Yog2 的自动路由是根据 URL 查找同名文件，如果有一些特别的 URL 希望更强的定制能力，那么可以通过 appRouter 进行设置</p>
+<h6 class=""><a name="%E8%AE%BE%E7%BD%AE%20appRouter" href="#%E8%AE%BE%E7%BD%AE%20appRouter">设置 appRouter</a></h6><p>Yog2 的自动路由是根据 URL 查找同名文件，如果有一些特别的 URL 希望更强的定制能力，那么可以通过 appRouter 进行设置</p>
 <blockquote>
 <p>appRouter 可以在 <code>server/router.js</code> 中修改。</p>
 </blockquote>
@@ -620,7 +620,7 @@ yog2 release <span class="hljs-operator">-d</span> ../yog
     <span class="hljs-variable">router.get</span>('<span class="hljs-end-block">/some</span>/:<span class="hljs-variable">user</span>', <span class="hljs-variable">yog.dispatcher.action</span>('<span class="hljs-variable">spa</span><span class="hljs-end-block">/api</span>'));
 }</span><span class="xml">;</span>
 </code></pre>
-<h6 class=""><a name="Action%E8%B0%83%E7%94%A8" href="#Action%E8%B0%83%E7%94%A8">Action调用</a></h6><p>我们也可以在 Action 代码中直接调用其他 Action 进行页面请求处理，注意这里你甚至可以进行跨 App 的 Action 调用，但是这种能力的使用应该十分慎重，建议仅限定的其他 App 对 Common App 的调用。</p>
+<h6 class=""><a name="Action%20%E8%B0%83%E7%94%A8" href="#Action%20%E8%B0%83%E7%94%A8">Action 调用</a></h6><p>我们也可以在 Action 代码中直接调用其他 Action 进行页面请求处理，注意这里你甚至可以进行跨 App 的 Action 调用，但是这种能力的使用应该十分慎重，建议仅限定的其他 App 对 Common App 的调用。</p>
 <pre><code class="hljs lang-javascript"><span class="hljs-comment">// spa/action/some.js</span>
 <span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(req, res, next)</span></span>{
     yog.dispatcher.action(<span class="hljs-string">'spa/api'</span>)(req, res, next);
