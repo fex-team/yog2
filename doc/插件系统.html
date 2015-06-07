@@ -1,0 +1,86 @@
+<p>yog2 插件系统是整个框架的骨架。在 yog2 中，从中间件管理到日志系统和 FIS 静态资源管理，所有功能的引入都是以插件的形式引入的，因此在了解每个功能的具体用法之前，我们需要对插件系统有一个整体的了解。</p>
+<p>yog2 插件系统的设计目标是</p>
+<ul>
+<li>通过插件系统实现功能与配置的分离</li>
+<li>功能由插件自身实现</li>
+<li>配置由插件系统统一管理，完全暴露给用户</li>
+</ul>
+<p>这样设计的优点是我们可以对 yog2 project 的运行时核心进行整体升级，但是其中的功能调整能够对用户在一定程度上是透明的。</p>
+<p>以中间件的管理为例，YOG2 为了方便使用，默认引入了多个中间件。如果在 app.js 中引用，虽然用户可以灵活修改，但是会与用户代码混杂，导致后续无法升级。而全部在框架的核心库中实现会导致用户很难知道框架内部的中间件是按照何种顺序加载的。</p>
+<h4 class=""><a name="%E5%86%85%E7%BD%AE%E6%8F%92%E4%BB%B6" href="#%E5%86%85%E7%BD%AE%E6%8F%92%E4%BB%B6">内置插件</a></h4><ul>
+<li><p>dispatcher</p>
+<p>自动路由分发插件，提供全局函数 <a href="#yogdispatcher">yog.dispatcher</a></p>
+</li>
+<li><p>http</p>
+<p>中间件管理插件，通过配置，用户可以方便的管理中间件加载顺序和新增中间件</p>
+</li>
+<li><p>log</p>
+<p>日志插件，提供全局函数 <a href="#yoglog">yog.log</a></p>
+</li>
+<li><p>ral</p>
+<p>后端服务管理插件，提供全局函数 <a href="#yogral">yog.ral</a></p>
+</li>
+<li><p>views</p>
+<p>FIS 静态资源管理与模板插件</p>
+</li>
+</ul>
+<h4 class=""><a name="%E7%94%A8%E6%88%B7%E6%8F%92%E4%BB%B6" href="#%E7%94%A8%E6%88%B7%E6%8F%92%E4%BB%B6">用户插件</a></h4><p>用户插件存放在 Yog 项目的 plugins 目录中，插件是有其严格的目录规范的</p>
+<pre><code>├─yog              <span class="hljs-preprocessor"># Yog根目录</span>
+  └plugins          <span class="hljs-preprocessor"># 用户插件目录</span>
+      └userPlugins  <span class="hljs-preprocessor"># 插件目录</span>
+          └<span class="hljs-keyword">index</span>.js <span class="hljs-preprocessor"># 插件入口</span>
+</code></pre><p>其中插件入口必须在一个文件夹中，并且名称必须为 index.js。</p>
+<p>相应的，插件的实现也有进一步要求</p>
+<pre><code class="hljs lang-javascript"><span class="hljs-comment">// 插件逻辑</span>
+<span class="hljs-built_in">module</span>.exports.userPlugins = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(app, conf)</span></span>{
+
+}
+
+<span class="hljs-comment">// 设置插件默认配置</span>
+<span class="hljs-built_in">module</span>.exports.userPlugins.defaultConf = {
+
+}
+</code></pre>
+<ul>
+<li>app为yog.app对象，即Express的<a href="http://expressjs.com/4x/api.html#application">app</a></li>
+<li>conf为插件的配置项</li>
+<li>module.exports后的属性名就是插件的真实名称</li>
+</ul>
+<p>实际上你也可以在一个 index.js 中编写多个插件。</p>
+<pre><code class="hljs lang-javascript"><span class="hljs-built_in">module</span>.exports.userPluginsA = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(app, conf)</span></span>{
+
+}
+
+<span class="hljs-built_in">module</span>.exports.userPluginsB = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(app, conf)</span></span>{
+
+}
+</code></pre>
+<p>此外，对于需要异步加载的插件，也支持异步初始化</p>
+<pre><code class="hljs lang-javascript"><span class="hljs-built_in">module</span>.exports.userPlugins = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(app, conf, cb)</span></span>{
+    cb &amp;&amp; cb();
+}
+
+<span class="hljs-built_in">module</span>.exports.userPlugins.defaultConf = {
+
+}
+</code></pre>
+<h4 class=""><a name="%E6%8F%92%E4%BB%B6%E4%BE%9D%E8%B5%96" href="#%E6%8F%92%E4%BB%B6%E4%BE%9D%E8%B5%96">插件依赖</a></h4><p>插件与插件之间是可以声明加载依赖的，举例来说，如果希望插件 B 在插件 A 加载后再执行，只需要调整插件的写法即可</p>
+<pre><code class="hljs lang-javascript"><span class="hljs-comment">// plugins/A/index.js</span>
+module.<span class="hljs-keyword">exports</span>.A = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(app, conf)</span><span class="hljs-comment">{
+}</span>;</span>
+</code></pre>
+<pre><code class="hljs lang-javascript"><span class="hljs-comment">// plugins/B/index.js</span>
+module.<span class="hljs-keyword">exports</span>.B = [<span class="hljs-string">'A'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(app, conf)</span><span class="hljs-comment">{
+}</span>];</span>
+</code></pre>
+<p>这样，仅当插件 A 初始化完成后，才会开始插件 B 的初始化工作</p>
+<blockquote>
+<p>此处的语法与 <a href="https://github.com/caolan/async#auto">async.auto</a> 保持一致</p>
+</blockquote>
+<h4 class=""><a name="%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE" href="#%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE">插件配置</a></h4><p>插件的配置均存放在 yog2 project 的 <code>conf/plugins</code> 文件夹中，与插件编写规则一致，配置也需要通过属性名显示声明配置所属的插件</p>
+<pre><code class="hljs lang-javascript"><span class="hljs-comment">// conf/plugins/A.js</span>
+<span class="hljs-module"><span class="hljs-keyword">module</span>.exports.A = </span>{
+
+}
+</code></pre>
+<p>编写在 <code>conf/plugin</code> 中的插件配置，会在启动器初始化插件时，自动将配置传递给插件。</p>

@@ -1,0 +1,29 @@
+<p>使用 yog2 我们可以轻松的实现多种性能优化功能。</p>
+<h4 class=""><a name="%E5%8E%8B%E7%BC%A9" href="#%E5%8E%8B%E7%BC%A9">压缩</a></h4><pre><code class="hljs lang-bash">yog2 <span class="hljs-operator"><span class="hljs-keyword">release</span> <span class="hljs-comment">--dest dev --optimize</span>
+
+
+# 也可以使用等价缩写
+yog2 <span class="hljs-keyword">release</span> -od dev</span>
+</code></pre>
+<p>压缩功能将会对 JavaScript, CSS, PNG 三种资源进行压缩。</p>
+<h4 class=""><a name="MD5%20%E6%88%B3" href="#MD5%20%E6%88%B3">MD5 戳</a></h4><p>在使用 fis 管理了静态资源后，我们可以通过开启 MD5 戳来实现静态资源的强缓存，关于 MD5 戳的优点，可以参考 <a href="https://github.com/fex-team/fis/issues/97">fis issue#97</a></p>
+<pre><code class="hljs lang-bash">yog2 release --dest <span class="hljs-built_in">dev</span> --<span class="hljs-built_in">md5</span>
+
+
+# 也可以使用等价缩写
+yog2 release -md <span class="hljs-built_in">dev</span>
+</code></pre>
+<h4 class=""><a name="%E6%89%93%E5%8C%85%E5%90%88%E5%B9%B6" href="#%E6%89%93%E5%8C%85%E5%90%88%E5%B9%B6">打包合并</a></h4><p>在 yog2 下，如果希望打包合并资源，只需要在各个 app 下的 fis-conf.js 中配置即可。</p>
+<pre><code class="hljs lang-javascript"><span class="xml">fis.config.set('pack', </span><span class="hljs-expression">{
+    '<span class="hljs-end-block">/pkg</span><span class="hljs-end-block">/widget.js</span>': '<span class="hljs-end-block">/client</span><span class="hljs-end-block">/widget</span>/**<span class="hljs-variable">.js</span>',
+    '<span class="hljs-end-block">/pkg</span><span class="hljs-end-block">/widget.less</span>': '<span class="hljs-end-block">/client</span><span class="hljs-end-block">/widget</span>/**<span class="hljs-variable">.css</span>'
+}</span><span class="xml">);</span>
+</code></pre>
+<p>在配置后，只需要在执行 <code>yog2 release</code> 时指定打包参数，就可以将静态资源合并。</p>
+<pre><code class="hljs lang-bash">yog2 <span class="hljs-operator"><span class="hljs-keyword">release</span> <span class="hljs-comment">--dest dev --pack</span>
+
+yog2 <span class="hljs-keyword">release</span> -pd dev
+# 也可以使用等价缩写</span>
+</code></pre>
+<h4 class=""><a name="%E8%AE%BE%E7%BD%AE%20domain" href="#%E8%AE%BE%E7%BD%AE%20domain">设置 domain</a></h4><p>domain 配置用于满足在代码部署上线时添加 CDN 或域名子目录需求。让开发者无需在开发阶段写大量的 {{BASE_URL}} 模板，而是统一在编译阶段自动化解决。</p>
+<p>详细内容可以参考 fis 中对 roadmap 的 <a href="http://fis.baidu.com/docs/advance/roadmap.html# 域名配置"> 文档 </a></p>

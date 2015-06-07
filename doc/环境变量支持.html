@@ -1,0 +1,4 @@
+<p>yog2 还支持根据环境变量加载不同的配置，举例来说</p>
+<pre><code><span class="hljs-built_in">export</span> YOG_ENV=dev
+</code></pre><p>环境变量 <code>YOG_ENV</code> 的值将会影响配置的加载，比如当值为 dev 时，就会优先加载 <code>http.dev.js</code> 而非 <code>http.js</code>。我们可以通过这个功能更方便的管理开发环境的配置与测试环境的配置。</p>
+<p>除此外还有一个特殊的配置后缀 <code>default</code>，当 <code>http.js</code> 不存在时，会尝试加载 <code>http.default.js</code>。可以在自定义插件时使用，这样用户在 <code>http.js</code> 中修改配置后，即使重新安装插件，也不会覆盖用户修改后的配置。</p>

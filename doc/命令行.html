@@ -1,0 +1,105 @@
+<h4 class=""><a name="init" href="#init">init</a></h4><p>yog2 init 是脚手架命令，用于初始化一些环境与代码，目前提供的脚手架有</p>
+<ul>
+<li><p><code>yog2 init project</code></p>
+<p>  初始化一个 yog2 project，主要包含了基础的 project 目录结构和基础框架代码</p>
+</li>
+<li><p><code>yog2 init app</code></p>
+<p>  初始化一个 yog2 app，主要包含了基础的 app 目录结构与一些样例文件</p>
+</li>
+<li><p><code>yog2 init node-runtime</code></p>
+<p>  仅限百度内部使用，包含了公司内部可用的线上 Node.js 运行时和运维工具</p>
+</li>
+</ul>
+<h4 class=""><a name="release" href="#release">release</a></h4><p>yog2 release 是最重要的命令之一，它的主要功能是对 app 代码进行编译和发布，它会将 app 中的业务代码按照 project 的目录规范进行组织，同时对 app 中的前端代码进行优化和组织。</p>
+<p>它包含多个参数用于控制 app 的开发、编译、部署等等工作。因为 yog2 实际上是扩展自 fis ，因此这些参数也均来自 <a href="http://fis.baidu.com/docs/api/cli.html">fis</a>。</p>
+<h5 class=""><a name="%E5%8F%91%E5%B8%83%E5%8F%82%E6%95%B0" href="#%E5%8F%91%E5%B8%83%E5%8F%82%E6%95%B0">发布参数</a></h5><ul>
+<li><p>指定编译 app 代码并发布至某个目录</p>
+<pre><code class="hljs lang-bash">  yog2 <span class="hljs-operator"><span class="hljs-keyword">release</span> <span class="hljs-comment">--dest ../yog</span></span>
+</code></pre>
+</li>
+<li><p>指定编译 app 代码并发布至某个 deploy 配置项</p>
+<pre><code class="hljs lang-bash">  yog2 <span class="hljs-operator"><span class="hljs-keyword">release</span> <span class="hljs-comment">--dest dev</span></span>
+</code></pre>
+</li>
+<li><p>监听文件修改，对修改文件进行增量编译并发布</p>
+<pre><code class="hljs lang-bash">  <span class="hljs-comment">yog2</span> <span class="hljs-comment">release</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">dest</span> <span class="hljs-comment">dev</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">watch</span>
+</code></pre>
+</li>
+<li><p>监听文件修改，并自动刷新页面</p>
+<blockquote>
+<p>自动刷新页面需要下载 livereload 插件，并且 yog2 release 命令执行后需手动刷新一次页面</p>
+</blockquote>
+<pre><code class="hljs lang-bash">  <span class="hljs-comment">yog2</span> <span class="hljs-comment">release</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">dest</span> <span class="hljs-comment">dev</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">watch</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">live</span>
+</code></pre>
+</li>
+</ul>
+<h5 class=""><a name="%E7%BC%96%E8%AF%91%E5%8F%82%E6%95%B0" href="#%E7%BC%96%E8%AF%91%E5%8F%82%E6%95%B0">编译参数</a></h5><ul>
+<li><p>压缩静态资源</p>
+<pre><code class="hljs lang-bash">   <span class="hljs-comment">yog2</span> <span class="hljs-comment">release</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">dest</span> <span class="hljs-comment">dev</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">optimize</span>
+</code></pre>
+</li>
+<li><p>为静态资源添加 MD5 后缀</p>
+<pre><code class="hljs lang-bash">   <span class="hljs-comment">yog2</span> <span class="hljs-comment">release</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">dest</span> <span class="hljs-comment">dev</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">md5</span>
+</code></pre>
+</li>
+<li><p>打包静态资源</p>
+<pre><code class="hljs lang-bash">   <span class="hljs-comment">yog2</span> <span class="hljs-comment">release</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">dest</span> <span class="hljs-comment">dev</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">pack</span>
+</code></pre>
+</li>
+<li><p>为静态资源添加 domain</p>
+<pre><code class="hljs lang-bash">   <span class="hljs-comment">yog2</span> <span class="hljs-comment">release</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">dest</span> <span class="hljs-comment">dev</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">domains</span>
+</code></pre>
+</li>
+</ul>
+<p>上述的所有参数均可以组合使用，比如使用以下命令</p>
+<pre><code class="hljs lang-bash"><span class="hljs-comment">yog2</span> <span class="hljs-comment">release</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">watch</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">live</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">optimize</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">md5</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">domains</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">pack</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">dest</span> <span class="hljs-comment">dev</span>
+</code></pre>
+<p>就会组合相应的各种操作。</p>
+<p>此外，这些参数还提供了缩写和组合的功能，比如上述的命令缩写后可以写成</p>
+<pre><code class="hljs lang-bash">yog2 release -w -<span class="hljs-keyword">L</span> -o -<span class="hljs-keyword">m</span> -<span class="hljs-keyword">D</span> -p -<span class="hljs-keyword">d</span> dev
+</code></pre>
+<p>还可以更进一步组合一下</p>
+<pre><code class="hljs lang-bash">yo<span class="hljs-keyword">g2</span> release -wLomDpd dev
+</code></pre>
+<p>最后，如果忘记了命令，还可以使用 <code>-h</code> 参数进行查询</p>
+<pre><code class="hljs lang-bash">yog2 release -h
+
+  Usage: release [options]
+
+  Options:
+
+    -<span class="ruby">h, --help             output usage information
+</span>    -<span class="ruby">d, --dest &lt;names&gt;     release output destination
+</span>    -<span class="ruby">m, --md5 [level]      md5 release option
+</span>    -<span class="ruby"><span class="hljs-constant">D</span>, --domains          add domain name
+</span>    -<span class="ruby">l, --lint             with lint
+</span>    -<span class="ruby">t, --test             with unit testing
+</span>    -<span class="ruby">o, --optimize         with optimizing
+</span>    -<span class="ruby">p, --pack             with package
+</span>    -<span class="ruby">w, --watch            monitor the changes of project
+</span>    -<span class="ruby"><span class="hljs-constant">L</span>, --live             automatically reload your browser
+</span>    -<span class="ruby">c, --clean            clean compile cache
+</span>    -<span class="ruby">r, --root &lt;path&gt;      set project root
+</span>    -<span class="ruby">f, --file &lt;filename&gt;  set fis-conf file
+</span>    -<span class="ruby">u, --unique           use unique compile caching
+</span>    -<span class="ruby">-verbose              enable verbose output</span>
+</code></pre>
+<blockquote>
+<p>关于静态资源的优化编译功能，建议使用 fis 的 <a href="http://fis.baidu.com/"> 文档 </a> 进行了解，会更加的全面。</p>
+</blockquote>
+<h5 class=""><a name="plugin" href="#plugin">plugin</a></h5><p>yog2 plugin 命令用于安装 yog2 的插件功能，比如</p>
+<pre><code class="hljs lang-bash">yog2 plugin <span class="hljs-operator"><span class="hljs-keyword">install</span> <span class="hljs-keyword">session</span></span>
+</code></pre>
+<p>就可以安装 session 插件，之后只需要在 <code>/conf/plugins/http.js</code> 的中间件配置中加上 <code>session</code> 就可以使用 session 功能。</p>
+<p>除了内置的插件外，还可以直接从 github 上下载插件</p>
+<pre><code class="hljs lang-bash">yog2 plugin <span class="hljs-string">https:</span><span class="hljs-comment">//github.com/hefangshi/yog2-plugin-ral-promise</span>
+</code></pre>
+<blockquote>
+<p>安装了这个插件可以将 <code>yog.ral</code> 包装为 Promise 形式的接口。</p>
+</blockquote>
+<h5 class=""><a name="install" href="#install">install</a></h5><p>yog2 install 用于安装 fis 组件生态 <a href="https://github.com/fis-components">fis-components</a> 中的各种组件</p>
+<pre><code class="hljs lang-bash">yog2 <span class="hljs-keyword">install</span> jquery
+</code></pre>
+<p>安装后，在 app 的前端代码中，就可以直接使用</p>
+<pre><code class="hljs lang-javascript"><span class="hljs-reserved">var</span> $ = <span class="hljs-built_in">require</span>(<span class="hljs-string">'jquery'</span>);
+</code></pre>

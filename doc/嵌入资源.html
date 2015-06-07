@@ -1,0 +1,137 @@
+<h4 class=""><a name="%E5%9C%A8%20html%20%E4%B8%AD%E5%B5%8C%E5%85%A5%E8%B5%84%E6%BA%90" href="#%E5%9C%A8%20html%20%E4%B8%AD%E5%B5%8C%E5%85%A5%E8%B5%84%E6%BA%90">在 html 中嵌入资源</a></h4><blockquote>
+<p>在 html 中可以嵌入其他文件内容或者 base64 编码值，可以在资源定位的基础上，给资源加 <strong>?__inline</strong> 参数来标记资源嵌入需求。</p>
+</blockquote>
+<ul>
+<li><p>html 中嵌入图片 base64</p>
+<ul>
+<li><p>源码：</p>
+<pre><code class="hljs lang-html">  &lt;img <span class="hljs-variable">title=</span><span class="hljs-string">"百度logo"</span> <span class="hljs-variable">src=</span><span class="hljs-string">"images/logo.gif?__inline"</span>/&gt;
+</code></pre>
+</li>
+<li><p>编译后</p>
+<pre><code class="hljs lang-html">  &lt;img <span class="hljs-variable">title=</span><span class="hljs-string">"百度logo"</span> <span class="hljs-variable">src=</span><span class="hljs-string">"data:image/gif;base64,R0lGODlhDgGBALMAAGBn6eYxLvvy9PnKyfO...Jzna6853wjKc850nPeoYgAgA7"</span>/&gt;
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>html 中嵌入样式文件</p>
+<ul>
+<li><p>源码：</p>
+<pre><code class="hljs lang-html">  &lt;link <span class="hljs-variable">rel=</span><span class="hljs-string">"stylesheet"</span> <span class="hljs-variable">type=</span><span class="hljs-string">"text/css"</span> <span class="hljs-variable">href=</span><span class="hljs-string">"demo.css?__inline"</span>&gt;
+</code></pre>
+</li>
+<li><p>编译后</p>
+<pre><code class="hljs lang-html">  <span class="hljs-tag">&lt;<span class="hljs-title">style</span>&gt;</span><span class="css"><span class="hljs-tag">img</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">border</span>:<span class="hljs-value"> <span class="hljs-number">5px</span> solid <span class="hljs-hexcolor">#ccc</span></span></span>; <span class="hljs-rule">}</span></span></span><span class="hljs-tag">&lt;/<span class="hljs-title">style</span>&gt;</span>
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>html 中嵌入脚本资源</p>
+<ul>
+<li><p>源码：</p>
+<pre><code class="hljs lang-html">  <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text/javascript"</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"demo.js?__inline"</span>&gt;</span><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+</code></pre>
+</li>
+<li><p>编译后</p>
+<pre><code class="hljs lang-html">  <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text/javascript"</span>&gt;</span><span class="javascript"><span class="hljs-built_in">console</span>.log(<span class="hljs-string">'inline file'</span>);</span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>html 中嵌入页面文件</p>
+<ul>
+<li><p>源码（推荐使用）：</p>
+<pre><code class="hljs lang-html">  &lt;link <span class="hljs-variable">rel=</span><span class="hljs-string">"import"</span> <span class="hljs-variable">href=</span><span class="hljs-string">"demo.html?__inline"</span>&gt;
+</code></pre>
+</li>
+<li><p>编译后</p>
+<pre><code class="hljs lang-html">  <span class="hljs-comment">&lt;!-- this is the content of demo.html --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">h1</span>&gt;</span>demo.html content<span class="hljs-tag">&lt;/<span class="hljs-title">h1</span>&gt;</span>
+</code></pre>
+</li>
+<li><p>源码（功能同 &lt;link ref=&quot;import&quot; href=&quot;xxx?__inline&quot;&gt; 语法，此语法为旧语法，<code> 不推荐使用 </code> ）：</p>
+<pre><code class="hljs lang-html">  <span class="hljs-comment">&lt;!--inline[demo.html]--&gt;</span>
+</code></pre>
+</li>
+<li><p>编译后</p>
+<pre><code class="hljs lang-html">  <span class="hljs-comment">&lt;!-- this is the content of demo.html --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">h1</span>&gt;</span>demo.html content<span class="hljs-tag">&lt;/<span class="hljs-title">h1</span>&gt;</span>
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h4 class=""><a name="%E5%9C%A8%20js%20%E4%B8%AD%E5%B5%8C%E5%85%A5%E8%B5%84%E6%BA%90" href="#%E5%9C%A8%20js%20%E4%B8%AD%E5%B5%8C%E5%85%A5%E8%B5%84%E6%BA%90">在 js 中嵌入资源</a></h4><blockquote>
+<p>在 js 中，使用编译函数 <strong>__inline()</strong> 来提供内容嵌入能力。可以利用这个函数嵌入图片的 base64 编码、嵌入其他 js 或者前端模板文件的编译内容， <strong> 这些处理对 html 中 script 标签里的内容同样有效 </strong>。</p>
+</blockquote>
+<ul>
+<li><p>在 js 中嵌入 js 文件</p>
+<ul>
+<li><p>源码：</p>
+<pre><code class="hljs lang-javascript">  __inline(<span class="hljs-symbol">'demo</span>.js');
+</code></pre>
+</li>
+<li><p>编译后</p>
+<pre><code class="hljs lang-javascript">  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'demo.js content'</span>);
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>在 js 中嵌入图片 base64</p>
+<ul>
+<li><p>源码：</p>
+<pre><code class="hljs lang-javascript">  <span class="hljs-keyword">var</span> img = __inline(<span class="hljs-string">'images/logo.gif'</span>);
+</code></pre>
+</li>
+<li><p>编译后：</p>
+<pre><code class="hljs lang-javascript">  <span class="hljs-keyword">var</span> img = <span class="hljs-string">'data:image/gif;base64,R0lGODlhDgGBALMAAGBn6eYxLvvy9PnKyfO...Jzna6853wjKc850nPeoYgAgA7'</span>;
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>在 js 中嵌入其他文本文件</p>
+<ul>
+<li><p>源码：</p>
+<pre><code class="hljs lang-javascript">  <span class="hljs-keyword">var</span> css = __inline(<span class="hljs-string">'a.css'</span>);
+</code></pre>
+</li>
+<li><p>编译后：</p>
+<pre><code class="hljs lang-javascript">  <span class="hljs-keyword">var</span> css = <span class="hljs-string">"body \n{    color: red;\n}"</span>;
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h4 class=""><a name="%E5%9C%A8%20css%20%E4%B8%AD%E5%B5%8C%E5%85%A5%E8%B5%84%E6%BA%90" href="#%E5%9C%A8%20css%20%E4%B8%AD%E5%B5%8C%E5%85%A5%E8%B5%84%E6%BA%90">在 css 中嵌入资源</a></h4><blockquote>
+<p>与 html 类似，凡是命中了资源定位能力的编译标记， <strong> 除了 src=&quot;xxx&quot; 之外 </strong>，都可以通过添加 <code>?__inline</code> 编译标记都可以把文件内容嵌入进来。src=&quot;xxx&quot; 被用在 ie 浏览器支持的 filter 内，该属性不支持 base64 字符串，因此未做处理。</p>
+</blockquote>
+<ul>
+<li><p>在 css 文件中嵌入其他 css 文件</p>
+<ul>
+<li><p>源码：</p>
+<pre><code class="hljs lang-css">  <span class="hljs-at_rule">@<span class="hljs-keyword">import</span> <span class="hljs-function">url</span>(<span class="hljs-string">'demo.css?__inline'</span>)</span>;
+</code></pre>
+</li>
+<li><p>编译后</p>
+<pre><code class="hljs lang-css">  <span class="hljs-tag">img</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">border</span>:<span class="hljs-value"> <span class="hljs-number">5px</span> solid <span class="hljs-hexcolor">#ccc</span></span></span>; <span class="hljs-rule">}</span></span>;
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>在 css 中嵌入图片的 base64</p>
+<ul>
+<li><p>源码：</p>
+<pre><code class="hljs lang-css">  <span class="hljs-class">.style</span> <span class="hljs-rules">{
+      <span class="hljs-rule"><span class="hljs-attribute">background</span>:<span class="hljs-value"> <span class="hljs-function">url</span>(images/logo.gif?__inline)</span></span>;
+  <span class="hljs-rule">}</span></span>
+</code></pre>
+</li>
+<li><p>编译后</p>
+<pre><code class="hljs lang-css">  <span class="hljs-class">.style</span> {
+      <span class="hljs-attribute">background</span>: <span class="hljs-function">url</span>(<span class="hljs-string">data:image/gif;base64,R0lGODlhDgGBALMAAGBn6eYxLvvy9PnKyfO...Jzna6853wjKc850nPeoYgAgA7</span>);
+  }
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>

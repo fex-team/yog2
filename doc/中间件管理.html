@@ -1,0 +1,96 @@
+<p>在 yog2 中，中间件管理 <a href="https://github.com/fex-team/yog2-kernel/tree/master/plugins/http">http</a> 本身是一个插件，而各种中间件也是由插件组成，因此我们可将中间件插件理解为一类特殊的插件。</p>
+<p>中间件管理插件的功能是根据用户指定的中间件加载顺序调用中间件插件。</p>
+<h4 class=""><a name="%E4%B8%AD%E9%97%B4%E4%BB%B6%E9%85%8D%E7%BD%AE" href="#%E4%B8%AD%E9%97%B4%E4%BB%B6%E9%85%8D%E7%BD%AE">中间件配置</a></h4><p>中间件配置位于 <code>/conf/plugins/http.js</code> 中</p>
+<pre><code class="hljs lang-javascript"><span class="hljs-module"><span class="hljs-keyword">module</span>.exports.http = </span>{
+    middleware: [
+        <span class="hljs-string">'favicon'</span>,
+        <span class="hljs-string">'compression'</span>,
+        <span class="hljs-string">'static'</span>,
+        <span class="hljs-string">'responseTime'</span>,
+        <span class="hljs-string">'cookieParser'</span>,
+        <span class="hljs-string">'bodyParser'</span>,
+        <span class="hljs-string">'log'</span>,
+        <span class="hljs-string">'ral'</span>,
+        <span class="hljs-string">'views'</span>,
+        <span class="hljs-string">'methodOverride'</span>,
+        <span class="hljs-string">'dispatcher'</span>,
+        <span class="hljs-string">'notFound'</span>,
+        <span class="hljs-string">'error'</span>
+    ]
+};
+</code></pre>
+<p>Middleware 配置用于管理加载哪些中间件，以及这些中间件的加载顺序。当不希望使用某种中间件时，只需要从数组中剔除即可。如果希望改变中间件的加载顺序，只需要调整 Middleware 数组的顺序。</p>
+<p>Middleware 中的字符串代表着响应的中间件插件的名称。除了使用名称来加载中间件，我们还可以直接使用中间件的 function 。</p>
+<h4 class=""><a name="%E6%B7%BB%E5%8A%A0%E4%B8%AD%E9%97%B4%E4%BB%B6" href="#%E6%B7%BB%E5%8A%A0%E4%B8%AD%E9%97%B4%E4%BB%B6">添加中间件</a></h4><p>添加中间件的方式就是在 Middleware 配置中添加一项中间件。比如当我们安装了 session 插件后就可以在  Middleware 配置中将 session 插件作为中间件加载。</p>
+<p>安装中间件插件</p>
+<pre><code>yog2 plugin <span class="hljs-operator"><span class="hljs-keyword">install</span> <span class="hljs-keyword">session</span></span>
+</code></pre><p>启用中间件</p>
+<pre><code class="hljs lang-javascript"><span class="hljs-module"><span class="hljs-keyword">module</span>.exports.http = </span>{
+    middleware: [
+        <span class="hljs-string">'favicon'</span>,
+        <span class="hljs-string">'compression'</span>,
+        <span class="hljs-string">'static'</span>,
+        <span class="hljs-string">'responseTime'</span>,
+        <span class="hljs-string">'cookieParser'</span>,
+        <span class="hljs-string">'bodyParser'</span>,
+        <span class="hljs-string">'log'</span>,
+        <span class="hljs-string">'ral'</span>,
+        <span class="hljs-string">'views'</span>,
+        <span class="hljs-string">'methodOverride'</span>,
+        <span class="hljs-string">'session'</span>, <span class="hljs-comment">// 添加 session 中间件</span>
+        <span class="hljs-string">'dispatcher'</span>,
+        <span class="hljs-string">'notFound'</span>,
+        <span class="hljs-string">'error'</span>
+    ]
+};
+</code></pre>
+<p>如果不希望将中间件包装为插件，只希望快速的引入中间件功能的话，也可以直接添加中间件暴露的接口。</p>
+<p>以 <a href="https://github.com/expressjs/cookie-session">cookie-session</a> 为例，只需要安装了 npm 模块后，就可以直接添加这个中间件</p>
+<p>安装</p>
+<pre><code>npm <span class="hljs-tag">i</span> cookie-session --save
+</code></pre><p>启用中间件</p>
+<pre><code class="hljs lang-javascript"><span class="hljs-module"><span class="hljs-keyword">module</span>.exports.http = </span>{
+    middleware: [
+        <span class="hljs-string">'favicon'</span>,
+        <span class="hljs-string">'compression'</span>,
+        <span class="hljs-string">'static'</span>,
+        <span class="hljs-string">'responseTime'</span>,
+        <span class="hljs-string">'cookieParser'</span>,
+        <span class="hljs-string">'bodyParser'</span>,
+        <span class="hljs-string">'log'</span>,
+        <span class="hljs-string">'ral'</span>,
+        <span class="hljs-string">'views'</span>,
+        <span class="hljs-string">'methodOverride'</span>,
+        <span class="hljs-built_in">require</span>(<span class="hljs-string">'cookie-session'</span>)({secret: <span class="hljs-string">'key'</span>}),
+        <span class="hljs-string">'dispatcher'</span>,
+        <span class="hljs-string">'notFound'</span>,
+        <span class="hljs-string">'error'</span>
+    ]
+};
+</code></pre>
+<h4 class=""><a name="%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0">文件上传</a></h4><p>在 yog2 中，并未默认开启文件上传功能，这是由于用于处理文件上传的模块一般都较为庞大，如果不需要使用话，加载文件上传处理组件会影响性能。</p>
+<p>如果希望能够处理文件上传请求，需要在控制器代码中手动添加。以 yog2 自带的 <a href="https://github.com/andrewrk/node-multiparty/">multiparty</a> 组件库为例，我们可以为用户添加头像上传功能。</p>
+<pre><code class="hljs lang-javascript"><span class="hljs-built_in">module</span>.exports.post = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(req, res, next)</span> </span>{
+    <span class="hljs-keyword">var</span> form = <span class="hljs-keyword">new</span> yog.multiparty.Form();
+    form.parse(req, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(err, fields, files)</span> </span>{
+        <span class="hljs-keyword">var</span> name = fields.name;
+        <span class="hljs-keyword">var</span> gender = fields.gender ? <span class="hljs-number">1</span> : <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">var</span> avatar = (files &amp;&amp; files.length &gt; <span class="hljs-number">0</span>) ? files[<span class="hljs-number">0</span>] : <span class="hljs-literal">null</span>;
+        <span class="hljs-keyword">if</span> (!name) {
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'invalid name'</span>);
+        }
+        userModel.save({
+                name: name,
+                gender: gender,
+                avatar: avatar
+            })
+            .then(res.json.bind(<span class="hljs-keyword">this</span>))
+            .catch(next);
+    });
+}
+</code></pre>
+<h4 class=""><a name="session" href="#session">session</a></h4><p>yog2 并未直接提供 session 支持，这是由于完备的 session 支持需要依赖第三方存储。具体可以参见 <a href="https://github.com/expressjs/session#sessionoptions">express-session</a> 一节的 <code>Warning</code>。</p>
+<p>不过 yog2 提供了一键安装  <a href="https://github.com/expressjs/session">express-session</a> 的功能</p>
+<pre><code class="hljs lang-bash">yog2 plugin <span class="hljs-operator"><span class="hljs-keyword">install</span> <span class="hljs-keyword">session</span></span>
+</code></pre>
+<p>在安装了 session 插件后，就可以在 <a href="#%E6%B7%BB%E5%8A%A0%E4%B8%AD%E9%97%B4%E4%BB%B6"> 中间件配置 </a> 中添加 <code>session</code> 来开启 session 功能。</p>

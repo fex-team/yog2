@@ -1,0 +1,104 @@
+<p>在 fis 提供的三种语言能力中，并没有提供对声明依赖的资源进行加载的功能。因此在 yog2 中，我们通过扩展 swig 后端模板引擎，来添加对资源的加载能力。</p>
+<p>yog2 会重写 <code>html</code>,  <code>head</code>,  <code>body</code> 标签用于搭建资源加载的总体框架，并且添加了 <code>require</code>,  <code>widget</code>,  <code>script</code> 标签用于处理静态资源和后端组件。</p>
+<h4 class=""><a name="%E5%9F%BA%E7%A1%80%E7%BB%93%E6%9E%84" href="#%E5%9F%BA%E7%A1%80%E7%BB%93%E6%9E%84">基础结构</a></h4><p>一个基础的 yog2 后端模板应该类似</p>
+<pre><code><span class="xml"><span class="hljs-doctype">&lt;!doctype html&gt;</span>
+</span><span class="hljs-template_tag">{% html framework="home:<span class="hljs-keyword">static</span>/js/mod.js" %}</span><span class="xml">
+    </span><span class="hljs-template_tag">{% head %}</span><span class="xml">
+        <span class="hljs-tag">&lt;<span class="hljs-title">title</span>&gt;</span>Hello World<span class="hljs-tag">&lt;/<span class="hljs-title">title</span>&gt;</span>
+    </span><span class="hljs-template_tag">{% endhead %}</span><span class="xml">
+    </span><span class="hljs-template_tag">{% body %}</span><span class="xml">
+    </span><span class="hljs-template_tag">{% endbody %}</span><span class="xml">
+</span><span class="hljs-template_tag">{% endhtml %}</span><span class="xml"></span>
+</code></pre><p>可以将这种基础结构设置为母版页 <code>layout.tpl</code> 这样就不需要重复的编写 <code>html</code> <code>head</code> <code>body</code> 标签。</p>
+<p>其中 <code>html</code> 标签的 <code>framework</code> 属性是一个特殊属性，用于指定模块化加载类库 <code>mod.js</code> 所在的路径。</p>
+<h4 class=""><a name="%E5%BC%95%E7%94%A8%E9%9D%9E%E6%A8%A1%E5%9D%97%E5%8C%96%E8%B5%84%E6%BA%90" href="#%E5%BC%95%E7%94%A8%E9%9D%9E%E6%A8%A1%E5%9D%97%E5%8C%96%E8%B5%84%E6%BA%90">引用非模块化资源</a></h4><p>如果希望引入非模块化资源，比如一些第三方库类似 <code>jquery</code> , <code>zepto</code> 等等，可以直接通过 <code>require</code> 标签进行引用，也可以直接编写 <code>&lt;script&gt;&lt;/script&gt;</code> HTML 标签进行引用。</p>
+<pre><code><span class="xml"><span class="hljs-doctype">&lt;!doctype html&gt;</span>
+</span><span class="hljs-template_tag">{% html framework="home:<span class="hljs-keyword">static</span>/js/mod.js" %}</span><span class="xml">
+    </span><span class="hljs-template_tag">{% head %}</span><span class="xml">
+        <span class="hljs-tag">&lt;<span class="hljs-title">title</span>&gt;</span>Hello World<span class="hljs-tag">&lt;/<span class="hljs-title">title</span>&gt;</span>
+        </span><span class="hljs-template_tag">{% require "home:<span class="hljs-keyword">static</span>/lib/jquery.js" %}</span><span class="xml">
+        <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"/client/static/lib/zepto.js"</span> &gt;</span><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+    </span><span class="hljs-template_tag">{% endhead %}</span><span class="xml">
+    </span><span class="hljs-template_tag">{% body %}</span><span class="xml">
+    </span><span class="hljs-template_tag">{% endbody %}</span><span class="xml">
+</span><span class="hljs-template_tag">{% endhtml %}</span><span class="xml"></span>
+</code></pre><p>两种引用方式都可以生效，但是更加推荐使用 <code>require</code> 标签，因此这种依赖声明模式是运行时声明的，你可以通过 {% if %} {% endif %} 标签来实现后端动态化的资源加载。此外使用 <code>require</code> 加载的资源，可以被 fis 的静态资源管理层统一管理，而 <code>&lt;script&gt;</code> 标签加载的资源就类似传统的编写方式，fis 并不会在打包合并等操作时调整它。</p>
+<h4 class=""><a name="%E5%BC%95%E7%94%A8%E6%A8%A1%E5%9D%97%E5%8C%96%E8%B5%84%E6%BA%90" href="#%E5%BC%95%E7%94%A8%E6%A8%A1%E5%9D%97%E5%8C%96%E8%B5%84%E6%BA%90">引用模块化资源</a></h4><p>模块化资源是指 <code>widget</code> 目录下的所有脚本资源，引用模块化资源分为同步引用和异步引用两种方式，但是两种方式都是按需加载，异步引用的区别是不会在页面加载的时候就将资源加载，而是会在执行到异步加载命令时进行资源加载。</p>
+<p>同步引用模块化资源的方式符合 CommonJS 规范</p>
+<p>在其他脚本中</p>
+<pre><code><span class="hljs-comment">// 使用资源ID引用，资源ID为去掉 /client 目录层级的路径并添加当前项目的命名空间</span>
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">module</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">'home:widget/search/search.js'</span>);
+
+<span class="hljs-comment">// 使用相对路径引用，相对路径需要按照源代码实际路径情况编写</span>
+<span class="hljs-built_in">module</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./search.js'</span>);
+
+<span class="hljs-comment">// 使用绝对路径引用，需要以项目根目录计算路径</span>
+
+<span class="hljs-built_in">module</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">'/client/widget/search/search.js'</span>);
+</code></pre><p>异步引用模块化资源时，资源的引用规则还是保持一致，不同的是引用接口发生了变化</p>
+<pre><code><span class="hljs-comment">// 使用资源ID引用，资源ID为去掉 /client 目录层级的路径并添加当前项目的命名空间</span>
+<span class="hljs-keyword">require</span>.<span class="hljs-keyword">async</span>([<span class="hljs-string">'home:widget/search/search.js'</span>], <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(<span class="hljs-keyword">module</span>)</span> <span class="hljs-comment">{
+}</span>);</span>
+
+<span class="hljs-comment">// 使用相对路径引用，相对路径需要按照源代码实际路径情况编写</span>
+<span class="hljs-keyword">require</span>.<span class="hljs-keyword">async</span>([<span class="hljs-string">'./search.js'</span>], <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(<span class="hljs-keyword">module</span>)</span> <span class="hljs-comment">{
+}</span>);</span>
+
+<span class="hljs-comment">// 使用绝对路径引用，需要以项目根目录计算路径</span>
+
+<span class="hljs-keyword">require</span>.<span class="hljs-keyword">async</span>([<span class="hljs-string">'/client/widget/search/search.js'</span>], <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(<span class="hljs-keyword">module</span>)</span> <span class="hljs-comment">{
+}</span>);</span>
+</code></pre><h4 class=""><a name="%E5%86%85%E8%81%94%E8%84%9A%E6%9C%AC" href="#%E5%86%85%E8%81%94%E8%84%9A%E6%9C%AC">内联脚本</a></h4><p>无论是页面中还是组件中，如果希望编写内联脚本，除非不希望被 fis 的静态资源管理层管理，否则需要使用 <code>script</code> 标签</p>
+<pre><code>{% script <span class="hljs-variable">%}</span>
+console.<span class="hljs-keyword">log</span>(<span class="hljs-string">'inline script'</span>);
+{% endscript <span class="hljs-variable">%}</span>
+</code></pre><p>通过 <code>script</code> 标签包裹的内联脚本会在输出时，保证输出到静态资源加载之后，避免内联脚本在依赖的资源未加载时就提前执行了。</p>
+<h4 class=""><a name="%E7%BC%96%E5%86%99%E5%90%8E%E7%AB%AF%E7%BB%84%E4%BB%B6" href="#%E7%BC%96%E5%86%99%E5%90%8E%E7%AB%AF%E7%BB%84%E4%BB%B6">编写后端组件</a></h4><p>后端组件用于将一个复杂的站点按照功能区域划分为多个组件，来降低站点的复杂度。并且在 yog2 中，后端组件可以将 JavaScript 脚本、CSS 层叠样式、TPL 后端模板统一管理，这样在维护时可以轻松的根据功能点寻找到相应的代码，而无需分别在三类代码中去寻找相应的功能点。</p>
+<pre><code class="hljs lang-html"><span class="xml"><span class="hljs-comment">&lt;!-- /client/widget/search.tpl --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">ul</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">'</span></span></span><span class="hljs-variable">{{ poiListID }}</span><span class="xml"><span class="hljs-tag"><span class="hljs-value">'</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"poi-list"</span>&gt;</span>
+    </span><span class="hljs-template_tag">{% <span class="hljs-keyword">for</span> poi <span class="hljs-keyword">in</span> pois %}</span><span class="xml">
+    <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">data-tel</span>=<span class="hljs-value">"</span></span></span><span class="hljs-variable">{{ poi.telephone }}</span><span class="xml"><span class="hljs-tag"><span class="hljs-value">"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">span</span>&gt;</span></span><span class="hljs-variable">{{ poi.name }}</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+    </span><span class="hljs-template_tag">{% <span class="hljs-keyword">endfor</span> %}</span><span class="xml">
+<span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+<span class="hljs-comment">&lt;!-- 组件的脚本初始化入口 --&gt;</span>
+</span><span class="hljs-template_tag">{% script %}</span><span class="xml">
+<span class="hljs-comment">&lt;!-- 获取search.js --&gt;</span>
+require("./search.js').init('</span><span class="hljs-variable">{{ poiListID }}</span><span class="xml">');
+</span><span class="hljs-template_tag">{% endscript %}</span><span class="xml">
+<span class="hljs-comment">&lt;!-- 声明加载search.less --&gt;</span>
+</span><span class="hljs-template_tag">{% require "./search.less" %}</span><span class="xml"></span>
+</code></pre>
+<pre><code class="hljs lang-javascript"><span class="hljs-comment">// /client/widget/search.js</span>
+<span class="hljs-built_in">module</span>.exports.init = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(target)</span> </span>{
+    $(target).find(<span class="hljs-string">'li'</span>).click(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+        alert(<span class="hljs-string">'tel: '</span> + $(<span class="hljs-keyword">this</span>).attr(<span class="hljs-string">'data-tel'</span>));
+    });
+};
+</code></pre>
+<pre><code class="hljs lang-less"><span class="hljs-comment">/**
+
+/client/widget/search.less
+
+**/</span>
+<span class="hljs-class">.poi-list</span> {
+      <span class="hljs-attribute">list-style-type</span><span class="hljs-value">: none;</span>
+
+      &gt; <span class="hljs-tag">li</span> {
+          <span class="hljs-attribute">margin</span><span class="hljs-value">: <span class="hljs-number">0</span> <span class="hljs-number">5px</span>;</span>
+      }
+}
+</code></pre>
+<p>编写完成的后端组件一般就是一个独立的功能组件，我们可以直接在页面中引用而无需担心各种依赖问题。</p>
+<pre><code class="hljs lang-html"><span class="xml"><span class="hljs-comment">&lt;!-- /client/page/index.tpl --&gt;</span>
+<span class="hljs-doctype">&lt;!doctype html&gt;</span>
+</span><span class="hljs-template_tag">{% html framework="home:<span class="hljs-keyword">static</span>/js/mod.js" %}</span><span class="xml">
+    </span><span class="hljs-template_tag">{% head %}</span><span class="xml">
+        <span class="hljs-tag">&lt;<span class="hljs-title">title</span>&gt;</span>Hello World<span class="hljs-tag">&lt;/<span class="hljs-title">title</span>&gt;</span>
+    </span><span class="hljs-template_tag">{% endhead %}</span><span class="xml">
+    </span><span class="hljs-template_tag">{% body %}</span><span class="xml">
+        </span><span class="hljs-template_tag">{% widget "home:widget/search/search.tpl" %}</span><span class="xml">
+    </span><span class="hljs-template_tag">{% endbody %}</span><span class="xml">
+</span><span class="hljs-template_tag">{% endhtml %}</span><span class="xml"></span>
+</code></pre>
