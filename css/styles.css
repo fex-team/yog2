@@ -599,6 +599,7 @@ fieldset[disabled] .btn {
     background-color: #fff;
     border-radius: 0px;
     border: 0px;
+    z-index: 100;
 }
 
 .navbar-toggle {
