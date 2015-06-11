@@ -1726,7 +1726,17 @@ blockquote small {
 .sidebar {
   text-align: center;
   padding: 0 0 14px;
+  padding-left: 20px;
 }
+
+.sidebar.affix {
+    position: relative;
+}
+
+.sidebar.affix-top {
+    position: relative;
+}
+
 article {
   color: #454545;
 }

@@ -231,6 +231,7 @@
 
     .sidebar.affix {
         top: 0;
+        position: fixed;
     }
 
     .sidebar ul {
