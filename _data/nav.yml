@@ -1,0 +1,97 @@
+- title: 快速入门
+  url: /docs/
+  type: category
+
+- title: 基础使用
+  type: category
+
+- title: 命令行
+  url: /docs/basic/cli.html#命令行
+  type: sub
+
+- title: 目录结构
+  url: /docs/basic/structure.html#目录结构
+  type: sub
+
+- title: 路由
+  url: /docs/basic/router.html#路由
+  type: sub
+
+- title: MVC
+  url: /docs/basic/mvc.html#mvc
+  type: sub
+
+- title: 插件系统
+  type: category
+
+- title: 内置插件
+  url: /docs/plugin-system/#插件系统
+  type: sub
+
+- title: 用户插件
+  url: /docs/plugin-system/#用户插件
+  type: sub
+
+- title: 插件配置
+  url: /docs/plugin-system/#插件配置
+  type: sub
+
+- title: 内置功能
+  type: category
+
+- title: 中间件管理
+  url: /docs/features/middleware.html#中间件管理
+  type: sub
+
+- title: 日志管理
+  url: /docs/features/log.html#日志管理
+  type: sub
+
+- title: 服务管理
+  url: /docs/features/service.html#服务管理
+  type: sub
+
+- title: 前端工程化
+  type: category
+
+- title: 目录规范
+  url: /docs/fe/engineering.html#前端工程化
+  type: sub
+
+- title: 三种语言能力
+  url: /docs/fe/engineering.html#三种语言能力
+  type: sub
+
+- title: 前端模块化
+  url: /docs/fe/engineering.html#前端模块化
+  type: sub
+
+- title: 后端模板
+  url: /docs/fe/backend-template.html#后端模板
+  type: sub
+
+- title: 性能优化
+  url: /docs/fe/optimizer.html#性能优化
+  type: sub
+
+- title: 进阶功能
+  type: category
+
+- title: BigPipe
+  url: /docs/advance/pagelet.html#BigPipe
+  type: sub
+
+- title: Quickling
+  url: /docs/advance/pagelet.html#Quickling
+  type: sub
+
+- title: 其他
+  type: category
+
+- title: 参考资料
+  url: /docs/reference.html#参考资料
+  type: sub
+
+- title: FAQ
+  url: /docs/FAQ.html#faq
+  type: sub

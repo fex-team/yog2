@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>yog2-site</title>
+    <description>A Node.js UI Layer Framework Based on FIS &amp; Express</description>
+    <link>http://fex-team.github.io/yog2/yog2/</link>
+    <atom:link href="http://fex-team.github.io/yog2/yog2/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Thu, 11 Jun 2015 19:01:42 +0800</pubDate>
+    <lastBuildDate>Thu, 11 Jun 2015 19:01:42 +0800</lastBuildDate>
+    <generator>Jekyll v2.4.0</generator>
+    
+  </channel>
+</rss>

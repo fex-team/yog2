@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+    <!--head-->
+    <head>
+      <!-- page title goes here -->
+<title>YOG2 - 工业级 Node.js UI 层解决方案</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<!-- add your name or URL here -->
+<meta name="author" content="fex@baidu.com">
+<!-- add a description of your site/company/product here -->
+<meta name="description" content="YOG2 - 工业级 Node.js UI 层解决方案">
+<!-- add the keywords here that represent your site, an example few have been added -->
+<meta name="keywords" content="node, nodejs, fis, fex">
+<!-- add your name or URL here -->
+<meta name="publisher" content="fex">
+<meta name="rating" content="General">
+<!-- Bootstrap -->
+<link href="/yog2/css/bootstrap.css" rel="stylesheet" media="screen">
+<!-- Theme styles -->
+<link href="/yog2/css/styles.css" rel="stylesheet" media="screen">
+<link href="/yog2/css/animate.min.css" rel="stylesheet" media="screen">
+<link href="/yog2/css/font-awesome.min.css" rel="stylesheet" media="screen">
+<!-- media-queries -->
+<link href="/yog2/css/media-queries.css" rel="stylesheet" media="screen">
+<!-- modernizr -->
+<script src="/yog2/js/modernizr.custom.js"></script>
+<script src="/yog2/js/wow.min.js"></script>
+
+      <link rel="stylesheet" href="/yog2/css/github.css">
+    </head>
+    <!--head-->
+  <body>
+    <nav class="navbar" role="navigation">
+    <!-- container -->
+<div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">YOG2</a>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse  navbar-collapse  navbar-ex1-collapse">
+        <ul class="nav  navbar-nav">
+            <li><a href="/yog2/">首页</a></li>
+            <li><a href="/yog2/docs">文档</a></li>
+            <li><a href="https://github.com/fex-team/yog2" target="_blank">Github</a></li>
+            <li><a href="http://fis.baidu.com" target="_blank">FIS</a></li>
+            <li><a href="http://fex.baidu.com" target="_blank">FEX</a></li>
+        </ul>
+    </div>
+    <!-- /navbar-collapse -->
+</div>
+<!-- /container -->
+
+    </nav>
+    <div class="doc-wrap">
+    <nav class="sidebar" data-spy="affix" data-offset-top="95">
+    <ul>
+        
+        <li class="item-category">
+            
+            <a href="/yog2/docs/">
+                快速入门
+            </a>
+            
+        </li>
+        
+        <li class="item-category">
+            
+            <span>
+                基础使用
+            </span>
+            
+        </li>
+        
+        <li class="item-sub">
+            
+            <a href="/yog2/docs/basic/cli.html#命令行">
+                命令行
+            </a>
+            
+        </li>
+        
+        <li class="item-sub">
+            
+            <a href="/yog2/docs/basic/structure.html#目录结构">
+                目录结构
+            </a>
+            
+        </li>
+        
+        <li class="item-sub">
+            
+            <a href="/yog2/docs/basic/router.html#路由">
+                路由
+            </a>
+            
+        </li>
+        
+        <li class="item-sub">
+            
+            <a href="/yog2/docs/basic/mvc.html#mvc">
+                MVC
+            </a>
+            
+        </li>
+        
+        <li class="item-category">
+            
+            <span>
+                插件系统
+            </span>
+            
+        </li>
+        
+        <li class="item-sub">
+            
+            <a href="/yog2/docs/plugin-system/#插件系统">
+                内置插件
+            </a>
+            
+        </li>
+        
+        <li class="item-sub">
+            
+            <a href="/yog2/docs/plugin-system/#用户插件">
+                用户插件
+            </a>
+            
+        </li>
+        
+        <li class="item-sub">
+            
+            <a href="/yog2/docs/plugin-system/#插件配置">
+                插件配置
+            </a>
+            
+        </li>
+        
+        <li class="item-category">
+            
+            <span>
+                内置功能
+            </span>
+            
+        </li>
+        
+        <li class="item-sub">
+            
+            <a href="/yog2/docs/features/middleware.html#中间件管理">
+                中间件管理
+            </a>
+            
+        </li>
+        
+        <li class="item-sub">
+            
+            <a href="/yog2/docs/features/log.html#日志管理">
+                日志管理
+            </a>
+            
+        </li>
+        
+        <li class="item-sub">
+            
+            <a href="/yog2/docs/features/service.html#服务管理">
+                服务管理
+            </a>
+            
+        </li>
+        
+        <li class="item-category">
+            
+            <span>
+                前端工程化
+            </span>
+            
+        </li>
+        
+        <li class="item-sub">
+            
+            <a href="/yog2/docs/fe/engineering.html#前端工程化">
+                目录规范
+            </a>
+            
+        </li>
+        
+        <li class="item-sub">
+            
+            <a href="/yog2/docs/fe/engineering.html#三种语言能力">
+                三种语言能力
+            </a>
+            
+        </li>
+        
+        <li class="item-sub">
+            
+            <a href="/yog2/docs/fe/engineering.html#前端模块化">
+                前端模块化
+            </a>
+            
+        </li>
+        
+        <li class="item-sub">
+            
+            <a href="/yog2/docs/fe/backend-template.html#后端模板">
+                后端模板
+            </a>
+            
+        </li>
+        
+        <li class="item-sub">
+            
+            <a href="/yog2/docs/fe/optimizer.html#性能优化">
+                性能优化
+            </a>
+            
+        </li>
+        
+        <li class="item-category">
+            
+            <span>
+                进阶功能
+            </span>
+            
+        </li>
+        
+        <li class="item-sub">
+            
+            <a href="/yog2/docs/advance/pagelet.html#BigPipe">
+                BigPipe
+            </a>
+            
+        </li>
+        
+        <li class="item-sub">
+            
+            <a href="/yog2/docs/advance/pagelet.html#Quickling">
+                Quickling
+            </a>
+            
+        </li>
+        
+        <li class="item-category">
+            
+            <span>
+                其他
+            </span>
+            
+        </li>
+        
+        <li class="item-sub">
+            
+            <a href="/yog2/docs/reference.html#参考资料">
+                参考资料
+            </a>
+            
+        </li>
+        
+        <li class="item-sub">
+            
+            <a href="/yog2/docs/FAQ.html#faq">
+                FAQ
+            </a>
+            
+        </li>
+        
+    </ul>
+</nav>
+<div class="bottom-shadow"></div>
+
+    <div class="doc-container">
+      <div class="toc" data-spy="affix" data-offset-top="95"></div>
+      <article class="doc-content codehilite">
+      <h2 id="前端工程化">前端工程化</h2>
+
+<p>yog2 是基于 <a href="http://fis.baidu.com">fis</a> 构建的 Node.js UI中间层解决方案，因此整个框架都深度契合 fis 的前端工程化概念。在 yog2 中你可以享受到完整的 <a href="http://fis.baidu.com">fis</a> 解决方案的前端优势。</p>
+
+<h3 id="目录规范">目录规范</h3>
+
+<p>在 yog2 中我们提供了一套固定的目录规范方便开发者快速开发，在了解了 fis 的配置原理后，也可以方便的调整这套目录规范。</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">├─client                 <span class="c"># 前端代码</span>
+│  ├─page                <span class="c"># 前端页面</span>
+│  ├─static              <span class="c"># 前端非模块化静态资源</span>
+│  │  ├─css
+│  │  └─js
+│  └─widget              <span class="c"># 前端组件</span>
+├─fis-conf.js            <span class="c"># FIS编译配置</span>
+</code></pre></div>
+<p>app 下的 client 目录就是前端代码的开发目录，所有的前端资源均在这里存放。其中有两个特殊的目录 <code>page</code> 和 <code>widget</code>。 <code>page</code> 中存放的是前端页面的后端模板，<code>widget</code> 中存放的是后端组件，后端组件可以调用其他组件，也可以被页面调用，通过将站点划分为一个个组件，我们可以更好的去管理和复用组件代码。</p>
+
+<p>除此之外，<code>widget</code> 目录下的 JavaScript 脚本均需要遵守 <strong>CommonJS</strong> 规范，与 Node.js 模块化的编写标准一致，使用 <code>require</code> 获取模块，使用 <code>module</code> 和 <code>exports</code> 暴露接口。</p>
+
+<p>并不推荐在 yog2 中使用 AMD 规范的模块化加载类库。</p>
+
+<h3 id="三种语言能力">三种语言能力</h3>
+
+<h4 id="资源定位">资源定位</h4>
+
+<p>资源定位能力，可以有效的分离开发路径与部署路径之间的关系，工程师不再关心资源部署到线上之后去了哪里，变成了什么名字，这些都可以通过配置来指定。而工程师只需要使用相对路径来定位自己的开发资源即可。这样的好处是 <strong>资源可以发布到任何静态资源服务器的任何路径上而不用担心线上运行时找不到它们</strong>，而且代码 <strong>具有很强的可移植性</strong>，甚至可以从一个产品线移植到另一个产品线而不用担心线上部署不一致的问题。</p>
+
+<ul>
+<li><a href="./fe-location.html#%E5%9C%A8html%E4%B8%AD%E5%AE%9A%E4%BD%8D%E8%B5%84%E6%BA%90">在html中定位资源</a></li>
+<li><a href="./fe-location.html#%E5%9C%A8js%E4%B8%AD%E5%AE%9A%E4%BD%8D%E8%B5%84%E6%BA%90">在js中定位资源</a></li>
+<li><a href="./fe-location.html#%E5%9C%A8css%E4%B8%AD%E5%AE%9A%E4%BD%8D%E8%B5%84%E6%BA%90">在css中定位资源</a></li>
+</ul>
+
+<h4 id="内容嵌入">内容嵌入</h4>
+
+<p>内容嵌入可以为工程师提供诸如图片base64嵌入到css、js里，前端模板编译到js文件中，将js、css、html拆分成几个文件最后合并到一起的能力。有了这项能力，可以有效的减少http请求数，提升工程的可维护性。 <em>fis不建议用户使用内容嵌入能力作为组件化拆分的手段</em>，因为依赖声明能力会更适合组件化开发。</p>
+
+<ul>
+<li><a href="./fe-inline.html#%E5%9C%A8html%E4%B8%AD%E5%B5%8C%E5%85%A5%E8%B5%84%E6%BA%90">在html中嵌入资源</a></li>
+<li><a href="./fe-inline.html#%E5%9C%A8js%E4%B8%AD%E5%B5%8C%E5%85%A5%E8%B5%84%E6%BA%90">在js中嵌入资源</a></li>
+<li><a href="./fe-inline.html#%E5%9C%A8css%E4%B8%AD%E5%B5%8C%E5%85%A5%E8%B5%84%E6%BA%90">在css中嵌入资源</a></li>
+</ul>
+
+<h4 id="依赖声明">依赖声明</h4>
+
+<blockquote>
+<p>依赖声明能力为工程师提供了声明依赖关系的编译接口。fis在执行编译的过程中，会扫描这些编译标记，从而建立一张 <strong>静态资源关系表</strong>，它在编译阶段最后会被产出为一份 <strong>map.json</strong> 文件，这份文件详细记录了项目内的静态资源id、发布后的线上路径、资源类型以及 <strong>依赖关系</strong> 和 <strong>资源打包</strong>等信息。使用fis作为编译工具的项目，可以将这张表提交给后端或者前端框架去运行时根据组件使用情况来 <strong>按需加载资源或者资源所在的包</strong>，从而提升前端页面运行性能。</p>
+</blockquote>
+
+<ul>
+<li><a href="./fe-require.html#%E5%9C%A8html%E4%B8%AD%E5%A3%B0%E6%98%8E%E4%BE%9D%E8%B5%96">在html中声明依赖</a></li>
+<li><a href="./fe-require.html#%E5%9C%A8js%E4%B8%AD%E5%A3%B0%E6%98%8E%E4%BE%9D%E8%B5%96">在js中声明依赖</a></li>
+<li><a href="./fe-require.html#%E5%9C%A8css%E4%B8%AD%E5%A3%B0%E6%98%8E%E4%BE%9D%E8%B5%96">在css中声明依赖</a></li>
+</ul>
+
+<h3 id="前端模块化">前端模块化</h3>
+
+<p>在 yog2 中，我们可以轻松的使用模块化的能力管理前端业务代码。所有放在 widget 目录下的 JavaScript 脚本都需要符合 CommonJS 规范，即像编写 Node.js 代码一样编写前端代码。</p>
+
+<p>比如我们可以声明一个模块 word</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// /client/widget/word/word.js</span>
+<span class="nx">module</span><span class="p">.</span><span class="kr">export</span> <span class="o">=</span> <span class="s1">&#39;A&#39;</span><span class="p">;</span>
+</code></pre></div>
+<p>我们可以在其他脚本中引用 word 模块</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// /client/widget/index.js</span>
+<span class="kd">var</span> <span class="nx">word</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;home:widget/word/word.js&#39;</span><span class="p">);</span>
+<span class="nx">alert</span><span class="p">(</span><span class="nx">word</span><span class="p">);</span>
+
+<span class="c1">// A</span>
+</code></pre></div>
+<p>也可以在页面中引用 word 模块</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html">// /client/page/index.tpl
+
+{% script %}
+var word = require(&#39;home:widget/word/word.js);
+alert(word);
+{% endscript %}
+</code></pre></div>
+      <blockquote>
+        <p>文章有错误？直接提交修改 <a target="_blank" href="https://github.com/fex-team/yog2/edit/gh-pages/docs/fe/engineering.md">docs/fe/engineering.md</a></p>
+      </blockquote>
+      </article>
+      <!-- footer -->
+<section class="footer  flush--top">
+    <div class="container">
+        <div class="row">
+            <ul class="list-unstyled  col-12  col-sm-3  col-lg-2">
+                <li><a href="oak@baidu.com">Email</a></li>
+                <li><a href="https://github.com/fex-team/yog2/issues" target="_blank">Github Issue</a></li>
+            </ul>
+            <ul class="list-unstyled  col-12  col-sm-2  col-lg-2">
+                <li><a href="/yog2/">首页</a></li>
+                <li><a href="/yog2/docs">文档</a></li>
+                <li><a href="https://github.com/fex-team/yog2" target="_blank">Github</a></li>
+                <li><a href="http://fis.baidu.com" target="_blank">FIS</a></li>
+                <li><a href="http://fex.baidu.com" target="_blank">FEX</a></li>
+            </ul>
+            <div class="col-12  col-sm-7  col-lg-5  col-lg-offset-3  text-left  hard--left">
+                <h3 class="footer--main-logo">加入我们</h3> FEX 是百度「Web 前端研发部」的内部名称
+                <br/> 其中 FE 是 Front End 的缩写，X 代表我们不仅关注前端技术，还更重视全端及全栈的能力。
+                <br/> 如果你对这个团队感兴趣，可以 <a class="underline" target="_blank" href="http://fex.baidu.com/we-need-you/">点击这里</a>。
+            </div>
+        </div>
+    </div>
+</section>
+<!-- footer -->
+
+    </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="/yog2/js/jquery.js"></script>
+    <script src="/yog2/js/scrollspy.js"></script>
+    <script src="/yog2/js/toc.js"></script>
+    <!-- Bootstrap js -->
+    <script src="/yog2/js/bootstrap.min.js"></script>
+    <!-- Optionally enable responsive features in IE8. Respond.js can be obtained from https://github.com/scottjehl/Respond -->
+    <script src="/yog2/js/respond.min.js"></script>
+
+  </body>
+
+</html>

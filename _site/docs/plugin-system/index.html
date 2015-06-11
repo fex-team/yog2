@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+    <!--head-->
+    <head>
+      <!-- page title goes here -->
+<title>YOG2 - 工业级 Node.js UI 层解决方案</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<!-- add your name or URL here -->
+<meta name="author" content="fex@baidu.com">
+<!-- add a description of your site/company/product here -->
+<meta name="description" content="YOG2 - 工业级 Node.js UI 层解决方案">
+<!-- add the keywords here that represent your site, an example few have been added -->
+<meta name="keywords" content="node, nodejs, fis, fex">
+<!-- add your name or URL here -->
+<meta name="publisher" content="fex">
+<meta name="rating" content="General">
+<!-- Bootstrap -->
+<link href="/yog2/css/bootstrap.css" rel="stylesheet" media="screen">
+<!-- Theme styles -->
+<link href="/yog2/css/styles.css" rel="stylesheet" media="screen">
+<link href="/yog2/css/animate.min.css" rel="stylesheet" media="screen">
+<link href="/yog2/css/font-awesome.min.css" rel="stylesheet" media="screen">
+<!-- media-queries -->
+<link href="/yog2/css/media-queries.css" rel="stylesheet" media="screen">
+<!-- modernizr -->
+<script src="/yog2/js/modernizr.custom.js"></script>
+<script src="/yog2/js/wow.min.js"></script>
+
+      <link rel="stylesheet" href="/yog2/css/github.css">
+    </head>
+    <!--head-->
+  <body>
+    <nav class="navbar" role="navigation">
+    <!-- container -->
+<div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">YOG2</a>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse  navbar-collapse  navbar-ex1-collapse">
+        <ul class="nav  navbar-nav">
+            <li><a href="/yog2/">首页</a></li>
+            <li><a href="/yog2/docs">文档</a></li>
+            <li><a href="https://github.com/fex-team/yog2" target="_blank">Github</a></li>
+            <li><a href="http://fis.baidu.com" target="_blank">FIS</a></li>
+            <li><a href="http://fex.baidu.com" target="_blank">FEX</a></li>
+        </ul>
+    </div>
+    <!-- /navbar-collapse -->
+</div>
+<!-- /container -->
+
+    </nav>
+    <div class="doc-wrap">
+    <nav class="sidebar" data-spy="affix" data-offset-top="95">
+    <ul>
+        
+        <li class="item-category">
+            
+            <a href="/yog2/docs/">
+                快速入门
+            </a>
+            
+        </li>
+        
+        <li class="item-category">
+            
+            <span>
+                基础使用
+            </span>
+            
+        </li>
+        
+        <li class="item-sub">
+            
+            <a href="/yog2/docs/basic/cli.html#命令行">
+                命令行
+            </a>
+            
+        </li>
+        
+        <li class="item-sub">
+            
+            <a href="/yog2/docs/basic/structure.html#目录结构">
+                目录结构
+            </a>
+            
+        </li>
+        
+        <li class="item-sub">
+            
+            <a href="/yog2/docs/basic/router.html#路由">
+                路由
+            </a>
+            
+        </li>
+        
+        <li class="item-sub">
+            
+            <a href="/yog2/docs/basic/mvc.html#mvc">
+                MVC
+            </a>
+            
+        </li>
+        
+        <li class="item-category">
+            
+            <span>
+                插件系统
+            </span>
+            
+        </li>
+        
+        <li class="item-sub">
+            
+            <a href="/yog2/docs/plugin-system/#插件系统">
+                内置插件
+            </a>
+            
+        </li>
+        
+        <li class="item-sub">
+            
+            <a href="/yog2/docs/plugin-system/#用户插件">
+                用户插件
+            </a>
+            
+        </li>
+        
+        <li class="item-sub">
+            
+            <a href="/yog2/docs/plugin-system/#插件配置">
+                插件配置
+            </a>
+            
+        </li>
+        
+        <li class="item-category">
+            
+            <span>
+                内置功能
+            </span>
+            
+        </li>
+        
+        <li class="item-sub">
+            
+            <a href="/yog2/docs/features/middleware.html#中间件管理">
+                中间件管理
+            </a>
+            
+        </li>
+        
+        <li class="item-sub">
+            
+            <a href="/yog2/docs/features/log.html#日志管理">
+                日志管理
+            </a>
+            
+        </li>
+        
+        <li class="item-sub">
+            
+            <a href="/yog2/docs/features/service.html#服务管理">
+                服务管理
+            </a>
+            
+        </li>
+        
+        <li class="item-category">
+            
+            <span>
+                前端工程化
+            </span>
+            
+        </li>
+        
+        <li class="item-sub">
+            
+            <a href="/yog2/docs/fe/engineering.html#前端工程化">
+                目录规范
+            </a>
+            
+        </li>
+        
+        <li class="item-sub">
+            
+            <a href="/yog2/docs/fe/engineering.html#三种语言能力">
+                三种语言能力
+            </a>
+            
+        </li>
+        
+        <li class="item-sub">
+            
+            <a href="/yog2/docs/fe/engineering.html#前端模块化">
+                前端模块化
+            </a>
+            
+        </li>
+        
+        <li class="item-sub">
+            
+            <a href="/yog2/docs/fe/backend-template.html#后端模板">
+                后端模板
+            </a>
+            
+        </li>
+        
+        <li class="item-sub">
+            
+            <a href="/yog2/docs/fe/optimizer.html#性能优化">
+                性能优化
+            </a>
+            
+        </li>
+        
+        <li class="item-category">
+            
+            <span>
+                进阶功能
+            </span>
+            
+        </li>
+        
+        <li class="item-sub">
+            
+            <a href="/yog2/docs/advance/pagelet.html#BigPipe">
+                BigPipe
+            </a>
+            
+        </li>
+        
+        <li class="item-sub">
+            
+            <a href="/yog2/docs/advance/pagelet.html#Quickling">
+                Quickling
+            </a>
+            
+        </li>
+        
+        <li class="item-category">
+            
+            <span>
+                其他
+            </span>
+            
+        </li>
+        
+        <li class="item-sub">
+            
+            <a href="/yog2/docs/reference.html#参考资料">
+                参考资料
+            </a>
+            
+        </li>
+        
+        <li class="item-sub">
+            
+            <a href="/yog2/docs/FAQ.html#faq">
+                FAQ
+            </a>
+            
+        </li>
+        
+    </ul>
+</nav>
+<div class="bottom-shadow"></div>
+
+    <div class="doc-container">
+      <div class="toc" data-spy="affix" data-offset-top="95"></div>
+      <article class="doc-content codehilite">
+      <h2 id="插件系统">插件系统</h2>
+
+<p>yog2 插件系统是整个框架的骨架。在 yog2 中，从中间件管理到日志系统和FIS静态资源管理，所有功能的引入都是以插件的形式引入的，因此在了解每个功能的具体用法之前，我们需要对插件系统有一个整体的了解。</p>
+
+<p>yog2 插件系统的设计目标是</p>
+
+<ul>
+<li>通过插件系统实现功能与配置的分离</li>
+<li>功能由插件自身实现</li>
+<li>配置由插件系统统一管理，完全暴露给用户</li>
+</ul>
+
+<p>这样设计的优点是我们可以对 yog2 project 的运行时核心进行整体升级，但是其中的功能调整能够对用户在一定程度上是透明的。</p>
+
+<p>以中间件的管理为例，YOG2为了方便使用，默认引入了多个中间件。如果在app.js中引用，虽然用户可以灵活修改，但是会与用户代码混杂，导致后续无法升级。而全部在框架的核心库中实现会导致用户很难知道框架内部的中间件是按照何种顺序加载的。</p>
+
+<h3 id="内置插件">内置插件</h3>
+
+<ul>
+<li><p>dispatcher</p>
+
+<p>自动路由分发插件，提供全局函数<a href="#yogdispatcher">yog.dispatcher</a></p></li>
+<li><p>http</p>
+
+<p>中间件管理插件，通过配置，用户可以方便的管理中间件加载顺序和新增中间件</p></li>
+<li><p>log</p>
+
+<p>日志插件，提供全局函数<a href="#yoglog">yog.log</a></p></li>
+<li><p>ral</p>
+
+<p>后端服务管理插件，提供全局函数<a href="#yogral">yog.ral</a></p></li>
+<li><p>views</p>
+
+<p>FIS静态资源管理与模板插件</p></li>
+</ul>
+
+<h3 id="用户插件">用户插件</h3>
+
+<p>用户插件存放在Yog项目的plugins目录中，插件是有其严格的目录规范的</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">├─yog              # Yog根目录
+  └plugins          # 用户插件目录
+      └userPlugins  # 插件目录
+          └index.js # 插件入口
+</code></pre></div>
+<p>其中插件入口必须在一个文件夹中，并且名称必须为index.js。</p>
+
+<p>相应的，插件的实现也有进一步要求</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// 插件逻辑</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="p">.</span><span class="nx">userPlugins</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">app</span><span class="p">,</span> <span class="nx">conf</span><span class="p">){</span>
+
+<span class="p">}</span>
+
+<span class="c1">// 设置插件默认配置</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="p">.</span><span class="nx">userPlugins</span><span class="p">.</span><span class="nx">defaultConf</span> <span class="o">=</span> <span class="p">{</span>
+
+<span class="p">}</span>
+</code></pre></div>
+<ul>
+<li>app为yog.app对象，即Express的<a href="http://expressjs.com/4x/api.html#application">app</a></li>
+<li>conf为插件的配置项</li>
+<li>module.exports后的属性名就是插件的真实名称</li>
+</ul>
+
+<p>实际上你也可以在一个index.js中编写多个插件。</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="p">.</span><span class="nx">userPluginsA</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">app</span><span class="p">,</span> <span class="nx">conf</span><span class="p">){</span>
+
+<span class="p">}</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="p">.</span><span class="nx">userPluginsB</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">app</span><span class="p">,</span> <span class="nx">conf</span><span class="p">){</span>
+
+<span class="p">}</span>
+</code></pre></div>
+<p>此外，对于需要异步加载的插件，也支持异步初始化</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="p">.</span><span class="nx">userPlugins</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">app</span><span class="p">,</span> <span class="nx">conf</span><span class="p">,</span> <span class="nx">cb</span><span class="p">){</span>
+    <span class="nx">cb</span> <span class="o">&amp;&amp;</span> <span class="nx">cb</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="p">.</span><span class="nx">userPlugins</span><span class="p">.</span><span class="nx">defaultConf</span> <span class="o">=</span> <span class="p">{</span>
+
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="插件依赖">插件依赖</h3>
+
+<p>插件与插件之间是可以声明加载依赖的，举例来说，如果希望插件B在插件A加载后再执行，只需要调整插件的写法即可</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// plugins/A/index.js</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="p">.</span><span class="nx">A</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">app</span><span class="p">,</span> <span class="nx">conf</span><span class="p">){</span>
+<span class="p">};</span>
+</code></pre></div><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// plugins/B/index.js</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="p">.</span><span class="nx">B</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">app</span><span class="p">,</span> <span class="nx">conf</span><span class="p">){</span>
+<span class="p">}];</span>
+</code></pre></div>
+<p>这样，仅当插件 A 初始化完成后，才会开始插件 B 的初始化工作</p>
+
+<blockquote>
+<p>此处的语法与<a href="https://github.com/caolan/async#auto">async.auto</a>保持一致</p>
+</blockquote>
+
+<h3 id="插件配置">插件配置</h3>
+
+<p>插件的配置均存放在 yog2 project 的 <code>conf/plugins</code> 文件夹中，与插件编写规则一致，配置也需要通过属性名显示声明配置所属的插件</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// conf/plugins/A.js</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="p">.</span><span class="nx">A</span> <span class="o">=</span> <span class="p">{</span>
+
+<span class="p">}</span>
+</code></pre></div>
+<p>编写在 <code>conf/plugin</code> 中的插件配置，会在启动器初始化插件时，自动将配置传递给插件。</p>
+
+<h4 id="环境变量支持">环境变量支持</h4>
+
+<p>yog2 还支持根据环境变量加载不同的配置，举例来说</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">export YOG_ENV=dev
+</code></pre></div>
+<p>环境变量 <code>YOG_ENV</code> 的值将会影响配置的加载，比如当值为dev时，就会优先加载 <code>http.dev.js</code> 而非 <code>http.js</code>。我们可以通过这个功能更方便的管理开发环境的配置与测试环境的配置。</p>
+
+<p>除此外还有一个特殊的配置后缀 <code>default</code>，当 <code>http.js</code> 不存在时，会尝试加载 <code>http.default.js</code>。可以在自定义插件时使用，这样用户在 <code>http.js</code> 中修改配置后，即使重新安装插件，也不会覆盖用户修改后的配置。</p>
+
+      <blockquote>
+        <p>文章有错误？直接提交修改 <a target="_blank" href="https://github.com/fex-team/yog2/edit/gh-pages/docs/plugin-system/index.md">docs/plugin-system/index.md</a></p>
+      </blockquote>
+      </article>
+      <!-- footer -->
+<section class="footer  flush--top">
+    <div class="container">
+        <div class="row">
+            <ul class="list-unstyled  col-12  col-sm-3  col-lg-2">
+                <li><a href="oak@baidu.com">Email</a></li>
+                <li><a href="https://github.com/fex-team/yog2/issues" target="_blank">Github Issue</a></li>
+            </ul>
+            <ul class="list-unstyled  col-12  col-sm-2  col-lg-2">
+                <li><a href="/yog2/">首页</a></li>
+                <li><a href="/yog2/docs">文档</a></li>
+                <li><a href="https://github.com/fex-team/yog2" target="_blank">Github</a></li>
+                <li><a href="http://fis.baidu.com" target="_blank">FIS</a></li>
+                <li><a href="http://fex.baidu.com" target="_blank">FEX</a></li>
+            </ul>
+            <div class="col-12  col-sm-7  col-lg-5  col-lg-offset-3  text-left  hard--left">
+                <h3 class="footer--main-logo">加入我们</h3> FEX 是百度「Web 前端研发部」的内部名称
+                <br/> 其中 FE 是 Front End 的缩写，X 代表我们不仅关注前端技术，还更重视全端及全栈的能力。
+                <br/> 如果你对这个团队感兴趣，可以 <a class="underline" target="_blank" href="http://fex.baidu.com/we-need-you/">点击这里</a>。
+            </div>
+        </div>
+    </div>
+</section>
+<!-- footer -->
+
+    </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="/yog2/js/jquery.js"></script>
+    <script src="/yog2/js/scrollspy.js"></script>
+    <script src="/yog2/js/toc.js"></script>
+    <!-- Bootstrap js -->
+    <script src="/yog2/js/bootstrap.min.js"></script>
+    <!-- Optionally enable responsive features in IE8. Respond.js can be obtained from https://github.com/scottjehl/Respond -->
+    <script src="/yog2/js/respond.min.js"></script>
+
+  </body>
+
+</html>

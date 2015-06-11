@@ -1,0 +1,20 @@
+# Site settings
+title: yog2-site
+email: fex@.baidu.com
+description: A Node.js UI Layer Framework Based on FIS & Express
+baseurl: "/yog2" # the subpath of your site, e.g. /blog/
+url: "http://fex-team.github.io/yog2" # the base hostname & protocol for your site
+github_username: fex-team
+
+# Build settings
+markdown: redcarpet
+redcarpet:
+  extensions: ["with_toc_data", "space_after_headers", "no_intra_emphasis", "fenced_code_blocks", "autolink", "strikethrough", "superscript"]
+
+defaults:
+  -
+    scope:
+      path: "docs"
+      type: "pages"
+    values:
+      layout: "docs"

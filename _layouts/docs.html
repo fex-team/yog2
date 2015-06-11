@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <!--head-->
+    <head>
+      {% include head.html %}
+      <link rel="stylesheet" href="{{ site.baseurl }}/css/github.css">
+    </head>
+    <!--head-->
+  <body>
+    <nav class="navbar" role="navigation">
+    {% include header.html %}
+    </nav>
+    <div class="doc-wrap">
+    {% include nav.html %}
+    <div class="doc-container">
+      <div class="toc" data-spy="affix" data-offset-top="95"></div>
+      <article class="doc-content codehilite">
+      {{ content }}
+      <blockquote>
+        <p>文章有错误？直接提交修改 <a target="_blank" href="https://github.com/fex-team/yog2/edit/gh-pages/{{page.path}}">{{page.path}}</a></p>
+      </blockquote>
+      </article>
+      {% include footer.html %}
+    </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="{{ site.baseurl }}/js/jquery.js"></script>
+    <script src="{{ site.baseurl }}/js/scrollspy.js"></script>
+    <script src="{{ site.baseurl }}/js/toc.js"></script>
+    <!-- Bootstrap js -->
+    <script src="{{ site.baseurl }}/js/bootstrap.min.js"></script>
+    <!-- Optionally enable responsive features in IE8. Respond.js can be obtained from https://github.com/scottjehl/Respond -->
+    <script src="{{ site.baseurl }}/js/respond.min.js"></script>
+
+  </body>
+
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+    <!--head-->
+    <head>
+      {% include head.html %}
+    </head>
+    <!--head-->
+
+  <body>
+    <nav class="navbar navbar-fixed-top" role="navigation">
+    {% include header.html %}
+    </nav>
+
+    {{ content }}
+
+    {% include footer.html %}
+
+    <!-- jQuery -->
+    <script src="{{ site.baseurl }}/js/jquery.js"></script>
+    <!-- Bootstrap js -->
+    <script src="{{ site.baseurl }}/js/bootstrap.min.js"></script>
+    <!-- bxSlider js file -->
+    <script src="{{ site.baseurl }}/js/jquery.bxslider.js"></script>
+    <!-- Yog2 js -->
+    <script src="{{ site.baseurl }}/js/yog2.js"></script>
+    <!-- Optionally enable responsive features in IE8. Respond.js can be obtained from https://github.com/scottjehl/Respond -->
+    <script src="{{ site.baseurl }}/js/respond.min.js"></script>
+
+  </body>
+
+</html>
