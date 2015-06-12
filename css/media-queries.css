@@ -128,6 +128,19 @@
 
 @media (min-width: 768px) {
 
+    .intro {
+        padding-top: 60px;
+        padding-bottom: 50px;
+    }
+
+    .portfolio--lr {
+        padding-bottom: 40px;
+    }
+
+    .portfolio--lr li:nth-child(-n+3){
+        margin-bottom: 40px;
+    }
+
     .toc {
         display: block;
     }
