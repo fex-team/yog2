@@ -68,7 +68,10 @@ var clientRoadmap = [{
 var serverRoadmap = [{
     reg: /^\/server\/(.+)/i,
     useMap: false,
-    useCompile: false,
+    usePreprocessor: false,
+    useStandard: false,
+    usePostprocessor: false,
+    useOptimizer: false,
     useHash: false,
     useDomain: false,
     release: '${app}/${namespace}/$1'
