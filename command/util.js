@@ -22,11 +22,16 @@ exports.register = function (commander) {
             commander.outputHelp();
             return;
         }
+
+        var strategy = new pac.NpmStrategy({
+            mode: 'production',
+            verbose: true
+        });
         if (cmd === 'pack') {
-            pac.strategy.pack();
+            strategy.pack();
         }
         else if (cmd === 'unpack') {
-            pac.strategy.install();
+            strategy.install();
         }
     });
 };
