@@ -5,6 +5,8 @@
 /views/**
 /app/**
 
+.modules
+
 # Webstorm
 .idea
 

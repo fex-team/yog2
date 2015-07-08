@@ -1,3 +1,5 @@
+'use strict';
+
 var fis = module.exports = require('fis');
 
 // 让 yogurt 打头的先加载。
@@ -6,7 +8,7 @@ fis.require.prefixes.unshift('yogurt');
 
 fis.cli.name = 'yog2';
 fis.cli.info = fis.util.readJSON(__dirname + '/package.json');
-fis.cli.help.commands = ['init', 'install', 'release'];
+fis.cli.help.commands = ['init', 'install', 'release', 'run', 'util'];
 
 fis.config.set('template', '/views');
 fis.config.set('app', '/app');
@@ -23,6 +25,7 @@ fis.config.set('settings.postprocessor.jswrapper.type', 'amd');
 fis.config.set('roadmap.ext.less', 'css');
 fis.config.set('component.dir', '/client/components');
 
+// 设置目录规范
 var clientRoadmap = [{
     reg: /^\/client\/components\/(.*\.js)$/i,
     isMod: true,
@@ -72,7 +75,7 @@ var serverRoadmap = [{
 }];
 
 var commonRoadmap = [{
-    reg: "**.sh",
+    reg: '**.sh',
     release: false
 }, {
     reg: '${namespace}-map.json',
@@ -83,3 +86,8 @@ var commonRoadmap = [{
 }];
 
 fis.config.set('roadmap.path', clientRoadmap.concat(serverRoadmap).concat(commonRoadmap));
+
+// 添加自定义命令
+
+fis.require._cache['command-run'] = require('./command/run.js');
+fis.require._cache['command-util'] = require('./command/util.js');
