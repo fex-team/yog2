@@ -32,7 +32,7 @@ function start(options) {
     else {
         var isWin = /^win/.test(process.platform);
         if (isWin) {
-            server = spawn('npm', ['run', 'debug-win'], {
+            server = spawn('npm.cmd', ['run', 'debug-win'], {
                 env: env
             });
         }
