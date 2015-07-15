@@ -8,6 +8,7 @@ var pac = require('yog-pac');
 exports.name = 'util';
 exports.desc = 'yog2 util';
 exports.register = function (commander) {
+    commander.option('--fis3', 'fis3 mode', Boolean, false)
     commander.command('pack').description('pack node_modules for submit');
     commander.command('unpack').description('unpack node_modules');
     commander.action(function () {

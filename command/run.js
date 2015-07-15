@@ -8,6 +8,7 @@ exports.name = 'run';
 exports.desc = 'run yog2 server with a simple daemon';
 exports.register = function (commander) {
     commander
+        .option('--fis3', 'fis3 mode', Boolean, false)
         .option('-n, --nodebug', 'run server without debug mode', Boolean, false)
         .option('-e, --env', 'set YOG_ENV', String, 'dev')
         .action(function () {
