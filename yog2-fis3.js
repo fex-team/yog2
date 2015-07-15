@@ -11,6 +11,7 @@ fis.set('template', '/views');
 fis.set('app', '/app');
 fis.set('static', '/static');
 fis.set('config', '/conf');
+fis.set('component.dir', '/client/components');
 
 var clientRoadmap = {
     // all release to $static dir 
@@ -46,7 +47,7 @@ var clientRoadmap = {
         release: '/${template}/${namespace}/$1',
         useMap: true
     },
-    'client/widget/**.{js,css}': {
+    'client/{components,widget}/**.{js,css}': {
         isMod: true
     },
     'client/test/(**)': {
