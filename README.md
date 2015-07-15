@@ -11,6 +11,8 @@ yog2 是一个专注于 Node.js UI 中间层的应用框架。它基于 express 
 - [x] node 0.12.x
 - [x] io.js
 
+同时支持 fis 与 fis3 两种编译核心
+
 ## 入门指引
 
 ### 安装yog2
