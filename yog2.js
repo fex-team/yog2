@@ -1,6 +1,10 @@
 'use strict';
 
 var fis = module.exports = require('fis');
+var commander = fis.cli.commander;
+console.log(commander.unknownOptions);
+// = function () {}
+
 
 // 让 yogurt 打头的先加载。
 fis.require.prefixes.unshift('yog2');

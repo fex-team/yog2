@@ -1,14 +1,48 @@
 #!/usr/bin/env node
 
-// var r = null;
+var Liftoff = require('liftoff');
+var argv = require('minimist')(process.argv.slice(2));
+var path = require('path');
+var cli = new Liftoff({
+    name: 'yog2', // 命令名字
+    processTitle: 'yog2',
+    moduleName: 'yog2',
+    configName: 'fis-conf',
 
-// try {
-//     //默认不安装此模块，对用户无影响
-//     r = require('baidu-reporter');
-// } catch (e) {};
+    // only js supported!
+    extensions: {
+        '.js': null
+    }
+});
 
-// if (r)  r.start();
+for (var i = process.argv.length - 1; i >= 0; i--) {
+    if (process.argv[i] === '--fis2') {
+        process.argv.splice(i, 1);
+    }
+};
 
-require('../yog2.js').cli.run( process.argv );
+if ((!argv.F && !argv.fis3 && process.env.YOG_MODE !== 'fis3') || argv.fis2) {
+    require('../yog2.js').cli.run(process.argv);
+    return;
+}
 
-// if (r) r.end();
+delete argv.F;
+delete argv.fis3;
+delete argv.fis2;
+
+cli.launch({
+    cwd: argv.r || argv.root,
+    configPath: argv.f || argv.file
+}, function (env) {
+    var fis;
+    if (!env.modulePath) {
+        fis = require('../yog2-fis3.js');
+    }
+    else {
+        fis = require(env.modulePath + '/yog2-fis3.js');
+    }
+    fis.IS_FIS3 = true;
+    fis.set('system.localNPMFolder', path.join(env.cwd, 'node_modules/yog2'));
+    fis.set('system.globalNPMFolder', path.dirname(__dirname));
+    fis.cli.run(argv, env);
+});
