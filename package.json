@@ -1,6 +1,6 @@
 {
   "name": "yog2",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Front End Integrated Solution for node express.",
   "main": "yog2.js",
   "bin": {
@@ -31,7 +31,7 @@
     "fis3-hook-module": "1.1.1",
     "liftoff": "2.1.0",
     "minimist": "1.1.1",
-    "yog-pac": "0.0.3",
+    "yog-pac": "0.0.7",
     "yog2-command-init": "0.1.x",
     "yog2-command-plugin": "0.0.x",
     "yogurt-postprocessor-require-async": "0.0.x",
