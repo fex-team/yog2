@@ -1,6 +1,6 @@
 {
   "name": "yog2",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Front End Integrated Solution for node express.",
   "main": "yog2.js",
   "bin": {
@@ -24,10 +24,10 @@
   },
   "homepage": "https://github.com/fex-team/yog2",
   "dependencies": {
-    "fis": "1.9.29",
+    "fis": "1.9.33",
     "fis-parser-bdtmpl": "0.0.3",
     "fis-parser-less": "0.1.2",
-    "fis3": "3.0.10",
+    "fis3": "3.2.0",
     "fis3-hook-module": "1.1.1",
     "liftoff": "2.1.0",
     "minimist": "1.1.1",

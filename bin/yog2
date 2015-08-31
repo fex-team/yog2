@@ -6,7 +6,7 @@ var path = require('path');
 var cli = new Liftoff({
     name: 'yog2', // 命令名字
     processTitle: 'yog2',
-    moduleName: 'yog2',
+    moduleName: 'yog2/yog2-fis3.js',
     configName: 'fis-conf',
 
     // only js supported!
@@ -39,7 +39,7 @@ cli.launch({
         fis = require('../yog2-fis3.js');
     }
     else {
-        fis = require(env.modulePath + '/yog2-fis3.js');
+        fis = require(env.modulePath);
     }
     fis.IS_FIS3 = true;
     fis.set('system.localNPMFolder', path.join(env.cwd, 'node_modules/yog2'));
