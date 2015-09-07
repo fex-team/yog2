@@ -76,10 +76,10 @@ yog2 project 的默认端口是 8085，你可以通过修改 `PORT` 环境变量
 ```bash
 # 进入home目录
 cd home
-yog2 release --dest dev
+yog2 release --dest debug
 ```
 
-> yog2 release --dest dev 必须要求运行框架以调试模式启动后使用，否则无法正确的部署代码。
+> yog2 release --dest debug 必须要求运行框架以调试模式启动后使用，否则无法正确的部署代码。
 
 再次访问 `http://127.0.0.1:8085` 我们就会看到网站已经正常提供服务了。
 
