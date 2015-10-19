@@ -85,4 +85,37 @@ BigPipe.load('locationSearch');
 
 更多 BigPipe 的接口可以查看 [文档](https://github.com/fex-team/yog2-app-template/tree/master/client/static/js)
 
+#### Quickling 的嵌套使用
+
+Quickling 支持嵌套调用，嵌套调用是指
+
+在页面 index.tpl 中我们引用了 PageletA
+
+```
+// index.tpl
+{% widget "home:widget/pagelets/A.tpl" id="PageletA" mode="async" %}
+```
+
+同时在 A.tpl 中，我们又引用了 PageletB
+
+```
+// A.tpl
+{% widget "home:widget/pagelets/B.tpl" id="PageletB" mode="async" %}
+```
+
+此时当我们在前端使用 `BigPipe.load` 加载 PageletA 时，会合并返回 PageletA 与 PageletB 的内容。
+
+如果希望在加载 PageletA 时不返回 PageletB 的内容，则可以为 B 的引用添加 `lazy` 属性
+
+```
+// A.tpl
+{% widget "home:widget/pagelets/B.tpl" id="PageletB" mode="async" lazy="true" %}
+```
+
+如果我们希望在前端仅更新 PageletB 的内容，则可以在前端调用时使用 `@` 语法声明 B 所在的父 Pagelet 的 ID
+
+```
+BigPipe.load('B@A')
+```
+
 {% endraw %}
