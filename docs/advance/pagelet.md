@@ -15,6 +15,9 @@ Facebook 的 BigPipe 技术，是通过将站点分解为多个 pagelet 小块�
 
 首先，我们需要调整一下 widget 的引用写法，值得注意的是，我们并不需要调整 widget 的实现，这也意味着同一个 widget ，既可以使用传统模式加载，也可以使用 BigPipe模式加载。
 
+
+其次我们还需要引用一个前端脚本来实现 bigpipe 功能，[bigpipe.js](https://github.com/fex-team/yog2-app-template/blob/master/client/static/js/bigpipe.js)
+
 我们通过在 `widget` 标签后添加 `mode='async'` 标记指定的 `widget` 使用 BigPipe 模式加载，并且显式的为 `widget` 添加 `id` 属性方便控制器获取 `widget`。
 
 ```html
@@ -23,6 +26,7 @@ Facebook 的 BigPipe 技术，是通过将站点分解为多个 pagelet 小块�
 {% html framework="home:static/js/mod.js" %}
     {% head %}
         <title>Hello World</title>
+        {% require "home:static/js/bigpipe.js %}
     {% endhead %}
     {% body %}
         {% widget "home:widget/search/search.tpl" mode="async" id="locationSearch" %}
@@ -56,8 +60,6 @@ module.exports.get = function (req, res, next) {
 ### Quickling
 
 除了 BigPipe 模式外，我们还可以将 pagelet 用于 Quickling 模式。所谓 Quickling 模式是将 widget 整体通过 Ajax 请求返回。也就是将传统的 Ajax 请求数据，前端模板渲染数据的模式变化为 Ajax 请求渲染好的页面以及 widget 执行的必要代码和样式。这两种方式并非互相取代的关系，而是应该根据使用场景灵活判断。
-
-要使用 Quickling 技术，需要比使用 BigPipe 多引用一个脚本，[bigpipe.js](https://github.com/fex-team/yog2-app-template/blob/master/client/static/js/bigpipe.js)
 
 这个脚本的功能就是在前端发起一个 widget 的 Quickling 请求。
 
