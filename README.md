@@ -1,4 +1,4 @@
-# yog2
+# YOG2
 
 yog2 是一个专注于 Node.js UI 中间层的应用框架。它基于 express 和 fis 开发，在享受 express 的灵活扩展能力和 fis 强大的前端工程化能力的同时，引入了自动路由、app 拆分以及后端服务管理模块来保证UI中间层的快速开发与稳定可靠。
 
@@ -76,10 +76,10 @@ yog2 project 的默认端口是 8085，你可以通过修改 `PORT` 环境变量
 ```bash
 # 进入home目录
 cd home
-yog2 release --dest dev
+yog2 release --dest debug
 ```
 
-> yog2 release --dest dev 必须要求运行框架以调试模式启动后使用，否则无法正确的部署代码。
+> yog2 release --dest debug 必须要求运行框架以调试模式启动后使用，否则无法正确的部署代码。
 
 再次访问 `http://127.0.0.1:8085` 我们就会看到网站已经正常提供服务了。
 
