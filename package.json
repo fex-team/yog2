@@ -24,15 +24,16 @@
   },
   "homepage": "https://github.com/fex-team/yog2",
   "dependencies": {
-    "fis": "1.9.33",
+    "fis": "1.9.39",
     "fis-parser-bdtmpl": "0.0.3",
     "fis-parser-less": "0.1.2",
-    "fis3": "3.2.0",
+    "fis3": "3.3.0",
     "fis3-hook-module": "1.1.1",
     "liftoff": "2.1.0",
     "minimist": "1.1.1",
     "yog-pac": "0.0.7",
     "yog2-command-init": "0.1.x",
+    "fis-parser-babel-5.x": "1.0.0",
     "yog2-command-plugin": "0.0.x",
     "yogurt-postprocessor-require-async": "0.0.x",
     "yogurt-preprocessor-extlang": "0.0.2"

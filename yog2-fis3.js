@@ -14,7 +14,7 @@ fis.set('config', '/conf');
 fis.set('component.dir', '/client/components');
 
 var clientRoadmap = {
-    // all release to $static dir 
+    // all release to $static dir
     'client/(**)': {
         id: '$1',
         moduleId: '${namespace}:$1',
@@ -80,6 +80,14 @@ var serverRoadmap = {
         useDomain: false,
         isMod: false,
         release: '${app}/${namespace}/$1'
+    },
+    'server/**.es6': {
+        parser: fis.plugin('babel-5.x', {
+            blacklist: ['regenerator'],
+            optional: ['asyncToGenerator'],
+            stage: 3
+        }),
+        rExt: 'js'
     }
 };
 
@@ -99,7 +107,7 @@ var prodRoadmap = {
     'client/**.png': {
         optimizer: fis.plugin('png-compressor')
     }
-}
+};
 
 // 添加自定义命令
 
@@ -120,9 +128,9 @@ fis.hook('module', {
 // map.json
 fis.match('::package', {
     postpackager: function createMap(ret) {
-        var path = require('path')
+        var path = require('path');
         var root = fis.project.getProjectPath();
-        var map = fis.file.wrap(path.join(root, fis.get('namespace') + '-map.json'));;
+        var map = fis.file.wrap(path.join(root, fis.get('namespace') + '-map.json'));
         map.setContent(JSON.stringify(ret.map, null, 4));
         ret.pkg[map.subpath] = map;
     }
