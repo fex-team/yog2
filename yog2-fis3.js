@@ -12,6 +12,7 @@ fis.set('app', '/app');
 fis.set('static', '/static');
 fis.set('config', '/conf');
 fis.set('component.dir', '/client/components');
+fis.set('project.fileType.text', 'es');
 
 var clientRoadmap = {
     // all release to $static dir
@@ -81,7 +82,7 @@ var serverRoadmap = {
         isMod: false,
         release: '${app}/${namespace}/$1'
     },
-    'server/**.es6': {
+    'server/**.es': {
         parser: fis.plugin('babel-5.x', {
             blacklist: ['regenerator'],
             optional: ['asyncToGenerator'],

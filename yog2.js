@@ -14,7 +14,7 @@ fis.config.set('template', '/views');
 fis.config.set('app', '/app');
 fis.config.set('static', '/static');
 fis.config.set('config', '/conf');
-fis.config.set('project.fileType.text', 'es6');
+fis.config.set('project.fileType.text', 'es');
 
 // 配置插件，引入less、fis-components等功能
 fis.config.set('modules.parser.less', 'less');
@@ -22,8 +22,8 @@ fis.config.set('roadmap.ext.less', 'css');
 fis.config.set('modules.preprocessor.tpl', 'components, extlang');
 fis.config.set('modules.postprocessor.tpl', 'require-async');
 fis.config.set('modules.postprocessor.js', 'jswrapper, require-async');
-fis.config.set('modules.parser.es6', 'babel-5.x');
-fis.config.set('roadmap.ext.es6', 'js');
+fis.config.set('modules.parser.es', 'babel-5.x');
+fis.config.set('roadmap.ext.es', 'js');
 fis.config.set('settings.parser.babel-5.x', {
     blacklist: ['regenerator'],
     optional: ['asyncToGenerator'],
