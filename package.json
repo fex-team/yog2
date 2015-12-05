@@ -33,7 +33,7 @@
     "minimist": "1.1.1",
     "yog-pac": "0.0.7",
     "yog2-command-init": "0.1.x",
-    "fis-parser-babel-5.x": "1.0.0",
+    "fis-parser-babel-5.x": "1.1.0",
     "yog2-command-plugin": "0.0.x",
     "yogurt-postprocessor-require-async": "0.0.x",
     "yogurt-preprocessor-extlang": "0.0.2"
