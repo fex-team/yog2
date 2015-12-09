@@ -83,10 +83,9 @@ var serverRoadmap = {
         release: '${app}/${namespace}/$1'
     },
     'server/**.es': {
-        parser: fis.plugin('babel-5.x', {
-            blacklist: ['regenerator'],
-            optional: ['asyncToGenerator'],
-            stage: 3
+        parser: fis.plugin('typescript', {
+            module: 1,
+            target: 2
         }),
         rExt: 'js'
     }

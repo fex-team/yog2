@@ -24,11 +24,19 @@ fis.config.set('modules.postprocessor.tpl', 'require-async');
 fis.config.set('modules.postprocessor.js', 'jswrapper, require-async');
 fis.config.set('modules.parser.es', 'babel-5.x');
 fis.config.set('roadmap.ext.es', 'js');
-fis.config.set('settings.parser.babel-5.x', {
-    blacklist: ['regenerator'],
-    optional: ['asyncToGenerator'],
-    stage: 3
+
+// hack for server es compile
+fis.config.set('modules.parser.es', function typescript(content, file) {
+    var typescriptParser = require('fis3-parser-typescript');
+    if (file.subpath.indexOf('/server') === -1) {
+        return content;
+    }
+    return typescriptParser(content, file, {
+        module: 1,
+        target: 2
+    });
 });
+
 fis.config.set('settings.postprocessor.jswrapper.type', 'amd');
 fis.config.set('component.dir', '/client/components');
 
