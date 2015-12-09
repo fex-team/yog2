@@ -14,7 +14,7 @@ fis.config.set('template', '/views');
 fis.config.set('app', '/app');
 fis.config.set('static', '/static');
 fis.config.set('config', '/conf');
-fis.config.set('project.fileType.text', 'es');
+fis.config.set('project.fileType.text', 'es,ts');
 
 // 配置插件，引入less、fis-components等功能
 fis.config.set('modules.parser.less', 'less');
@@ -27,6 +27,17 @@ fis.config.set('roadmap.ext.es', 'js');
 
 // hack for server es compile
 fis.config.set('modules.parser.es', function typescript(content, file) {
+    var typescriptParser = require('fis3-parser-typescript');
+    if (file.subpath.indexOf('/server') === -1) {
+        return content;
+    }
+    return typescriptParser(content, file, {
+        module: 1,
+        target: 2
+    });
+});
+
+fis.config.set('modules.parser.ts', function typescript(content, file) {
     var typescriptParser = require('fis3-parser-typescript');
     if (file.subpath.indexOf('/server') === -1) {
         return content;

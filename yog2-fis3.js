@@ -13,6 +13,7 @@ fis.set('static', '/static');
 fis.set('config', '/conf');
 fis.set('component.dir', '/client/components');
 fis.set('project.fileType.text', 'es');
+fis.set('project.fileType.text', 'ts');
 
 var clientRoadmap = {
     // all release to $static dir
@@ -83,6 +84,13 @@ var serverRoadmap = {
         release: '${app}/${namespace}/$1'
     },
     'server/**.es': {
+        parser: fis.plugin('typescript', {
+            module: 1,
+            target: 2
+        }),
+        rExt: 'js'
+    },
+    'server/**.ts': {
         parser: fis.plugin('typescript', {
             module: 1,
             target: 2
