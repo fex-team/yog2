@@ -12,8 +12,7 @@ fis.set('app', '/app');
 fis.set('static', '/static');
 fis.set('config', '/conf');
 fis.set('component.dir', '/client/components');
-fis.set('project.fileType.text', 'es');
-fis.set('project.fileType.text', 'ts');
+fis.set('project.fileType.text', 'es,ts,tsx');
 
 var clientRoadmap = {
     // all release to $static dir
@@ -25,6 +24,13 @@ var clientRoadmap = {
     'client/**.less': {
         parser: fis.plugin('less'),
         rExt: '.css'
+    },
+    'client/{**.ts,**.tsx,**.es}': {
+        parser: fis.plugin('typescript', {
+            module: 1,
+            target: 0
+        }),
+        rExt: 'js'
     },
     'client/**.tpl': {
         preprocessor: fis.plugin('extlang'),
@@ -83,14 +89,7 @@ var serverRoadmap = {
         isMod: false,
         release: '${app}/${namespace}/$1'
     },
-    'server/**.es': {
-        parser: fis.plugin('typescript', {
-            module: 1,
-            target: 2
-        }),
-        rExt: 'js'
-    },
-    'server/**.ts': {
+    'server/{**.ts,**.es}': {
         parser: fis.plugin('typescript', {
             module: 1,
             target: 2

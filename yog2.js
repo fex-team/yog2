@@ -14,7 +14,7 @@ fis.config.set('template', '/views');
 fis.config.set('app', '/app');
 fis.config.set('static', '/static');
 fis.config.set('config', '/conf');
-fis.config.set('project.fileType.text', 'es,ts');
+fis.config.set('project.fileType.text', 'es,ts,tsx');
 
 // 配置插件，引入less、fis-components等功能
 fis.config.set('modules.parser.less', 'less');
@@ -22,31 +22,32 @@ fis.config.set('roadmap.ext.less', 'css');
 fis.config.set('modules.preprocessor.tpl', 'components, extlang');
 fis.config.set('modules.postprocessor.tpl', 'require-async');
 fis.config.set('modules.postprocessor.js', 'jswrapper, require-async');
-fis.config.set('modules.parser.es', 'babel-5.x');
-fis.config.set('roadmap.ext.es', 'js');
 
 // hack for server es compile
-fis.config.set('modules.parser.es', function typescript(content, file) {
-    var typescriptParser = require('fis3-parser-typescript');
-    if (file.subpath.indexOf('/server') === -1) {
-        return content;
-    }
-    return typescriptParser(content, file, {
-        module: 1,
-        target: 2
-    });
-});
 
-fis.config.set('modules.parser.ts', function typescript(content, file) {
+fis.config.set('typescript.server.target', 2);
+fis.config.set('typescript.client.target', 0);
+
+function typescriptParser(content, file) {
     var typescriptParser = require('fis3-parser-typescript');
     if (file.subpath.indexOf('/server') === -1) {
-        return content;
+        return typescriptParser(content, file, {
+            module: 1,
+            target: fis.config.get('typescript.client.target')
+        });
     }
     return typescriptParser(content, file, {
         module: 1,
-        target: 2
+        target: fis.config.get('typescript.server.target')
     });
-});
+}
+
+fis.config.set('roadmap.ext.es', 'js');
+fis.config.set('modules.parser.es', typescriptParser);
+fis.config.set('roadmap.ext.ts', 'js');
+fis.config.set('modules.parser.ts', typescriptParser);
+fis.config.set('roadmap.ext.tsx', 'js');
+fis.config.set('modules.parser.tsx', typescriptParser);
 
 fis.config.set('settings.postprocessor.jswrapper.type', 'amd');
 fis.config.set('component.dir', '/client/components');
