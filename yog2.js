@@ -42,6 +42,16 @@ function typescriptParser(content, file) {
     });
 }
 
+// fis.config.set('modules.optimizer.tpl', 'html-minifier');
+// fis.config.set('settings.optimizer.html-minifier', {
+//     ignoreCustomFragments: [
+//         / ?\{\%[\s\S]*?\%\} ?/g,
+//         / ?\{\{[\s\S]*?\}\} ?/g
+//     ],
+//     collapseWhitespace: true,
+//     conservativeCollapse: true,
+//     preserveLineBreaks: true
+// });
 fis.config.set('roadmap.ext.es', 'js');
 fis.config.set('modules.parser.es', typescriptParser);
 fis.config.set('roadmap.ext.ts', 'js');
@@ -65,7 +75,7 @@ var clientRoadmap = [{
     url: '${namespace}/widget/$1',
     release: '${template}/${namespace}/widget/$1'
 }, {
-    reg: /^\/client\/widget\/(.*\.js)$/i,
+    reg: /^\/client\/widget\/(.*\.(js|tsx|es|ts))$/i,
     isMod: true,
     id: 'widget/$1',
     release: '${static}/${namespace}/widget/$1'

@@ -55,7 +55,7 @@ var clientRoadmap = {
         release: '/${template}/${namespace}/$1',
         useMap: true
     },
-    'client/{components,widget}/**.{js,css}': {
+    'client/{components,widget}/**.{js,es,ts,tsx,css}': {
         isMod: true
     },
     'client/test/(**)': {
@@ -129,7 +129,8 @@ fis.require._cache['command-util'] = require('./command/util.js');
 
 // 模块化支持
 fis.hook('module', {
-    mode: 'commonJs'
+    mode: 'commonJs',
+    extList: ['.js', '.es', '.ts', '.tsx']
 });
 
 // map.json
