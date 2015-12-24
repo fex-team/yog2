@@ -29,7 +29,7 @@
     "fis-parser-less": "0.1.2",
     "fis3": "3.3.0",
     "fis3-hook-module": "1.1.1",
-    "fis3-parser-typescript": "0.2.0",
+    "fis3-parser-typescript": "0.2.2",
     "liftoff": "2.1.0",
     "minimist": "1.1.1",
     "yog-pac": "0.0.7",
