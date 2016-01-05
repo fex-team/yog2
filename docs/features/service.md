@@ -111,13 +111,17 @@ module.export.search = function (name, region, cb) {
 
 ```
 
+### yog.ralP
+
 当然，实际上如果我们希望整站都使用 Promise 风格的接口，我们可以将这段代码实现的更加简洁。
+
+YOG2 中默认提供了 ral 的 promise 风格接口 yog.ralP
 
 ```javascript
 // models/lbs.js
 
 module.export.search = function (name, region) {
-    return yog.ral('MAPAPI', {
+    return yog.ralP('MAPAPI', {
         data: {
             region: region,
             query: name
