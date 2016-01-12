@@ -144,3 +144,11 @@ module.exports = function(router){
         .delete(router.action('book').delete);
 };
 ```
+
+## 保留参数
+
+由于 YOG2 内置了 BigPipe, Quickling, PageCache 功能，因此一下字段被留做保留参数，请勿在自己的路由中使用下列 query 参数
+
+- pagelet
+- pagelets
+- reqID
