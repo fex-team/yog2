@@ -12,7 +12,7 @@ fis.set('app', '/app');
 fis.set('static', '/static');
 fis.set('config', '/conf');
 fis.set('component.dir', '/client/components');
-fis.set('project.fileType.text', 'es,ts,tsx');
+fis.set('project.fileType.text', 'es,ts,tsx,jsx');
 
 var clientRoadmap = {
     // all release to $static dir
@@ -25,7 +25,7 @@ var clientRoadmap = {
         parser: fis.plugin('less'),
         rExt: '.css'
     },
-    'client/{**.ts,**.tsx,**.es}': {
+    'client/{**.ts,**.tsx,**.jsx,**.es}': {
         parser: fis.plugin('typescript', {
             module: 1,
             target: 0
@@ -55,7 +55,7 @@ var clientRoadmap = {
         release: '/${template}/${namespace}/$1',
         useMap: true
     },
-    'client/{components,widget}/**.{js,es,ts,tsx,css}': {
+    'client/{components,widget}/**.{js,es,ts,tsx,jsx,css}': {
         isMod: true
     },
     'client/test/(**)': {
@@ -128,9 +128,8 @@ fis.require._cache['command-util'] = require('./command/util.js');
 });
 
 // 模块化支持
-fis.hook('module', {
-    mode: 'commonJs',
-    extList: ['.js', '.es', '.ts', '.tsx']
+fis.hook('commonjs', {
+    extList: ['.js', '.es', '.ts', '.tsx', 'jsx']
 });
 
 // map.json

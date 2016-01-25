@@ -14,7 +14,7 @@ fis.config.set('template', '/views');
 fis.config.set('app', '/app');
 fis.config.set('static', '/static');
 fis.config.set('config', '/conf');
-fis.config.set('project.fileType.text', 'es,ts,tsx');
+fis.config.set('project.fileType.text', 'es,ts,tsx,jsx');
 
 // 配置插件，引入less、fis-components等功能
 fis.config.set('modules.parser.less', 'less');
@@ -58,6 +58,8 @@ fis.config.set('roadmap.ext.ts', 'js');
 fis.config.set('modules.parser.ts', typescriptParser);
 fis.config.set('roadmap.ext.tsx', 'js');
 fis.config.set('modules.parser.tsx', typescriptParser);
+fis.config.set('roadmap.ext.jsx', 'js');
+fis.config.set('modules.parser.jsx', typescriptParser);
 
 fis.config.set('settings.postprocessor.jswrapper.type', 'amd');
 fis.config.set('component.dir', '/client/components');
@@ -75,7 +77,7 @@ var clientRoadmap = [{
     url: '${namespace}/widget/$1',
     release: '${template}/${namespace}/widget/$1'
 }, {
-    reg: /^\/client\/widget\/(.*\.(js|tsx|es|ts))$/i,
+    reg: /^\/client\/widget\/(.*\.(js|tsx|es|ts|jsx))$/i,
     isMod: true,
     id: 'widget/$1',
     release: '${static}/${namespace}/widget/$1'
