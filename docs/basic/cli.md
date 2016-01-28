@@ -36,13 +36,13 @@ yog2 release 是最重要的命令之一，它的主要功能是对 app 代码�
 - 指定编译 app 代码并发布至某个 deploy 配置项
 
     ```bash
-    yog2 release --dest dev
+    yog2 release --dest debug
     ```
 
 - 监听文件修改，对修改文件进行增量编译并发布
 
     ```bash
-    yog2 release --dest dev --watch
+    yog2 release --dest debug --watch
     ```
 
 - 监听文件修改，并自动刷新页面
@@ -50,7 +50,7 @@ yog2 release 是最重要的命令之一，它的主要功能是对 app 代码�
     > 自动刷新页面需要下载 livereload 插件，并且 yog2 release 命令执行后需手动刷新一次页面
         
     ```bash
-    yog2 release --dest dev --watch --live
+    yog2 release --dest debug --watch --live
     ```
 
 #### 编译参数
@@ -58,31 +58,31 @@ yog2 release 是最重要的命令之一，它的主要功能是对 app 代码�
 - 压缩静态资源
 
     ```bash
-     yog2 release --dest dev --optimize
+     yog2 release --dest debug --optimize
     ``` 
 
 - 为静态资源添加MD5后缀
 
     ```bash
-     yog2 release --dest dev --md5
+     yog2 release --dest debug --md5
     ``` 
 
 - 打包静态资源
 
     ```bash
-     yog2 release --dest dev --pack
+     yog2 release --dest debug --pack
     ``` 
 
 - 为静态资源添加 domain
 
     ```bash
-     yog2 release --dest dev --domains
+     yog2 release --dest debug --domains
     ``` 
 
 上述的所有参数均可以组合使用，比如使用以下命令
 
 ```bash
-yog2 release --watch --live --optimize --md5 --domains --pack --dest dev
+yog2 release --watch --live --optimize --md5 --domains --pack --dest debug
 ```
 
 就会组合相应的各种操作。
@@ -90,13 +90,13 @@ yog2 release --watch --live --optimize --md5 --domains --pack --dest dev
 此外，这些参数还提供了缩写和组合的功能，比如上述的命令缩写后可以写成
 
 ```bash
-yog2 release -w -L -o -m -D -p -d dev
+yog2 release -w -L -o -m -D -p -d debug
 ```
 
 还可以更进一步组合一下
 
 ```bash
-yog2 release -wLomDpd dev
+yog2 release -wLomDpd debug
 ```
 
 最后，如果忘记了命令，还可以使用 `-h` 参数进行查询
