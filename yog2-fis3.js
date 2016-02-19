@@ -37,7 +37,7 @@ var clientRoadmap = {
         postprocessor: fis.plugin('require-async'),
         useMap: true
     },
-    'client/**.{tpl,js}': {
+    'client/**.{tpl,js,ts,jsx,es,tsx}': {
         useSameNameRequire: true
     },
     'client/page/**.tpl': {
@@ -55,7 +55,7 @@ var clientRoadmap = {
         release: '/${template}/${namespace}/$1',
         useMap: true
     },
-    'client/{components,widget}/**.{js,es,ts,tsx,jsx,css}': {
+    'client/{components,widget}/**.{js,es,ts,tsx,jsx,css,less}': {
         isMod: true
     },
     'client/test/(**)': {
@@ -99,10 +99,10 @@ var serverRoadmap = {
 };
 
 var prodRoadmap = {
-    'client/**.{js,css,less}': {
+    'client/**.{js,css,less,ts,jsx,es,tsx}': {
         useHash: true
     },
-    'client/**.js': {
+    'client/**.{js,ts,jsx,es,tsx}': {
         optimizer: fis.plugin('uglify-js')
     },
     'client/**.{css,less}': {
