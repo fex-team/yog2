@@ -1,6 +1,6 @@
 {
   "name": "yog2",
-  "version": "0.4.7",
+  "version": "0.4.8",
   "description": "Front End Integrated Solution for node express.",
   "main": "yog2.js",
   "bin": {
@@ -28,7 +28,7 @@
     "fis-parser-bdtmpl": "0.0.3",
     "fis-parser-less": "0.1.2",
     "fis3": "3.3.15",
-    "fis3-hook-module": "1.1.1",
+    "fis3-hook-commonjs": "0.1.10",
     "fis3-parser-typescript": "0.2.2",
     "liftoff": "2.1.0",
     "minimist": "1.1.1",
