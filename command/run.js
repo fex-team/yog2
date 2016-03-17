@@ -10,7 +10,7 @@ exports.register = function (commander) {
     commander
         .option('--fis3', 'fis3 mode', Boolean, false)
         .option('-n, --nodebug', 'run server without debug mode', Boolean, false)
-        .option('-e, --env', 'set YOG_ENV', String, 'dev')
+        .option('-e, --env [env]', 'set YOG_ENV', String, 'dev')
         .action(function () {
             if (!yogUtil.checkProject()) {
                 fis.log.error('current folder is not a valid yog project'.red);
