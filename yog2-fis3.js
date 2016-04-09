@@ -129,7 +129,7 @@ fis.require._cache['command-util'] = require('./command/util.js');
 
 // 模块化支持
 fis.hook('commonjs', {
-    extList: ['.js', '.es', '.ts', '.tsx', 'jsx']
+    extList: ['.js', '.es', '.ts', '.tsx', '.jsx']
 });
 
 // map.json
