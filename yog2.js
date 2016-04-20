@@ -130,6 +130,8 @@ var serverRoadmap = [{
 }, {
     reg:/(^\/node_modules\/(.*)|^\/package\.json)/,
     useCompile: false,
+    useHash: false,
+    useDomain: false,
     release: 'app/${namespace}/$&'
 }];
 
