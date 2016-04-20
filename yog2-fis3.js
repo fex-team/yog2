@@ -1,3 +1,5 @@
+'use strict';
+
 var fis = module.exports = require('fis3');
 var path = require('path');
 fis.require.prefixes.unshift('yog2');
@@ -13,6 +15,18 @@ fis.set('static', '/static');
 fis.set('config', '/conf');
 fis.set('component.dir', '/client/components');
 fis.set('project.fileType.text', 'es,ts,tsx,jsx');
+fis.set('project.ignore', [
+    'issue.info',
+    'README.md',
+    'BCLOUD',
+    'GIT_COMMIT',
+    'fis.yml',
+    'cooder',
+    'build.sh',
+    'component.json',
+    'output/**',
+    'fis-conf.js'
+]);
 
 var clientRoadmap = {
     // all release to $static dir
@@ -95,6 +109,10 @@ var serverRoadmap = {
             target: 2
         }),
         rExt: 'js'
+    },
+    '{node_modules/**,package.json}': {
+        useCompile: false,
+        release: 'app/${namespace}/$0'
     }
 };
 

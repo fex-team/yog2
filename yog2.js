@@ -23,6 +23,19 @@ fis.config.set('modules.preprocessor.tpl', 'components, extlang');
 fis.config.set('modules.postprocessor.tpl', 'require-async');
 fis.config.set('modules.postprocessor.js', 'jswrapper, require-async');
 
+fis.config.set('project.ignore', [
+    'issue.info',
+    'README.md',
+    'BCLOUD',
+    'GIT_COMMIT',
+    'fis.yml',
+    'cooder',
+    'build.sh',
+    'component.json',
+    'output/**',
+    'fis-conf.js'
+]);
+
 // hack for server es compile
 
 fis.config.set('typescript.server.target', 2);
@@ -114,6 +127,10 @@ var serverRoadmap = [{
     useHash: false,
     useDomain: false,
     release: '${app}/${namespace}/$1'
+}, {
+    reg:/(^\/node_modules\/(.*)|^\/package\.json)/,
+    useCompile: false,
+    release: 'app/${namespace}/$&'
 }];
 
 var commonRoadmap = [{
