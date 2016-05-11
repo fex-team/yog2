@@ -3,11 +3,11 @@
 var util = require('util');
 var spawn = require('child_process').spawn;
 var yogUtil = require('../lib/util.js');
-var pac = require('yog-pac');
 
 exports.name = 'util';
 exports.desc = 'yog2 util';
 exports.register = function (commander) {
+    var pac = require('yog-pac');
     commander.option('--fis3', 'fis3 mode', Boolean, false)
     commander.command('pack').description('pack node_modules for submit');
     commander.command('unpack').description('unpack node_modules');
