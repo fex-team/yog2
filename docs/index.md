@@ -72,7 +72,7 @@ yog2 project 的默认端口是 8085，你可以通过修改 `PORT` 环境变量
 ```bash
 # 进入home目录
 cd home
-yog2 release --dest dev
+yog2 release --dest debug
 ```
 
 > yog2 release --dest dev 必须要求运行框架以调试模式启动后使用，否则无法正确的部署代码。
@@ -82,5 +82,5 @@ yog2 release --dest dev
 此外，如果我们在执行 yog2 release 命令时添加 `--watch` 参数，yog2 就会监听文件修改，并自动部署至 yog2 project 。通过 yog2 的热更新技术，只要是 app 中的代码，无论是静态资源还是后端模板亦或是后端逻辑，均无需重启 yog2 project 就可以生效。
 
 ```bash
-yog2 release --dest dev --watch
+yog2 release --dest debug --watch
 ```
