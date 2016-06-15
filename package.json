@@ -1,6 +1,6 @@
 {
   "name": "yog2",
-  "version": "0.7.2",
+  "version": "0.7.3",
   "description": "Front End Integrated Solution for node express.",
   "main": "yog2.js",
   "bin": {
@@ -27,13 +27,13 @@
     "fis": "1.10.0",
     "fis-parser-bdtmpl": "0.0.3",
     "fis-parser-less": "0.1.2",
-    "fis3": "3.4.6",
-    "fis3-hook-commonjs": "0.1.17",
+    "fis3": "3.4.13",
+    "fis3-hook-commonjs": "0.1.22",
     "fis3-parser-typescript": "0.2.5",
     "liftoff": "2.2.1",
     "minimist": "1.1.1",
     "yog-pac": "0.1.0",
-    "yog2-command-init": "0.1.x",
+    "yog2-command-init": "0.2.x",
     "yog2-command-plugin": "0.0.x",
     "yogurt-postprocessor-require-async": "0.0.x",
     "yogurt-preprocessor-extlang": "0.0.2"
