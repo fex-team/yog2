@@ -42,7 +42,7 @@ cli.launch({
         fis = require(env.modulePath);
     }
     fis.IS_FIS3 = true;
-    fis.set('system.localNPMFolder', path.join(env.cwd, 'node_modules/yog2'));
-    fis.set('system.globalNPMFolder', path.dirname(__dirname));
+    fis.require.paths.unshift(path.join(env.cwd, 'node_modules'));
+    fis.require.paths.push(path.join(path.dirname(__dirname), 'node_modules'));
     fis.cli.run(argv, env);
 });
