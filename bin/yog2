@@ -43,7 +43,7 @@ cli.launch({
     }
     fis.IS_FIS3 = true;
     fis.require.paths.unshift(path.join(env.cwd, 'node_modules'));
-    fis.require.paths.push(path.join(env.cwd, 'node_modules', 'fis3', 'node_modules'));
     fis.require.paths.push(path.join(path.dirname(__dirname), 'node_modules'));
+    fis.require.paths.push(path.join(path.join(path.dirname(__dirname), 'node_modules', 'fis3', 'node_modules')));
     fis.cli.run(argv, env);
 });
