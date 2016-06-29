@@ -152,3 +152,7 @@ fis.config.set('roadmap.path', clientRoadmap.concat(serverRoadmap).concat(common
 
 fis.require._cache['command-run'] = require('./command/run.js');
 fis.require._cache['command-util'] = require('./command/util.js');
+
+fis.enableNPM = function(options) {
+    fis.log.error('fis.enableNPM() only supported in FIS3 mode, use --fis3 to enable FIS3');
+};
