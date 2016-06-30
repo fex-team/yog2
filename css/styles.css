@@ -1501,6 +1501,7 @@ img.portfolio--breakdown {
     font-family: 'montserratregular', Arial, sans-serif;
     font-size: 15px;
     font-size: 1.5rem;
+    position: relative;
 }
 
 .footer .container .row {
@@ -1727,15 +1728,19 @@ blockquote small {
 .sidebar {
   text-align: center;
   padding: 0 0 14px;
+  padding-top: 10px;
   padding-left: 20px;
+  width: 270px;
+  font-size: 20px;
+  overflow: hidden;
 }
 
 .sidebar.affix {
-    position: relative;
+  position: relative;
 }
 
 .sidebar.affix-top {
-    position: relative;
+  position: relative;
 }
 
 article {
