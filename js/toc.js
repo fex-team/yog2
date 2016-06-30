@@ -71,7 +71,11 @@
             });
         }
         renderToc(getToc($(".doc-content")), $(".toc"));
-        window.location.hash = window.location.hash;
+        setTimeout(function() {
+            var oldHash = window.location.hash
+            window.location.hash = '#';
+            window.location.hash = oldHash;
+        }, 200);
         if (window.respond && !window.respond.mediaQueriesSupported) {
             setTimeout(setScrollSpy, 3000);
         }
