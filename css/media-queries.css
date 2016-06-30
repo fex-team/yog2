@@ -228,22 +228,20 @@
     }
 
     .sidebar {
-        margin-top: 10px;
-        top: 95px;
-        float: left;
-        overflow: auto;
         height: 100%;
-        width: 100%;
+        overflow-y: auto;
     }
 
     .sidebar.affix-top {
-        top: 95px;
+        float: left;
         height: 100%;
-        position: fixed;
+        overflow: hidden;
     }
 
     .sidebar.affix {
-        top: 0;
+        top: -1px;
+        float: left;
+        height: 100%;
         position: fixed;
     }
 

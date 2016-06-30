@@ -1,18 +1,19 @@
-<nav class="sidebar" data-spy="affix" data-offset-top="95">
-    <ul>
-        {% for config in site.data.nav %}
-        <li class="item-{{ config.type }}">
-            {% if (config.url) %}
-            <a href="{{ site.baseurl }}{{ config.url }}">
-                {{ config.title }}
-            </a>
-            {% else %}
-            <span>
-                {{ config.title }}
-            </span>
-            {% endif %}
-        </li>
-        {% endfor %}
-    </ul>
-</nav>
-<div class="bottom-shadow"></div>
+    <nav class="sidebar" data-spy="affix" data-offset-top="95">
+        <ul>
+            {% for config in site.data.nav %}
+            <li class="item-{{ config.type }}">
+                {% if (config.url) %}
+                <a href="{{ site.baseurl }}{{ config.url }}">
+                    {{ config.title }}
+                </a>
+                {% else %}
+                <span>
+                    {{ config.title }}
+                </span>
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+    </nav>
+    <div class="bottom-shadow"></div>
+
