@@ -13,7 +13,7 @@ YOG2 提供了一种在服务端加载客户端脚本资源的方法，用于实
 
 ### 用法
 
-在服务端中，只能使用`资源ID`对前端代码进行加载，YOG2 中的前端资源ID规则非常简单，仅需要为文件路径添加上当前模块名并用冒号与 client 目录下的文件路径拼接在一起就可以得到。以下是一些资源ID的例子
+在服务端中，只能使用`资源ID`对前端代码进行加载，YOG2 中的前端资源ID规则非常简单，仅需要为文件路径添加上当前模块名并用冒号与 client 目录下的文件路径拼接在一起就可以得到。以下是一些资源ID的例子。
 
 ```
 /client/a.js => {APP_NAME}:a.js
@@ -21,7 +21,7 @@ YOG2 提供了一种在服务端加载客户端脚本资源的方法，用于实
 /client/node_modules/react/react.js => {APP_NAME}:node_modules/react/react.js
 ```
 
-了解了资源ID的计算方法后，在服务端中，我们就可以很方便的执行前端代码了。我们以 DEMO 中代码为例 (ES6语法)，可以看到加载客户端代码仅需要直接 require/import 相应的资源ID即可
+了解了资源ID的计算方法后，在服务端中，我们就可以很方便的执行前端代码了。我们以 DEMO 中代码为例 (ES6语法)，可以看到加载客户端代码仅需要直接 require/import 相应的资源ID即可。
 
 ```javascript
 import App from 'home:page/index/server.js'
