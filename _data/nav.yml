@@ -89,6 +89,14 @@
   url: /docs/advance/pagelet.html#Quickling
   type: sub
 
+- title: App npm
+  url: /docs/advance/npm.html
+  type: sub
+
+- title: 前后端同构
+  url: /docs/advance/isomorphic.html
+  type: sub
+
 - title: 上线部署
   type: category
 
