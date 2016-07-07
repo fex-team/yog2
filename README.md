@@ -91,4 +91,4 @@ yog2 release --dest dev --watch
 
 ## 文档
 
-请查阅文档[WIKI](https://github.com/fex-team/yog2/wiki)
+请查阅 [官网](http://fex.baidu.com/yog2)
