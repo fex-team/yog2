@@ -23,7 +23,7 @@ yog2 init 是脚手架命令，用于初始化一些环境与代码，目前提�
 
 yog2 release 是最重要的命令之一，它的主要功能是对 app 代码进行编译和发布，它会将 app 中的业务代码按照 project 的目录规范进行组织，同时对 app 中的前端代码进行优化和组织。
 
-它包含多个参数用于控制 app 的开发、编译、部署等等工作。因为 yog2 实际上是扩展自 fis ，因此这些参数也均来自 [fis](http://fis.baidu.com/docs/api/cli.html)。
+它包含多个参数用于控制 app 的开发、编译、部署等等工作。因为 YOG2 实际上是扩展自 fis ，因此这些参数也均来自 [fis](http://fis.baidu.com/docs/api/cli.html)。
 
 #### 发布参数
 
@@ -129,7 +129,7 @@ yog2 release -h
 
 #### plugin
 
-yog2 plugin 命令用于安装 yog2 的插件功能，比如
+yog2 plugin 命令用于安装 YOG2 的插件功能，比如
 
 ```bash
 yog2 plugin install session
@@ -137,13 +137,7 @@ yog2 plugin install session
 
 就可以安装 session 插件，之后只需要在 `/conf/plugins/http.js` 的中间件配置中加上 `session` 就可以使用 session 功能。
 
-除了内置的插件外，还可以直接从github上下载插件
-
-```bash
-yog2 plugin https://github.com/hefangshi/yog2-plugin-ral-promise
-```
-
-> 安装了这个插件可以将 `yog.ral` 包装为 Promise 形式的接口。
+除了内置的插件外，还可以指定 github 链接直接从 github 上下载插件
 
 #### install
 

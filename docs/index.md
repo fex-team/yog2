@@ -5,7 +5,7 @@
 
 ### 简介
 
-yog2 是一个专注于 Node.js UI 中间层的应用框架。它基于 express 和 fis 开发，在享受 express 的灵活扩展能力和 fis 强大的前端工程化能力的同时，引入了自动路由、app 拆分以及后端服务管理模块来保证UI中间层的快速开发与稳定可靠。
+YOG2 是一个专注于 Node.js UI 中间层的应用框架。它基于 express 和 fis 开发，在享受 express 的灵活扩展能力和 fis 强大的前端工程化能力的同时，引入了自动路由、app 拆分以及后端服务管理模块来保证UI中间层的快速开发与稳定可靠。
 
 ### 安装yog2
 
@@ -17,7 +17,7 @@ npm install -g yog2
 
 ### 创建project
 
-yog2 project是基础的运行框架，提供一些基础的配置和中间件管理。通过使用 yog2 提供的脚手架，可以快速创建一个基础的 yog2 project
+yog2 project是基础的运行框架，提供一些基础的配置和中间件管理。通过使用 YOG2 提供的脚手架，可以快速创建一个基础的 yog2 project
 
 ```bash
 yog2 init project
@@ -28,7 +28,7 @@ yog2 init project
 
 yog2 app 是应用的业务代码，每一个 app 都是一个独立的子项目，包含了这个子项目中所有的前后端代码。我们可以利用 yog2 release 功能将 app 发布至 yog2 project 中来运行 app。
 
-利用 yog2 的 app 拆分能力，我们可以将一个中大型规模的项目按照功能或业务划分为多个独立的 app ，每个 app 均可以独立开发、编译、部署。当项目的业务较简单时，也可以只使用一个 app 来管理代码。
+利用 YOG2 的 app 拆分能力，我们可以将一个中大型规模的项目按照功能或业务划分为多个独立的 app ，每个 app 均可以独立开发、编译、部署。当项目的业务较简单时，也可以只使用一个 app 来管理代码。
 
 ```bash
 yog2 init app

@@ -9,6 +9,10 @@
   url: /docs/basic/cli.html#命令行
   type: sub
 
+- title: 使用FIS3
+  url: /docs/basic/fis3.html
+  type: sub
+
 - title: 目录结构
   url: /docs/basic/structure.html#目录结构
   type: sub
@@ -83,6 +87,25 @@
 
 - title: Quickling
   url: /docs/advance/pagelet.html#Quickling
+  type: sub
+
+- title: 上线部署
+  type: category
+
+- title: 环境变量
+  url: /docs/deploy/index.html
+  type: sub
+
+- title: 系统配置
+  url: /docs/deploy/index.html#系统配置
+  type: sub
+
+- title: Cluster模式
+  url: /docs/deploy/index.html#Cluster模式
+  type: sub
+
+- title: 进程守护
+  url: /docs/deploy/index.html#系统配置
   type: sub
 
 - title: 其他

@@ -3,7 +3,7 @@
 
 ## 中间件管理
 
-在 yog2 中，中间件管理 [http](https://github.com/fex-team/yog2-kernel/tree/master/plugins/http) 本身是一个插件，而各种中间件也是由插件组成，因此我们可将中间件插件理解为一类特殊的插件。
+在 YOG2 中，中间件管理 [http](https://github.com/fex-team/yog2-kernel/tree/master/plugins/http) 本身是一个插件，而各种中间件也是由插件组成，因此我们可将中间件插件理解为一类特殊的插件。
 
 中间件管理插件的功能是根据用户指定的中间件加载顺序调用中间件插件。
 
@@ -104,9 +104,9 @@ module.exports.http = {
 
 ### 文件上传
 
-在 yog2 中，并未默认开启文件上传功能，这是由于用于处理文件上传的模块一般都较为庞大，如果不需要使用话，加载文件上传处理组件会影响性能。
+在 YOG2 中，并未默认开启文件上传功能，这是由于用于处理文件上传的模块一般都较为庞大，如果不需要使用话，加载文件上传处理组件会影响性能。
 
-如果希望能够处理文件上传请求，需要在控制器代码中手动添加。以 yog2 自带的 [multiparty](https://github.com/andrewrk/node-multiparty/) 组件库为例，我们可以为用户添加头像上传功能。
+如果希望能够处理文件上传请求，需要在控制器代码中手动添加。以 YOG2 自带的 [multiparty](https://github.com/andrewrk/node-multiparty/) 组件库为例，我们可以为用户添加头像上传功能。
 
 ```javascript
 module.exports.post = function (req, res, next) {
@@ -131,9 +131,9 @@ module.exports.post = function (req, res, next) {
 
 ### session
 
-yog2 并未直接提供 session 支持，这是由于完备的 session 支持需要依赖第三方存储。具体可以参见 [express-session](https://github.com/expressjs/session#sessionoptions) 一节的 `Warning`。
+YOG2 并未直接提供 session 支持，这是由于完备的 session 支持需要依赖第三方存储。具体可以参见 [express-session](https://github.com/expressjs/session#sessionoptions) 一节的 `Warning`。
 
-不过 yog2 提供了一键安装  [express-session](https://github.com/expressjs/session) 的功能
+不过 YOG2 提供了一键安装  [express-session](https://github.com/expressjs/session) 的功能
 
 ```bash
 yog2 plugin install session

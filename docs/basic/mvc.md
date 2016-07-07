@@ -5,7 +5,7 @@
 
 ### 控制器
 
-控制器是 Web 服务实际业务逻辑的载体，路由系统会将请求根据路由规则分发到控制器，由控制器去解析请求参数、访问数据服务以及返回结果。在 yog2 中，控制器就是路由系统指向的 `action` 文件。
+控制器是 Web 服务实际业务逻辑的载体，路由系统会将请求根据路由规则分发到控制器，由控制器去解析请求参数、访问数据服务以及返回结果。在 YOG2 中，控制器就是路由系统指向的 `action` 文件。
 
 以一个简单的用户创建与获取的 API 为例简单说明一下用法
 
@@ -41,9 +41,9 @@ module.exports.post = function (req, res, next) {
 
 ### 数据模型
 
-由于 yog2 的核心目标是更好的提供 UI中间层 支持，因此并未内置任何数据库 ORM 功能。当然，通过中间件和插件扩展，我们也可以很轻松的引入类似 [waterline](https://github.com/balderdashy/waterline) 和 [mongoose](https://github.com/Automattic/mongoose) 这类 ORM 库用于数据库的访问。
+由于 YOG2 的核心目标是更好的提供 UI中间层 支持，因此并未内置任何数据库 ORM 功能。当然，通过中间件和插件扩展，我们也可以很轻松的引入类似 [waterline](https://github.com/balderdashy/waterline) 和 [mongoose](https://github.com/Automattic/mongoose) 这类 ORM 库用于数据库的访问。
 
-虽然没有内置 ORM 功能，但是我们提供了一套后端服务管理工具用于 UI中间层对后端服务层的请求管理。
+同时我们提供了一套后端服务管理工具用于 UI 中间层对后端服务层的请求管理。
 
 数据模型又可以分为服务层和数据层，服务层可以专注与业务逻辑封装和数据层的调用，数据层则专注于与后端服务层的交互。当然在业务不复杂的时候，我们也可以直接将服务层与数据层融合。
 
@@ -55,7 +55,7 @@ module.exports.post = function (req, res, next) {
 var yog = require('yog2-kernel');
 
 module.export.get = function (id) {
-    return yog.ral('BACKEND', {
+    return yog.ralP('BACKEND', {
         path: '/api/user',
         method: 'GET',
         data: {
@@ -65,7 +65,7 @@ module.export.get = function (id) {
 };
 
 module.export.save = function (user) {
-    return yog.ral('BACKEND', {
+    return yog.ralP('BACKEND', {
         path: '/api/user',
         method: 'POST',
         pack: 'form',
@@ -74,7 +74,7 @@ module.export.save = function (user) {
 };
 ```
 
-其中 `yog.ral` 是 yog2 框架的后端服务管理工具，使用之前需要在 project 中进行一些简单的配置。
+其中 `yog.ralP` 是 yog2 框架的后端服务管理工具，使用之前需要在 project 中进行一些简单的服务配置，用于声明 BACKEND 服务。
 
 ```javascript
 // /conf/ral/backend.js
@@ -94,8 +94,6 @@ module.exports = {
     }
 }
 ```
-
-> 要如示例中Promise的形式使用 yog.ral ，需要安装插件 [yog2-plugin-ral-promise](https://github.com/hefangshi/yog2-plugin-ral-promise)
 
 ### 模板引擎
 

@@ -4,11 +4,11 @@
 
 ## 前端工程化
 
-yog2 是基于 [fis](http://fis.baidu.com) 构建的 Node.js UI中间层解决方案，因此整个框架都深度契合 fis 的前端工程化概念。在 yog2 中你可以享受到完整的 [fis](http://fis.baidu.com) 解决方案的前端优势。
+YOG2 是基于 [fis](http://fis.baidu.com) 构建的 Node.js UI中间层解决方案，因此整个框架都深度契合 fis 的前端工程化概念。在 YOG2 中你可以享受到完整的 [fis](http://fis.baidu.com) 解决方案的前端优势。
 
 ### 目录规范
 
-在 yog2 中我们提供了一套固定的目录规范方便开发者快速开发，在了解了 fis 的配置原理后，也可以方便的调整这套目录规范。
+在 YOG2 中我们提供了一套固定的目录规范方便开发者快速开发，在了解了 fis 的配置原理后，也可以方便的调整这套目录规范。
 
 ```bash
 ├─client                 # 前端代码
@@ -24,7 +24,7 @@ app 下的 client 目录就是前端代码的开发目录，所有的前端资�
 
 除此之外，`widget` 目录下的 JavaScript 脚本均需要遵守 **CommonJS** 规范，与 Node.js 模块化的编写标准一致，使用 `require` 获取模块，使用 `module` 和 `exports` 暴露接口。
 
-并不推荐在 yog2 中使用 AMD 规范的模块化加载类库。
+并不推荐在 YOG2 中使用 AMD 规范的模块化加载类库。
 
 ### 三种语言能力
 
@@ -54,7 +54,7 @@ app 下的 client 目录就是前端代码的开发目录，所有的前端资�
 
 ### 前端模块化
 
-在 yog2 中，我们可以轻松的使用模块化的能力管理前端业务代码。所有放在 widget 目录下的 JavaScript 脚本都需要符合 CommonJS 规范，即像编写 Node.js 代码一样编写前端代码。
+在 YOG2 中，我们可以轻松的使用模块化的能力管理前端业务代码。所有放在 widget 目录下的 JavaScript 脚本都需要符合 CommonJS 规范，即像编写 Node.js 代码一样编写前端代码。
 
 比如我们可以声明一个模块 word
 
