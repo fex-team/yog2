@@ -23,11 +23,13 @@
 
 - /conf/plugins/http.js
 
-    module.exports.static.options.maxAge 如果使用了 MD5 戳，可以将此值设置为 864000000 ，开启一天的强缓存。
+    module.exports.static.options.maxAge 如果静态资源使用了 MD5 戳，可以将此值设置为 864000000 ，开启24小时的强缓存，优化前端性能。
 
 ### Cluster模式
 
-由于 YOG2 没有内置 cluster 模式，如果希望使用 cluster 模式运行应用，可以使用 [PM2](https://github.com/Unitech/PM2) 来管理应用。同时可以可以考虑使用 cluster 模块对 app.js 进行改造。
+由于 YOG2 没有内置 cluster 模式，如果希望使用 cluster 模式运行应用，可以使用 [PM2](https://github.com/Unitech/PM2) 来管理应用。
+
+如果不希望引入 PM2 ，也可以考虑使用 cluster 模块对 app.js 进行改造。
 
 ```javascript
 var cluster = require('cluster');
@@ -74,4 +76,4 @@ else {
 ### 进程守护
 
 
-可以使用 [PM2](https://github.com/Unitech/PM2) 作为守护进程保证 Node.js 应用一旦 Crash ，会立刻重启
+可以使用 [PM2](https://github.com/Unitech/PM2) 作为守护进程，保证 Node.js 应用一旦 Crash ，会立刻重新启动应用。

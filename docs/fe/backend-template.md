@@ -156,4 +156,25 @@ module.exports.init = function (target) {
 {% endhtml %}
 ```
 
+后端组件也可以使用独立与页面渲染不同的数据进行渲染，类似 Swig 的 include 语法，我们可以使用 with 参数为 widget 添加渲染参数。
+
+```html
+{% set data = {} %}
+{% set data['a'] = 1 %}
+{% set data['b'] = "hello world" %}
+{% set data['c'] = title // 原始渲染数据的中的值 %}
+
+// 将在现有页面渲染数据的基础上添加data中的 a, b, c 值进行渲染
+{% widget "home:widget/search/search.tpl" with data %} 
+
+// 仅使用data中的值进行渲染
+{% widget "home:widget/search/search.tpl" with data only %} 
+
+// 快速赋值，无需预先 set
+{% widget "home:widget/search/search.tpl" with {a=1, b="hello world", c=title} %} 
+
+// 也兼容 only 参数
+{% widget "home:widget/search/search.tpl" with {a=1, b="hello world", c=title} only%} 
+```
+
 {% endraw %}

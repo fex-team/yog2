@@ -120,4 +120,44 @@ Quickling 支持嵌套调用，嵌套调用是指
 BigPipe.load('B@A')
 ```
 
+### 内联式 Pagelet
+
+当我们为了实现页面局部 Pagelet 化时，通常都会需要将局部内容抽离为一个独立的 widget 来实现异步加载等功能，为了简化实现局部 Pagelet 化的复杂度，YOG2 在yog2-kernel的1.2.0版本起，开始提供了一种新的模板标签`pagelet`来实现内联式的 Pagelet。其使用方式与现有的 Widget 十分类似。
+
+```html
+<!-- /client/page/index.tpl -->
+<!doctype html>
+{% html framework="home:static/js/mod.js" %}
+    {% head %}
+        <title>Hello World</title>
+        {% require "home:static/js/bigpipe.js %}
+    {% endhead %}
+    {% body %}
+        {% pagelet id="locationSearch" mode="async"%}
+            // 此处为 home:widget/search/search.tpl 的内容
+            <h5>查询结果</h5>
+            <ul>
+            {% for poi in results %}
+                <li>{{poi.name}}</li>
+            {% endfor %}
+            </ul>
+        {% endpagelet %}
+        {% widget "home:widget/search/search.tpl" mode="quickling" id="locationSearch" %}
+    {% endbody %}
+{% endhtml %}
+```
+
+```javascript
+var lbsModel = require("../models/lbs.js");
+
+module.exports.get = function (req, res, next) {
+    res.bigpipe.bind('locationSearch', function () {
+        return lbsModel.search(req.query.name, req.query.region)
+    });
+    res.render('home/page/index.tpl');
+}
+```
+
+其中被 `{% pagelet id="locationSearch" mode="async"%}` 包裹的 Pagelet 部分就会使用 BigPipe 技术进行加载，并且可以通过前端触发 Quickling 请求刷新局部内容。
+
 {% endraw %}
