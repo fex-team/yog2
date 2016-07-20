@@ -1,4 +1,5 @@
 # Deploy
+_site/**
 /conf/app/**
 /conf/fis/**
 /static/**
