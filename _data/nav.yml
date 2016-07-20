@@ -89,6 +89,10 @@
   url: /docs/advance/pagelet.html#Quickling
   type: sub
 
+- title: 内联式Pagelet
+  url: /docs/advance/pagelet.html#内联式Pagelet
+  type: sub
+
 - title: App npm
   url: /docs/advance/npm.html
   type: sub

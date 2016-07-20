@@ -120,7 +120,7 @@ Quickling 支持嵌套调用，嵌套调用是指
 BigPipe.load('B@A')
 ```
 
-### 内联式 Pagelet
+### 内联式Pagelet
 
 当我们为了实现页面局部 Pagelet 化时，通常都会需要将局部内容抽离为一个独立的 widget 来实现异步加载等功能，为了简化实现局部 Pagelet 化的复杂度，YOG2 在yog2-kernel的1.2.0版本起，开始提供了一种新的模板标签`pagelet`来实现内联式的 Pagelet。其使用方式与现有的 Widget 十分类似。
 
