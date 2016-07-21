@@ -3,6 +3,7 @@
 var Liftoff = require('liftoff');
 var argv = require('minimist')(process.argv.slice(2));
 var path = require('path');
+var fs = require('fs');
 var cli = new Liftoff({
     name: 'yog2', // 命令名字
     processTitle: 'yog2',
@@ -21,20 +22,32 @@ for (var i = process.argv.length - 1; i >= 0; i--) {
     }
 };
 
-if ((!argv.F && !argv.fis3 && process.env.YOG_MODE !== 'fis3') || argv.fis2) {
-    require('../yog2.js').cli.run(process.argv);
-    return;
-}
 
-delete argv.F;
-delete argv.fis3;
-delete argv.fis2;
 
 cli.launch({
     cwd: argv.r || argv.root,
     configPath: argv.f || argv.file
 }, function (env) {
     var fis;
+
+    try {
+        var conf = fs.readFileSync(env.configPath).toString();
+        if (conf.match(/\/\*\s?fis3-enable\s?\*\//img) || conf.match(/\/\/\s?fis3-enable/img)) {
+            argv.fis3 = true;
+        }
+    }
+    catch (e) {}
+
+    if ((!argv.F && !argv.fis3 && process.env.YOG_MODE !== 'fis3') || argv.fis2) {
+        require('../yog2.js').cli.run(process.argv);
+        return;
+    }
+
+    delete argv.F;
+    delete argv.fis3;
+    delete argv.fis2;
+
+
     if (!env.modulePath) {
         fis = require('../yog2-fis3.js');
     }
