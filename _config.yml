@@ -7,7 +7,9 @@ url: "http://fex-team.github.io/yog2" # the base hostname & protocol for your si
 github_username: fex-team
 
 # Build settings
-markdown: kramdown
+markdown: redcarpet
+redcarpet:
+  extensions: ["with_toc_data", "space_after_headers", "no_intra_emphasis", "fenced_code_blocks", "autolink", "strikethrough", "superscript"]
 defaults:
   -
     scope:
