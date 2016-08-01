@@ -1,3 +1,6 @@
+branches:
+  only:
+    - gh-pages
 env:
   global:
   - GH_REF: git.duapp.com/appidenoe6p61ew/
