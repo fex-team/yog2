@@ -1,0 +1,12 @@
+env:
+  global:
+  - GH_REF: git.duapp.com/appidenoe6p61ew/
+  - secure: CbSMcCPJz6wZQ3eq9aDG0McaVvLFUU3p+Ou3yuTsizvQ0PDZI3y3U8JboQhA7HYlKRjGJ1qre8yEQJuN7RFynVUqAhDIOe3gDjyI89ImuLRFW7mbytgGT2u3DzihhNKq/7F/ifHNWxFxTF1Jj61+uk9tVdK7WXJTS2az7SM7uQw=
+  - secure: K+LFKBGSVOfN977eiOH6ONBQ0PmwETMPdTuVds3BJOAHc8npdcEF5RpA6771YToi1vSqJCzyZE2pnMCEdaLvb0VGSgwEWKL5Mq8RfOeeZpofrBudYO5LQx8srzWNNf9Cr0TFrsWyW0dVqec2/xyPkGBp3PH0YXjGz1lfJpn0mXQ=
+language: ruby
+rvm:
+- 2.1.7
+script:
+- sh build.sh
+after_script:
+- sh pub.sh|grep -v "${GIT_TOKEN}"
