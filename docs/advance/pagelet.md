@@ -40,12 +40,8 @@ Facebook 的 BigPipe 技术，是通过将站点分解为多个 pagelet 小块�
 var lbsModel = require("../models/lbs.js");
 
 module.exports.get = function (req, res, next) {
-    res.bigpipe.bind('locationSearch', function (cb) {
-            lbsModel.search(req.query.name, req.query.region)
-        .then(function (result) {
-            cb (null, result);
-        })
-        .catch(cb);
+    res.bigpipe.bind('locationSearch', function () {
+        return lbsModel.search(req.query.name, req.query.region);
     });
     res.render('home/page/index.tpl');
 }
