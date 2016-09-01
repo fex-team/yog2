@@ -162,13 +162,13 @@ fis.enableNPM = function(options) {
                 var file;
                 var i = modified.length - 1;
                 while ((file = modified[i--])) {
-                    if (file.subpath.indexOf('/client/node_modules') === 0) {
+                    if ((file.rExt === '.js' || file.rExt === '.css') && file.subpath.indexOf('/client/node_modules') === 0) {
                         modified.splice(i + 1, 1);
                     }
                 }
                 i = total.length - 1;
                 while ((file = total[i--])) {
-                    if (file.subpath.indexOf('/client/node_modules') === 0) {
+                    if ((file.rExt === '.js' || file.rExt === '.css') && file.subpath.indexOf('/client/node_modules') === 0) {
                         total.splice(i + 1, 1);
                     }
                 }
@@ -194,11 +194,11 @@ fis.hook('commonjs', {
 fis.match('::package', {
     postpackager: function createMap(ret, conf, settings, opt) {
         var maps = {};
-        fis.util.map(ret.src, function (subpath, file) {
+        fis.util.map(ret.src, function(subpath, file) {
             maps[file.id] = file;
         });
         var pkgMaps = {};
-        fis.util.map(ret.pkg, function (subpath, file) {
+        fis.util.map(ret.pkg, function(subpath, file) {
             pkgMaps[file.getUrl()] = file;
         });
         var path = require('path');
