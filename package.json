@@ -32,7 +32,7 @@
     "fis3-hook-node_modules": "2.2.8",
     "fis3-parser-typescript": "0.2.5",
     "fis3-preprocessor-js-require-css": "0.1.0",
-    "fis3-preprocessor-js-require-file": "0.1.0",
+    "fis3-preprocessor-js-require-file": "0.1.2",
     "liftoff": "2.3.0",
     "minimist": "1.2.0",
     "yog-pac": "0.1.0",
