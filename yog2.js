@@ -156,3 +156,7 @@ fis.require._cache['command-util'] = require('./command/util.js');
 fis.enableNPM = function(options) {
     fis.log.error('fis.enableNPM() only supported in FIS3 mode, use --fis3 to enable FIS3');
 };
+
+fis.enableES7 = function(options) {
+    fis.log.error('fis.enableES7() only supported in FIS3 mode, use --fis3 to enable FIS3');
+};
