@@ -144,7 +144,16 @@ fis.require._cache['command-util'] = require('./command/util.js');
     });
 });
 
-fis.enableNPM = function(options) {
+fis.enableES7 = function (options) {
+    fis.match('/server/**.js', {
+        parser: fis.plugin('typescript', {
+            module: 1,
+            target: 2
+        })
+    });
+};
+
+fis.enableNPM = function (options) {
     fis.match('/client/node_modules/**.js', {
         isMod: true
     });
