@@ -54,11 +54,7 @@ npm install
 > 切勿在生产环境使用开发调试模式启动 yog2 project，这样的行为将会引发安全问题。
 
 ```bash
-# for linux
-npm run debug
-
-# for windows
-npm run debug-win
+yog2 run
 ```
 
 yog2 project 的默认端口是 8085，你可以通过修改 `PORT` 环境变量或者直接修改 `app.js` 来指定端口。
