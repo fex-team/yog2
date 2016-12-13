@@ -38,7 +38,7 @@
     "yog-pac": "0.1.0",
     "yog2-command-init": "0.3.x",
     "yog2-command-plugin": "0.1.x",
-    "yogurt-postprocessor-require-async": "0.0.x",
+    "yogurt-postprocessor-require-async": "0.0.3",
     "yogurt-preprocessor-extlang": "0.0.2"
   }
 }
