@@ -42,7 +42,8 @@ var clientRoadmap = {
     '/client/{**.ts,**.tsx,**.jsx,**.es}': {
         parser: fis.plugin('typescript', {
             module: 1,
-            target: 0
+            target: 0,
+            sourceMap: true
         }),
         rExt: 'js'
     },
@@ -106,7 +107,8 @@ var serverRoadmap = {
     '/server/{**.ts,**.es}': {
         parser: fis.plugin('typescript', {
             module: 1,
-            target: 2
+            target: 2,
+            sourceMap: true
         }),
         rExt: 'js'
     },
@@ -144,7 +146,31 @@ fis.require._cache['command-util'] = require('./command/util.js');
     });
 });
 
+// 发布模式关闭sourceMap
+fis.media('prod').match('/client/{**.ts,**.tsx,**.jsx,**.es}', {
+    parser: fis.plugin('typescript', {
+        module: 1,
+        target: 0
+    }),
+    rExt: 'js'
+}).match('/server/{**.ts,**.es}',{
+    parser: fis.plugin('typescript', {
+        module: 1,
+        target: 2
+    }),
+    rExt: 'js'
+});
+
 fis.enableES7 = function (options) {
+    [fis.media('dev'), fis.media('debug'), fis.media('debug-prod')].forEach(function (media) {
+        media.match('/server/**.js', {
+            parser: fis.plugin('typescript', {
+                module: 1,
+                target: 2,
+                sourceMap: true
+            })
+        });
+    });
     fis.match('/server/**.js', {
         parser: fis.plugin('typescript', {
             module: 1,
