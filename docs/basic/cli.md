@@ -29,19 +29,19 @@ yog2 release 是最重要的命令之一，它的主要功能是对 app 代码�
 
 - 指定编译 app 代码并发布至某个目录
 
-    ```bash
+    ```
     yog2 release --dest ../yog
     ```
 
 - 指定编译 app 代码并发布至某个 deploy 配置项
 
-    ```bash
+    ```
     yog2 release --dest debug
     ```
 
 - 监听文件修改，对修改文件进行增量编译并发布
 
-    ```bash
+    ```
     yog2 release --dest debug --watch
     ```
 
@@ -49,7 +49,7 @@ yog2 release 是最重要的命令之一，它的主要功能是对 app 代码�
 
     > 自动刷新页面需要下载 livereload 插件，并且 yog2 release 命令执行后需手动刷新一次页面
         
-    ```bash
+    ```
     yog2 release --dest debug --watch --live
     ```
 
@@ -57,31 +57,31 @@ yog2 release 是最重要的命令之一，它的主要功能是对 app 代码�
 
 - 压缩静态资源
 
-    ```bash
+    ```
      yog2 release --dest debug --optimize
     ``` 
 
 - 为静态资源添加MD5后缀
 
-    ```bash
+    ```
      yog2 release --dest debug --md5
     ``` 
 
 - 打包静态资源
 
-    ```bash
+    ```
      yog2 release --dest debug --pack
     ``` 
 
 - 为静态资源添加 domain
 
-    ```bash
+    ```
      yog2 release --dest debug --domains
     ``` 
 
 上述的所有参数均可以组合使用，比如使用以下命令
 
-```bash
+```
 yog2 release --watch --live --optimize --md5 --domains --pack --dest debug
 ```
 
@@ -89,19 +89,19 @@ yog2 release --watch --live --optimize --md5 --domains --pack --dest debug
 
 此外，这些参数还提供了缩写和组合的功能，比如上述的命令缩写后可以写成
 
-```bash
+```
 yog2 release -w -L -o -m -D -p -d debug
 ```
 
 还可以更进一步组合一下
 
-```bash
+```
 yog2 release -wLomDpd debug
 ```
 
 最后，如果忘记了命令，还可以使用 `-h` 参数进行查询
 
-```bash
+```
 yog2 release -h
 
   Usage: release [options]
@@ -131,7 +131,7 @@ yog2 release -h
 
 yog2 plugin 命令用于安装 YOG2 的插件功能，比如
 
-```bash
+```
 yog2 plugin install session
 ```
 
@@ -143,7 +143,7 @@ yog2 plugin install session
 
 yog2 install 用于安装 fis 组件生态 [fis-components](https://github.com/fis-components) 中的各种组件
 
-```bash
+```
 yog2 install jquery 
 ```
 
