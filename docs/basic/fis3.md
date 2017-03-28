@@ -7,18 +7,31 @@ YOG2 命令行工具同时支持 fis 与 fis3 编译核心，通过简单的设�
 
 ### 内核切换
 
+切换为 fis3 编译核心的方式有3种
+
+#### 命令行参数
+
 ```bash
 yog2 release prod --fis3 # --fis3 建议跟在所有参数的最后
 ```
 
 添加 --fis3 将激活 fis3 编译核心，当然这也意味着要求配置文件 fis-conf.js 使用 fis3 的语法进行配置
 
-除了添加 --fis3 参数外，还可以通过环境变量配置来默认使用 fis3 编译核心
+#### 环境变量
+
+通过环境变量配置来默认使用 fis3 编译核心
 
 ```bash
 export YOG_MODE=fis3
 ```
 
+#### 添加配置
+
+通过修改 fis-conf.js 添加 `//fis3-enable` 注释，启用 fis3 编译核心
+
+```javascript
+// fis3-enable
+```
 > windows 用户可以直接在环境变量中设置。
 
 在使用 fis3 编译核心后，所有的编译参数也将调整为 [fis3](http://fex.baidu.com/fis3/) 的命令行参数，因此使用前建议先阅读 fis3 的用户文档。
