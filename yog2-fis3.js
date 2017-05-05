@@ -108,7 +108,9 @@ var serverRoadmap = {
         parser: fis.plugin('typescript', {
             module: 1,
             target: 2,
-            sourceMap: true
+            sourceMap: true,
+            noEmitHelpers : true,
+            importHelpers : true,
         }),
         rExt: 'js'
     },
@@ -156,7 +158,9 @@ fis.media('prod').match('/client/{**.ts,**.tsx,**.jsx,**.es}', {
 }).match('/server/{**.ts,**.es}',{
     parser: fis.plugin('typescript', {
         module: 1,
-        target: 2
+        target: 2,
+        noEmitHelpers : true,
+        importHelpers : true,
     }),
     rExt: 'js'
 });
@@ -167,14 +171,18 @@ fis.enableES7 = function (options) {
             parser: fis.plugin('typescript', {
                 module: 1,
                 target: 2,
-                sourceMap: true
+                sourceMap: true,
+                noEmitHelpers : true,
+                importHelpers : true,
             })
         });
     });
     fis.match('/server/**.js', {
         parser: fis.plugin('typescript', {
             module: 1,
-            target: 2
+            target: 2,
+            noEmitHelpers : true,
+            importHelpers : true,
         })
     });
 };
