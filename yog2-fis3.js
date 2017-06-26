@@ -108,7 +108,8 @@ var serverRoadmap = {
         parser: fis.plugin('typescript', {
             module: 1,
             target: 2,
-            sourceMap: true
+            sourceMap: true,
+            importHelpers: true,
         }),
         rExt: 'js'
     },
@@ -153,33 +154,38 @@ fis.media('prod').match('/client/{**.ts,**.tsx,**.jsx,**.es}', {
         target: 0
     }),
     rExt: 'js'
-}).match('/server/{**.ts,**.es}',{
+}).match('/server/{**.ts,**.es}', {
     parser: fis.plugin('typescript', {
         module: 1,
-        target: 2
+        target: 2,
+        importHelpers: true,
     }),
     rExt: 'js'
 });
 
-fis.enableES7 = function (options) {
-    [fis.media('dev'), fis.media('debug'), fis.media('debug-prod')].forEach(function (media) {
+fis.enableES7 = function(options) {
+    [fis.media('dev'), fis.media('debug'), fis.media('debug-prod')].forEach(function(media) {
         media.match('/server/**.js', {
             parser: fis.plugin('typescript', {
                 module: 1,
                 target: 2,
-                sourceMap: true
+                sourceMap: true,
+                importHelpers: true,
             })
         });
     });
     fis.match('/server/**.js', {
         parser: fis.plugin('typescript', {
             module: 1,
-            target: 2
+            target: 2,
+            importHelpers: true,
         })
     });
 };
 
-fis.enableNPM = function (options) {
+fis.enableNPM = function(options) {
+    options = options || {};
+
     fis.match('/client/node_modules/**.js', {
         isMod: true
     });
@@ -217,7 +223,14 @@ fis.enableNPM = function (options) {
         ]
     });
     fis.unhook('components');
-    fis.hook('node_modules');
+
+    var nodeModulesHookOptions = require('util')._extend({
+        shimProcess: false,
+        shimGlobal: false,
+        shimBuffer: false
+    }, options.node_modules || {});
+
+    fis.hook('node_modules', nodeModulesHookOptions);
 };
 
 // 模块化支持
