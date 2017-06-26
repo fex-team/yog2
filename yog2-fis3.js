@@ -180,6 +180,7 @@ fis.enableES7 = function (options) {
 };
 
 fis.enableNPM = function (options) {
+    options = options || {};
     fis.match('/client/node_modules/**.js', {
         isMod: true
     });
@@ -217,7 +218,11 @@ fis.enableNPM = function (options) {
         ]
     });
     fis.unhook('components');
-    fis.hook('node_modules');
+    fis.hook('node_modules', options.node_modules || {
+        shimGlobal: false,
+        shimProcess: false,
+        shimBuffer: false
+    });
 };
 
 // 模块化支持
