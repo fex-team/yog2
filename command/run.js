@@ -46,6 +46,7 @@ function start(options) {
     server.stdout.pipe(process.stdout);
     server.stderr.pipe(process.stderr);
     server.on('exit', function (code) {
+        process.exit();
         fis.log.warning(('yog2 server exit with code ' + code + ', restarting...').yellow);
         start(options);
     });
