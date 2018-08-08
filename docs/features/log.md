@@ -5,7 +5,7 @@
 
 在 YOG2 中，使用 [yog-log](https://github.com/fex-team/yog-log) 来处理日志功能，YOG2 的日志功能的特点在于可以准确的提供请求的 `LogID` ，方便以请求为单位对问题进行追查。
 
-> 准确提供请求级 `LogID` 的难点在于如何让各种与请求无关的模块正确的获取当前调用请求的 `LogID` ，如果使用全局变量，由于 Node.js 的异步 I/O 模型，不同请求直接的 `LogID` 会出现被覆盖的情况。 [yog-log](https://github.com/fex-team/yog-log) 则通过 `domain` 技术来保证了不同的请求之间，可以获取到正确的 `LogID`
+> 准确提供请求级 `LogID` 的难点在于如何让各种与请求无关的模块正确的获取当前调用请求的 `LogID` ，如果使用全局变量，由于 Node.js 的异步 I/O 模型，不同请求之间的 `LogID` 会出现被覆盖的情况。 [yog-log](https://github.com/fex-team/yog-log) 则通过 `domain` 技术来保证了不同的请求之间，可以获取到正确的 `LogID`
 
 ### 日志配置
 
