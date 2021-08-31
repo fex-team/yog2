@@ -28,12 +28,15 @@ cli.launch({
     cwd: argv.r || argv.root,
     configPath: argv.f || argv.file
 }, function (env) {
-    var fis;
+    var fis, useAsync, engine;
 
     try {
         var conf = fs.readFileSync(env.configPath).toString();
         if (conf.match(/\/\*\s?fis3-enable\s?\*\//img) || conf.match(/\/\/\s?fis3-enable/img)) {
             argv.fis3 = true;
+        } else if (conf.match(/\/\*\s?fis3-async-enable\s?\*\//img) || conf.match(/\/\/\s?fis3-async-enable/img)) {
+            argv.fis3 = true;
+            useAsync = true;
         }
     }
     catch (e) {}
@@ -54,6 +57,28 @@ cli.launch({
     else {
         fis = require(env.modulePath);
     }
+
+    var engine;
+    if (useAsync) {
+        if (typeof fis !== 'function') {
+            console.error('\x1b[31m%s\x1b[0m', 'The yog module at [' + env.modulePath + '] dont support fis3-async.');
+            return;
+        }
+
+        try {
+            engine = require('fis3-async');
+        } catch (e) {
+            var message = e.message;
+
+            if (~message.indexOf('Cannot find')) {
+                message = 'Can\'t find module `fis3-async`, please run `npm i -g fis3-async`';
+            }
+
+            console.error('\x1b[31m%s\x1b[0m', message);
+            return;
+        }
+    }
+    fis = typeof fis === 'function' ? fis(engine) : fis;
     fis.IS_FIS3 = true;
     fis.require.paths.unshift(path.join(env.cwd, 'node_modules'));
     fis.require.paths.push(path.join(path.dirname(__dirname), 'node_modules'));
