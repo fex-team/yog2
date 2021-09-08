@@ -130,9 +130,6 @@ var prodRoadmap = {
     },
     '::image': {
         useHash: true
-    },
-    '/client/**.png': {
-        optimizer: fis.plugin('png-compressor')
     }
 };
 
