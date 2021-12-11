@@ -1,6 +1,6 @@
 {
   "name": "yog2",
-  "version": "1.7.4",
+  "version": "1.7.5",
   "description": "Front End Integrated Solution for node express.",
   "main": "yog2.js",
   "bin": {
@@ -29,7 +29,7 @@
     "fis3": "3.4.46",
     "fis3-hook-commonjs": "0.1.32",
     "fis3-hook-node_modules": "2.3.1",
-    "fis3-parser-typescript": "1.4.0",
+    "fis3-parser-typescript": "1.5.0",
     "fis3-preprocessor-js-require-css": "0.1.3",
     "fis3-preprocessor-js-require-file": "0.1.3",
     "liftoff": "2.3.0",
